@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numbers Practice in English</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #60a5fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 0 0 15px 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 400px;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #666;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s;
+        }
+        
+        .tab.welcome-tab,
+        .tab.practice-tab {
+            flex-basis: 100%;
+            text-align: center;
+            background: #93c5fd !important;
+            color: white !important;
+        }
+        
+        .tab.welcome-tab:hover,
+        .tab.practice-tab:hover {
+            background: #60a5fa !important;
+        }
+        
+        .tab.welcome-tab.active,
+        .tab.practice-tab.active {
+            background: #3b82f6 !important;
+        }
+        
+        .tab:hover {
+            background: #e0e0e0;
+        }
+        
+        .tab.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        /* Content */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .intro {
+            text-align: center;
+        }
+        
+        .intro img {
+            max-width: 150px;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .intro h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .intro p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .intro .features {
+            text-align: left;
+            margin: 30px auto;
+            max-width: 400px;
+        }
+        
+        .intro .features h3 {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        
+        .intro .features ul {
+            list-style: none;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        /* Number items */
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .number-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .number-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .number-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .speaker-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            padding: 0;
+            transition: transform 0.2s;
+        }
+        
+        .speaker-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        .english-text {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .spanish-text {
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* Numbers table */
+        .numbers-table {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 4px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .number-cell {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 10px 5px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        
+        .number-cell:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .tab {
+                padding: 10px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .number-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Numbers Practice in English</h1>
+            <p>Learn to use numbers in everyday English</p>
+        </div>
+        
+        <div class="card">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab welcome-tab active" onclick="showTab('intro')">📚 Welcome</button>
+                <button class="tab" onclick="showTab('numbers')">🔢 Numbers 1-100</button>
+                <button class="tab" onclick="showTab('ordinals')">🔢 Ordinal Numbers</button>
+                <button class="tab" onclick="showTab('dates')">📅 Dates</button>
+                <button class="tab" onclick="showTab('time')">🕐 Time</button>
+                <button class="tab" onclick="showTab('prices')">💵 Money</button>
+                <button class="tab" onclick="showTab('temperature')">🌡️ Temperature</button>
+                <button class="tab" onclick="showTab('addresses')">🏠 Addresses</button>
+                <button class="tab" onclick="showTab('phone')">📱 Phone Numbers</button>
+                <button class="tab" onclick="showTab('weight')">⚖️ Weight</button>
+                <button class="tab" onclick="showTab('height')">📏 Height</button>
+                <button class="tab" onclick="showTab('age')">🎂 Age</button>
+                <button class="tab practice-tab" onclick="showTab('practice')">✏️ Daily Practice</button>
+            </div>
+            
+            <!-- Intro Content -->
+            <div id="intro" class="tab-content active">
+                <div class="intro">
+                    <h2>Welcome!</h2>
+                    <p>This app will help you practice using numbers in real-life situations. Click 'Next' or choose a topic above to begin!</p>
+                    
+                    <p style="font-style: italic; color: #666;">¡Bienvenido! Esta aplicación te ayudará a practicar el uso de números en situaciones de la vida real. ¡Haz clic en 'Siguiente' o elige un tema arriba para comenzar!</p>
+                    
+                    <div class="features">
+                        <h3>Features:</h3>
+                        <ul>
+                            <li>🔢 Numbers 1-100</li>
+                            <li>🇲🇽 Spanish translations</li>
+                            <li>🔊 Audio pronunciation</li>
+                            <li>📖 Real-world examples</li>
+                            <li>📱 Mobile friendly</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Numbers 1-100 Content -->
+            <div id="numbers" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">🔢 Numbers 1-100</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 20px;">Click any number to hear it</p>
+                <div id="numbersTable"></div>
+            </div>
+            
+            <!-- Ordinal Numbers 1-100 Content -->
+            <div id="ordinals" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">🔢 Ordinal Numbers 1-100</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 20px;">Click any number to hear it</p>
+                <div id="ordinalsTable"></div>
+            </div>
+            
+            <!-- Dates Content -->
+            <div id="dates" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <h2 style="color: #667eea; margin: 0;">📅 Dates</h2>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px;">
+                            <div>January = 1</div>
+                            <div>July = 7</div>
+                            <div>February = 2</div>
+                            <div>August = 8</div>
+                            <div>March = 3</div>
+                            <div>September = 9</div>
+                            <div>April = 4</div>
+                            <div>October = 10</div>
+                            <div>May = 5</div>
+                            <div>November = 11</div>
+                            <div>June = 6</div>
+                            <div>December = 12</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="number-grid" id="datesGrid"></div>
+            </div>
+            
+            <!-- Time Content -->
+            <div id="time" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">🕐 Time</h2>
+                <div class="number-grid" id="timeGrid"></div>
+            </div>
+            
+            <!-- Prices Content -->
+            <div id="prices" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">💵 Money</h2>
+                <div class="number-grid" id="pricesGrid"></div>
+            </div>
+            
+            <!-- Temperature Content -->
+            <div id="temperature" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">🌡️ Temperature</h2>
+                <div class="number-grid" id="temperatureGrid"></div>
+            </div>
+            
+            <!-- Weight Content -->
+            <div id="weight" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">⚖️ Weight</h2>
+                <div class="number-grid" id="weightGrid"></div>
+            </div>
+            
+            <!-- Height Content -->
+            <div id="height" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">📏 Height</h2>
+                <div class="number-grid" id="heightGrid"></div>
+            </div>
+            
+            <!-- Age Content -->
+            <div id="age" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">🎂 Age</h2>
+                <div class="number-grid" id="ageGrid"></div>
+            </div>
+            
+            <!-- Addresses Content -->
+            <div id="addresses" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <h2 style="color: #667eea; margin: 0;">🏠 Addresses</h2>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div style="display: grid; grid-template-columns: auto auto auto; gap: 6px 16px;">
+                            <div>Ave. = Avenue</div>
+                            <div>E. = East</div>
+                            <div>N. = North</div>
+                            <div>St. = Street</div>
+                            <div>W. = West</div>
+                            <div>S. = South</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="number-grid" id="addressesGrid"></div>
+            </div>
+            
+            <!-- Phone Numbers Content -->
+            <div id="phone" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">📱 Phone Numbers</h2>
+                <div class="number-grid" id="phoneGrid"></div>
+            </div>
+            
+            <!-- Practice Content -->
+            <div id="practice" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 10px; text-align: center;">✏️ Daily Practice</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 20px; font-size: 0.9rem;">20 random examples that change every day - Click any item to hear it!</p>
+                <div class="number-grid" id="practiceGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const addressesData = [
+            { display: "1225 Parker Ave.", english: "Twelve twenty-five Parker Avenue", spanish: "Mil doscientos veinticinco Avenida Parker" },
+            { display: "5697 29th Ave.", english: "Fifty-six ninety-seven Twenty-ninth Avenue", spanish: "Cinco mil seiscientos noventa siete Avenida Veintinueve" },
+            { display: "7421 E. 45th St.", english: "Seventy-four twenty-one East Forty-fifth Street", spanish: "Siete mil cuatrocientos veintiuno Calle Cuarenta cinco Este" },
+            { display: "3850 N. Oak St.", english: "Thirty-eight fifty North Oak Street", spanish: "Tres mil ochocientos cincuenta Calle Oak Norte" },
+            { display: "9102 Lyon Ave.", english: "Ninety-one oh two Lyon Avenue", spanish: "Nueve mil ciento dos Avenida Lyon" },
+            { display: "2468 13th Ave.", english: "Twenty-four sixty-eight Thirteenth Avenue", spanish: "Dos mil cuatrocientos sesenta ocho Avenida Trece" },
+            { display: "6543 W. 52nd St.", english: "Sixty-five forty-three West Fifty-second Street", spanish: "Seis mil quinientos cuarenta tres Calle Cincuenta dos Oeste" },
+            { display: "1089 Maple Ave.", english: "Ten eighty-nine Maple Avenue", spanish: "Mil ochenta nueve Avenida Maple" },
+            { display: "4720 18th St.", english: "Forty-seven twenty Eighteenth Street", spanish: "Cuatro mil setecientos veinte Calle Dieciocho" },
+            { display: "8305 67th Ave.", english: "Eighty-three oh five Sixty-seventh Avenue", spanish: "Ocho mil trescientos cinco Avenida Sesenta siete" },
+            { display: "2917 Pine St.", english: "Twenty-nine seventeen Pine Street", spanish: "Dos mil novecientos diecisiete Calle Pine" },
+            { display: "5234 22nd Ave.", english: "Fifty-two thirty-four Twenty-second Avenue", spanish: "Cinco mil doscientos treinta cuatro Avenida Veintidos" },
+            { display: "7890 N. Elm Ave.", english: "Seventy-eight ninety North Elm Avenue", spanish: "Siete mil ochocientos noventa Avenida Elm Norte" },
+            { display: "1456 S. 38th St.", english: "Fourteen fifty-six South Thirty-eighth Street", spanish: "Mil cuatrocientos cincuenta seis Calle Treinta ocho Sur" },
+            { display: "3601 Cedar Ave.", english: "Thirty-six oh one Cedar Avenue", spanish: "Tres mil seiscientos uno Avenida Cedar" },
+            { display: "6289 71st St.", english: "Sixty-two eighty-nine Seventy-first Street", spanish: "Seis mil doscientos ochenta nueve Calle Setenta uno" },
+            { display: "9047 Broadway Ave.", english: "Ninety oh forty-seven Broadway Avenue", spanish: "Nueve mil cuarenta siete Avenida Broadway" },
+            { display: "4315 15th Ave.", english: "Forty-three fifteen Fifteenth Avenue", spanish: "Cuatro mil trescientos quince Avenida Quince" },
+            { display: "8762 W. Oak St.", english: "Eighty-seven sixty-two West Oak Street", spanish: "Ocho mil setecientos sesenta dos Calle Oak Oeste" },
+            { display: "2103 84th Ave.", english: "Twenty-one oh three Eighty-fourth Avenue", spanish: "Dos mil ciento tres Avenida Ochenta cuatro" }
+        ];
+        
+        const datesData = [
+            { display: "1/15/1992", english: "January fifteenth, nineteen ninety-two", spanish: "Quince de enero de mil novecientos noventa dos" },
+            { display: "7/4/1995", english: "July fourth, nineteen ninety-five", spanish: "Cuatro de julio de mil novecientos noventa cinco" },
+            { display: "12/25/1998", english: "December twenty-fifth, nineteen ninety-eight", spanish: "Veinticinco de diciembre de mil novecientos noventa ocho" },
+            { display: "3/10/2000", english: "March tenth, two thousand", spanish: "Diez de marzo de dos mil" },
+            { display: "9/11/2001", english: "September eleventh, two thousand one", spanish: "Once de septiembre de dos mil uno" },
+            { display: "2/14/2005", english: "February fourteenth, two thousand five", spanish: "Catorce de febrero de dos mil cinco" },
+            { display: "10/31/2008", english: "October thirty-first, two thousand eight", spanish: "Treinta uno de octubre de dos mil ocho" },
+            { display: "6/15/2010", english: "June fifteenth, two thousand ten", spanish: "Quince de junio de dos mil diez" },
+            { display: "11/23/2012", english: "November twenty-third, two thousand twelve", spanish: "Veintitres de noviembre de dos mil doce" },
+            { display: "4/1/2015", english: "April first, two thousand fifteen", spanish: "Primero de abril de dos mil quince" },
+            { display: "8/8/2018", english: "August eighth, two thousand eighteen", spanish: "Ocho de agosto de dos mil dieciocho" },
+            { display: "1/1/2020", english: "January first, two thousand twenty", spanish: "Primero de enero de dos mil veinte" },
+            { display: "5/20/2021", english: "May twentieth, two thousand twenty-one", spanish: "Veinte de mayo de dos mil veintiuno" },
+            { display: "7/4/2022", english: "July fourth, two thousand twenty-two", spanish: "Cuatro de julio de dos mil veintidos" },
+            { display: "12/31/2023", english: "December thirty-first, two thousand twenty-three", spanish: "Treinta uno de diciembre de dos mil veintitres" },
+            { display: "2/10/2024", english: "February tenth, two thousand twenty-four", spanish: "Diez de febrero de dos mil veinticuatro" },
+            { display: "6/30/2025", english: "June thirtieth, two thousand twenty-five", spanish: "Treinta de junio de dos mil veinticinco" },
+            { display: "3/17/2026", english: "March seventeenth, two thousand twenty-six", spanish: "Diecisiete de marzo de dos mil veintiseis" },
+            { display: "10/5/1997", english: "October fifth, nineteen ninety-seven", spanish: "Cinco de octubre de mil novecientos noventa siete" },
+            { display: "4/22/2019", english: "April twenty-second, two thousand nineteen", spanish: "Veintidos de abril de dos mil diecinueve" }
+        ];
+        
+        const timeData = [
+            { display: "1:00", english: "One o'clock", spanish: "La una" },
+            { display: "2:03", english: "Two oh three", spanish: "Dos tres" },
+            { display: "3:15", english: "Three fifteen", spanish: "Tres quince" },
+            { display: "4:30", english: "Four thirty", spanish: "Cuatro treinta" },
+            { display: "5:45", english: "Five forty-five", spanish: "Cinco cuarenta y cinco" },
+            { display: "6:00", english: "Six o'clock", spanish: "Las seis" },
+            { display: "7:10", english: "Seven ten", spanish: "Siete diez" },
+            { display: "8:05", english: "Eight oh five", spanish: "Ocho cinco" },
+            { display: "9:20", english: "Nine twenty", spanish: "Nueve veinte" },
+            { display: "10:30", english: "Ten thirty", spanish: "Diez treinta" },
+            { display: "11:08", english: "Eleven oh eight", spanish: "Once ocho" },
+            { display: "12:00", english: "Twelve o'clock", spanish: "Las doce" },
+            { display: "12:50", english: "Twelve fifty", spanish: "Doce cincuenta" },
+            { display: "1:15", english: "One fifteen", spanish: "Una quince" },
+            { display: "2:25", english: "Two twenty-five", spanish: "Dos veinticinco" },
+            { display: "3:40", english: "Three forty", spanish: "Tres cuarenta" },
+            { display: "4:55", english: "Four fifty-five", spanish: "Cuatro cincuenta y cinco" },
+            { display: "6:07", english: "Six oh seven", spanish: "Seis siete" },
+            { display: "7:35", english: "Seven thirty-five", spanish: "Siete treinta y cinco" },
+            { display: "9:02", english: "Nine oh two", spanish: "Nueve dos" }
+        ];
+
+        const pricesData = [
+            { display: "$0.99", english: "Ninety-nine cents", spanish: "Noventa nueve centavos" },
+            { display: "$1.50", english: "One dollar and fifty cents", spanish: "Un dólar y cincuenta centavos" },
+            { display: "$2.99", english: "Two dollars and ninety-nine cents", spanish: "Dos dólares y noventa nueve centavos" },
+            { display: "$5.00", english: "Five dollars", spanish: "Cinco dólares" },
+            { display: "$9.99", english: "Nine dollars and ninety-nine cents", spanish: "Nueve dólares y noventa nueve centavos" },
+            { display: "$12.50", english: "Twelve dollars and fifty cents", spanish: "Doce dólares y cincuenta centavos" },
+            { display: "$19.95", english: "Nineteen dollars and ninety-five cents", spanish: "Diecinueve dólares y noventa cinco centavos" },
+            { display: "$25.00", english: "Twenty-five dollars", spanish: "Veinticinco dólares" },
+            { display: "$49.99", english: "Forty-nine dollars and ninety-nine cents", spanish: "Cuarenta nueve dólares y noventa nueve centavos" },
+            { display: "$75.00", english: "Seventy-five dollars", spanish: "Setenta cinco dólares" },
+            { display: "$99.99", english: "Ninety-nine dollars and ninety-nine cents", spanish: "Noventa nueve dólares y noventa nueve centavos" },
+            { display: "$100.00", english: "One hundred dollars", spanish: "Cien dólares" },
+            { display: "$3.25", english: "Three dollars and twenty-five cents", spanish: "Tres dólares y veinticinco centavos" },
+            { display: "$7.50", english: "Seven dollars and fifty cents", spanish: "Siete dólares y cincuenta centavos" },
+            { display: "$15.99", english: "Fifteen dollars and ninety-nine cents", spanish: "Quince dólares y noventa nueve centavos" },
+            { display: "$30.00", english: "Thirty dollars", spanish: "Treinta dólares" },
+            { display: "$45.75", english: "Forty-five dollars and seventy-five cents", spanish: "Cuarenta cinco dólares y setenta cinco centavos" },
+            { display: "$60.00", english: "Sixty dollars", spanish: "Sesenta dólares" },
+            { display: "$89.50", english: "Eighty-nine dollars and fifty cents", spanish: "Ochenta nueve dólares y cincuenta centavos" },
+            { display: "$200.00", english: "Two hundred dollars", spanish: "Doscientos dólares" }
+        ];
+
+        const temperatureData = [
+            { display: "32°F", english: "Thirty-two degrees Fahrenheit", spanish: "Treinta dos grados Fahrenheit" },
+            { display: "40°F", english: "Forty degrees Fahrenheit", spanish: "Cuarenta grados Fahrenheit" },
+            { display: "47°F", english: "Forty-seven degrees Fahrenheit", spanish: "Cuarenta siete grados Fahrenheit" },
+            { display: "50°F", english: "Fifty degrees Fahrenheit", spanish: "Cincuenta grados Fahrenheit" },
+            { display: "52°F", english: "Fifty-two degrees Fahrenheit", spanish: "Cincuenta dos grados Fahrenheit" },
+            { display: "55°F", english: "Fifty-five degrees Fahrenheit", spanish: "Cincuenta cinco grados Fahrenheit" },
+            { display: "58°F", english: "Fifty-eight degrees Fahrenheit", spanish: "Cincuenta ocho grados Fahrenheit" },
+            { display: "62°F", english: "Sixty-two degrees Fahrenheit", spanish: "Sesenta dos grados Fahrenheit" },
+            { display: "65°F", english: "Sixty-five degrees Fahrenheit", spanish: "Sesenta cinco grados Fahrenheit" },
+            { display: "68°F", english: "Sixty-eight degrees Fahrenheit", spanish: "Sesenta ocho grados Fahrenheit" },
+            { display: "70°F", english: "Seventy degrees Fahrenheit", spanish: "Setenta grados Fahrenheit" },
+            { display: "72°F", english: "Seventy-two degrees Fahrenheit", spanish: "Setenta dos grados Fahrenheit" },
+            { display: "75°F", english: "Seventy-five degrees Fahrenheit", spanish: "Setenta cinco grados Fahrenheit" },
+            { display: "76°F", english: "Seventy-six degrees Fahrenheit", spanish: "Setenta seis grados Fahrenheit" },
+            { display: "80°F", english: "Eighty degrees Fahrenheit", spanish: "Ochenta grados Fahrenheit" },
+            { display: "90°F", english: "Ninety degrees Fahrenheit", spanish: "Noventa grados Fahrenheit" },
+            { display: "98°F", english: "Ninety-eight degrees Fahrenheit", spanish: "Noventa ocho grados Fahrenheit" },
+            { display: "100°F", english: "One hundred degrees Fahrenheit", spanish: "Cien grados Fahrenheit" }
+        ];
+
+        const weightData = [
+            { display: "0.5 lb", english: "Half a pound", spanish: "Media libra" },
+            { display: "1 lb", english: "One pound", spanish: "Una libra" },
+            { display: "2.5 lbs", english: "Two and a half pounds", spanish: "Dos libras y media" },
+            { display: "3 lbs", english: "Three pounds", spanish: "Tres libras" },
+            { display: "5 lbs", english: "Five pounds", spanish: "Cinco libras" },
+            { display: "7 lbs", english: "Seven pounds", spanish: "Siete libras" },
+            { display: "10 lbs", english: "Ten pounds", spanish: "Diez libras" },
+            { display: "12.5 lbs", english: "Twelve and a half pounds", spanish: "Doce libras y media" },
+            { display: "15 lbs", english: "Fifteen pounds", spanish: "Quince libras" },
+            { display: "18 lbs", english: "Eighteen pounds", spanish: "Dieciocho libras" },
+            { display: "20 lbs", english: "Twenty pounds", spanish: "Veinte libras" },
+            { display: "25 lbs", english: "Twenty-five pounds", spanish: "Veinticinco libras" },
+            { display: "33 lbs", english: "Thirty-three pounds", spanish: "Treinta tres libras" },
+            { display: "45 lbs", english: "Forty-five pounds", spanish: "Cuarenta cinco libras" },
+            { display: "50 lbs", english: "Fifty pounds", spanish: "Cincuenta libras" },
+            { display: "67 lbs", english: "Sixty-seven pounds", spanish: "Sesenta siete libras" },
+            { display: "100 lbs", english: "One hundred pounds", spanish: "Cien libras" },
+            { display: "125 lbs", english: "One hundred twenty-five pounds", spanish: "Ciento veinticinco libras" },
+            { display: "150 lbs", english: "One hundred fifty pounds", spanish: "Ciento cincuenta libras" },
+            { display: "200 lbs", english: "Two hundred pounds", spanish: "Doscientas libras" }
+        ];
+
+        const heightData = [
+            { display: "3'6\"", english: "Three feet six inches", spanish: "Tres pies seis pulgadas" },
+            { display: "4'0\"", english: "Four feet", spanish: "Cuatro pies" },
+            { display: "4'5\"", english: "Four feet five inches", spanish: "Cuatro pies cinco pulgadas" },
+            { display: "4'8\"", english: "Four feet eight inches", spanish: "Cuatro pies ocho pulgadas" },
+            { display: "4'10\"", english: "Four feet ten inches", spanish: "Cuatro pies diez pulgadas" },
+            { display: "4'11\"", english: "Four feet eleven inches", spanish: "Cuatro pies once pulgadas" },
+            { display: "5'0\"", english: "Five feet", spanish: "Cinco pies" },
+            { display: "5'1\"", english: "Five feet one inch", spanish: "Cinco pies una pulgada" },
+            { display: "5'2\"", english: "Five feet two inches", spanish: "Cinco pies dos pulgadas" },
+            { display: "5'3\"", english: "Five feet three inches", spanish: "Cinco pies tres pulgadas" },
+            { display: "5'4\"", english: "Five feet four inches", spanish: "Cinco pies cuatro pulgadas" },
+            { display: "5'5\"", english: "Five feet five inches", spanish: "Cinco pies cinco pulgadas" },
+            { display: "5'6\"", english: "Five feet six inches", spanish: "Cinco pies seis pulgadas" },
+            { display: "5'7\"", english: "Five feet seven inches", spanish: "Cinco pies siete pulgadas" },
+            { display: "5'8\"", english: "Five feet eight inches", spanish: "Cinco pies ocho pulgadas" },
+            { display: "5'9\"", english: "Five feet nine inches", spanish: "Cinco pies nueve pulgadas" },
+            { display: "5'10\"", english: "Five feet ten inches", spanish: "Cinco pies diez pulgadas" },
+            { display: "5'11\"", english: "Five feet eleven inches", spanish: "Cinco pies once pulgadas" },
+            { display: "6'0\"", english: "Six feet", spanish: "Seis pies" },
+            { display: "6'2\"", english: "Six feet two inches", spanish: "Seis pies dos pulgadas" }
+        ];
+
+        const ageData = [
+            { display: "6 months old", english: "Six months old", spanish: "Seis meses" },
+            { display: "1 year old", english: "One year old", spanish: "Un año" },
+            { display: "1 year 6 months", english: "One year six months old", spanish: "Un año seis meses" },
+            { display: "2 years old", english: "Two years old", spanish: "Dos años" },
+            { display: "2 years 3 months", english: "Two years three months old", spanish: "Dos años tres meses" },
+            { display: "3 years old", english: "Three years old", spanish: "Tres años" },
+            { display: "3 years 9 months", english: "Three years nine months old", spanish: "Tres años nueve meses" },
+            { display: "5 years old", english: "Five years old", spanish: "Cinco años" },
+            { display: "8 years old", english: "Eight years old", spanish: "Ocho años" },
+            { display: "10 years old", english: "Ten years old", spanish: "Diez años" },
+            { display: "12 years old", english: "Twelve years old", spanish: "Doce años" },
+            { display: "15 years old", english: "Fifteen years old", spanish: "Quince años" },
+            { display: "18 years old", english: "Eighteen years old", spanish: "Dieciocho años" },
+            { display: "21 years old", english: "Twenty-one years old", spanish: "Veintiún años" },
+            { display: "25 years old", english: "Twenty-five years old", spanish: "Veinticinco años" },
+            { display: "30 years old", english: "Thirty years old", spanish: "Treinta años" },
+            { display: "45 years old", english: "Forty-five years old", spanish: "Cuarenta cinco años" },
+            { display: "60 years old", english: "Sixty years old", spanish: "Sesenta años" },
+            { display: "75 years old", english: "Seventy-five years old", spanish: "Setenta cinco años" },
+            { display: "90 years old", english: "Ninety years old", spanish: "Noventa años" }
+        ];
+
+        const phoneData = [
+            { display: "510-234-1234", english: "Five one zero, two three four, one two three four", spanish: "Cinco uno cero, dos tres cuatro, uno dos tres cuatro" },
+            { display: "510-678-0123", english: "Five one zero, six seven eight, zero one two three", spanish: "Cinco uno cero, seis siete ocho, cero uno dos tres" },
+            { display: "510-891-9876", english: "Five one zero, eight nine one, nine eight seven six", spanish: "Cinco uno cero, ocho nueve uno, nueve ocho siete seis" },
+            { display: "510-345-4567", english: "Five one zero, three four five, four five six seven", spanish: "Cinco uno cero, tres cuatro cinco, cuatro cinco seis siete" },
+            { display: "510-729-7890", english: "Five one zero, seven two nine, seven eight nine zero", spanish: "Cinco uno cero, siete dos nueve, siete ocho nueve cero" },
+            { display: "415-682-2468", english: "Four one five, six eight two, two four six eight", spanish: "Cuatro uno cinco, seis ocho dos, dos cuatro seis ocho" },
+            { display: "415-391-1357", english: "Four one five, three nine one, one three five seven", spanish: "Cuatro uno cinco, tres nueve uno, uno tres cinco siete" },
+            { display: "415-804-8024", english: "Four one five, eight zero four, eight zero two four", spanish: "Cuatro uno cinco, ocho cero cuatro, ocho cero dos cuatro" },
+            { display: "415-267-6543", english: "Four one five, two six seven, six five four three", spanish: "Cuatro uno cinco, dos seis siete, seis cinco cuatro tres" },
+            { display: "415-921-3210", english: "Four one five, nine two one, three two one zero", spanish: "Cuatro uno cinco, nueve dos uno, tres dos uno cero" },
+            { display: "510-456-0987", english: "Five one zero, four five six, zero nine eight seven", spanish: "Cinco uno cero, cuatro cinco seis, cero nueve ocho siete" },
+            { display: "510-305-5050", english: "Five one zero, three zero five, five zero five zero", spanish: "Cinco uno cero, tres cero cinco, cinco cero cinco cero" },
+            { display: "415-700-7007", english: "Four one five, seven zero zero, seven zero zero seven", spanish: "Cuatro uno cinco, siete cero cero, siete cero cero siete" },
+            { display: "510-627-4183", english: "Five one zero, six two seven, four one eight three", spanish: "Cinco uno cero, seis dos siete, cuatro uno ocho tres" },
+            { display: "415-882-2002", english: "Four one five, eight eight two, two zero zero two", spanish: "Cuatro uno cinco, ocho ocho dos, dos cero cero dos" },
+            { display: "510-548-2971", english: "Five one zero, five four eight, two nine seven one", spanish: "Cinco uno cero, cinco cuatro ocho, dos nueve siete uno" },
+            { display: "415-112-1122", english: "Four one five, one one two, one one two two", spanish: "Cuatro uno cinco, uno uno dos, uno uno dos dos" },
+            { display: "510-304-3045", english: "Five one zero, three zero four, three zero four five", spanish: "Cinco uno cero, tres cero cuatro, tres cero cuatro cinco" },
+            { display: "415-670-6700", english: "Four one five, six seven zero, six seven zero zero", spanish: "Cuatro uno cinco, seis siete cero, seis siete cero cero" },
+            { display: "510-900-9000", english: "Five one zero, nine zero zero, nine zero zero zero", spanish: "Cinco uno cero, nueve cero cero, nueve cero cero cero" }
+        ];
+
+        // Populate grids
+        function populateGrid(gridId, data) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';
+            
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'number-item';
+                
+                // Check if this is time data to add clock
+                let clockSVG = '';
+                if (gridId === 'timeGrid' && item.display.includes(':')) {
+                    clockSVG = generateClock(item.display);
+                }
+                
+                // Check if this is temperature data to add thermometer
+                let thermometerSVG = '';
+                if (gridId === 'temperatureGrid' && item.display.includes('°F')) {
+                    thermometerSVG = generateThermometer(item.display);
+                }
+                
+                // For phone numbers, add (oh) to display for 510 area code
+                let displayEnglish = item.english;
+                if (gridId === 'phoneGrid' && item.display.startsWith('510')) {
+                    displayEnglish = item.english.replace('Five one zero,', 'Five one zero (oh),');
+                }
+                
+                // Check if this is practice grid - hide English and Spanish text
+                const isPractice = gridId === 'practiceGrid';
+                
+                div.innerHTML = `
+                    <div class="number-display" style="align-items: center;">
+                        ${clockSVG}${thermometerSVG}
+                        <span style="flex-grow: 1;">${item.display}</span>
+                        <button class="speaker-btn" onclick="speak('${item.english.replace(/'/g, "\\'")}')">🔊</button>
+                    </div>
+                    ${!isPractice ? `<div class="english-text">${displayEnglish}</div>` : ''}
+                    ${!isPractice ? `<div class="spanish-text">${item.spanish}</div>` : ''}
+                `;
+                grid.appendChild(div);
+            });
+        }
+        
+        // Generate thermometer SVG
+        function generateThermometer(tempStr) {
+            const temp = parseInt(tempStr);
+            
+            // Calculate fill height based on temperature (0-100°F range)
+            // Map 32°F (freezing) to bottom, 100°F to top
+            const fillPercent = Math.max(0, Math.min(100, ((temp - 32) / 68) * 100));
+            const fillHeight = 35 * (fillPercent / 100);
+            
+            // Color based on temperature
+            let fillColor = '#667eea'; // default blue
+            if (temp >= 80) fillColor = '#e53e3e'; // hot = red
+            else if (temp >= 60) fillColor = '#ed8936'; // warm = orange
+            else if (temp >= 40) fillColor = '#48bb78'; // cool = green
+            
+            return `
+                <svg width="50" height="50" viewBox="0 0 100 100" style="margin-right: 10px; flex-shrink: 0;">
+                    <!-- Thermometer tube -->
+                    <rect x="42" y="15" width="16" height="50" rx="8" fill="white" stroke="#667eea" stroke-width="2"/>
+                    
+                    <!-- Thermometer bulb -->
+                    <circle cx="50" cy="75" r="12" fill="white" stroke="#667eea" stroke-width="2"/>
+                    
+                    <!-- Temperature fill in bulb -->
+                    <circle cx="50" cy="75" r="9" fill="${fillColor}"/>
+                    
+                    <!-- Temperature fill in tube -->
+                    <rect x="44" y="${65 - fillHeight}" width="12" height="${fillHeight}" fill="${fillColor}"/>
+                    
+                    <!-- Tick marks -->
+                    <line x1="38" y1="25" x2="42" y2="25" stroke="#999" stroke-width="1"/>
+                    <line x1="38" y1="40" x2="42" y2="40" stroke="#999" stroke-width="1"/>
+                    <line x1="38" y1="55" x2="42" y2="55" stroke="#999" stroke-width="1"/>
+                </svg>
+            `;
+        }
+        
+        // Generate analog clock SVG
+        function generateClock(time) {
+            const [hours, minutes] = time.split(':').map(Number);
+            
+            // Calculate angles (12 o'clock = 0°, clockwise)
+            const minuteAngle = (minutes * 6) - 90; // 6° per minute
+            const hourAngle = ((hours % 12) * 30 + minutes * 0.5) - 90; // 30° per hour + 0.5° per minute
+            
+            // Calculate hand end points (centered at 50,50)
+            const hourX = 50 + 25 * Math.cos(hourAngle * Math.PI / 180);
+            const hourY = 50 + 25 * Math.sin(hourAngle * Math.PI / 180);
+            const minuteX = 50 + 35 * Math.cos(minuteAngle * Math.PI / 180);
+            const minuteY = 50 + 35 * Math.sin(minuteAngle * Math.PI / 180);
+            
+            return `
+                <svg width="50" height="50" viewBox="0 0 100 100" style="margin-right: 10px; flex-shrink: 0;">
+                    <!-- Clock face -->
+                    <circle cx="50" cy="50" r="45" fill="white" stroke="#667eea" stroke-width="3"/>
+                    
+                    <!-- Hour markers -->
+                    <circle cx="50" cy="10" r="2" fill="#667eea"/>
+                    <circle cx="50" cy="90" r="2" fill="#667eea"/>
+                    <circle cx="10" cy="50" r="2" fill="#667eea"/>
+                    <circle cx="90" cy="50" r="2" fill="#667eea"/>
+                    
+                    <!-- Hour hand -->
+                    <line x1="50" y1="50" x2="${hourX}" y2="${hourY}" stroke="#333" stroke-width="4" stroke-linecap="round"/>
+                    
+                    <!-- Minute hand -->
+                    <line x1="50" y1="50" x2="${minuteX}" y2="${minuteY}" stroke="#667eea" stroke-width="3" stroke-linecap="round"/>
+                    
+                    <!-- Center dot -->
+                    <circle cx="50" cy="50" r="4" fill="#667eea"/>
+                </svg>
+            `;
+        }
+
+        // Initialize grids
+        populateGrid('addressesGrid', addressesData);
+        populateGrid('datesGrid', datesData);
+        populateGrid('timeGrid', timeData);
+        populateGrid('pricesGrid', pricesData);
+        populateGrid('temperatureGrid', temperatureData);
+        populateGrid('weightGrid', weightData);
+        populateGrid('heightGrid', heightData);
+        populateGrid('ageGrid', ageData);
+        populateGrid('phoneGrid', phoneData);
+        
+        // Generate daily practice examples
+        function generateDailyPractice() {
+            // Get today's date as seed for consistent daily examples
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+            
+            // Seed random number generator with day of year
+            function seededRandom(seed) {
+                const x = Math.sin(seed++) * 10000;
+                return x - Math.floor(x);
+            }
+            
+            const allData = [
+                ...addressesData,
+                ...datesData,
+                ...timeData,
+                ...pricesData,
+                ...temperatureData,
+                ...weightData,
+                ...heightData,
+                ...ageData,
+                ...phoneData
+            ];
+            
+            // Shuffle array using seeded random
+            const shuffled = [...allData];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(seededRandom(dayOfYear + i) * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            
+            // Take first 20 items
+            const dailyPractice = shuffled.slice(0, 20);
+            populateGrid('practiceGrid', dailyPractice);
+        }
+        
+        generateDailyPractice();
+
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Text-to-speech
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8;
+                
+                const voices = window.speechSynthesis.getVoices();
+                const femaleVoice = voices.find(voice => 
+                    voice.name.includes('Female') || 
+                    voice.name.includes('Samantha') || 
+                    voice.name.includes('Victoria') ||
+                    voice.name.includes('Google US English') ||
+                    voice.name.includes('Microsoft Zira')
+                );
+                
+                if (femaleVoice) {
+                    utterance.voice = femaleVoice;
+                }
+                
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Load voices when available
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                // Voices are now loaded
+            };
+        }
+        
+        // Generate numbers 1-100 table
+        function generateNumbersTable() {
+            const table = document.getElementById('numbersTable');
+            table.className = 'numbers-table';
+            
+            for (let i = 1; i <= 100; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'number-cell';
+                cell.textContent = i;
+                cell.onclick = () => speakNumber(i);
+                table.appendChild(cell);
+            }
+        }
+        
+        // Convert number to words and speak it
+        function speakNumber(num) {
+            const numberWord = numberToWords(num);
+            speak(numberWord);
+        }
+        
+        // Convert number to English words
+        function numberToWords(num) {
+            const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+            const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            
+            if (num < 10) {
+                return ones[num];
+            } else if (num < 20) {
+                return teens[num - 10];
+            } else if (num < 100) {
+                const ten = Math.floor(num / 10);
+                const one = num % 10;
+                return tens[ten] + (one ? ' ' + ones[one] : '');
+            } else if (num === 100) {
+                return 'one hundred';
+            }
+            return num.toString();
+        }
+        
+        // Play numbers 1 to 100 consecutively
+        let isCounting = false;
+        
+        function playNumbers1to100() {
+            if (isCounting) return; // Prevent multiple clicks
+            
+            isCounting = true;
+            const numbers = [];
+            
+            // Generate number words
+            const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+            const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            
+            for (let i = 1; i <= 100; i++) {
+                if (i < 10) {
+                    numbers.push(ones[i]);
+                } else if (i < 20) {
+                    numbers.push(teens[i - 10]);
+                } else if (i < 100) {
+                    const ten = Math.floor(i / 10);
+                    const one = i % 10;
+                    numbers.push(tens[ten] + (one ? ' ' + ones[one] : ''));
+                } else {
+                    numbers.push('one hundred');
+                }
+            }
+            
+            // Speak each number with a pause
+            let currentNum = 0;
+            
+            function speakNext() {
+                if (currentNum < numbers.length) {
+                    const utterance = new SpeechSynthesisUtterance(numbers[currentNum]);
+                    utterance.lang = 'en-US';
+                    utterance.rate = 1.0;
+                    
+                    const voices = window.speechSynthesis.getVoices();
+                    const femaleVoice = voices.find(voice => 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('Samantha') || 
+                        voice.name.includes('Victoria') ||
+                        voice.name.includes('Google US English') ||
+                        voice.name.includes('Microsoft Zira')
+                    );
+                    
+                    if (femaleVoice) {
+                        utterance.voice = femaleVoice;
+                    }
+                    
+                    utterance.onend = () => {
+                        currentNum++;
+                        setTimeout(speakNext, 500); // 500ms pause between numbers
+                    };
+                    
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    isCounting = false;
+                }
+            }
+            
+            speakNext();
+        }
+        
+        // Initialize
+        generateNumbersTable();
+        generateOrdinalsTable();
+        
+        // Generate ordinal numbers 1-100 table
+        function generateOrdinalsTable() {
+            const table = document.getElementById('ordinalsTable');
+            table.className = 'numbers-table';
+            
+            for (let i = 1; i <= 100; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'number-cell';
+                cell.textContent = getOrdinalSuffix(i);
+                cell.onclick = () => speakOrdinal(i);
+                table.appendChild(cell);
+            }
+        }
+        
+        // Get ordinal suffix (1st, 2nd, 3rd, etc.)
+        function getOrdinalSuffix(num) {
+            const j = num % 10;
+            const k = num % 100;
+            if (j === 1 && k !== 11) return num + "st";
+            if (j === 2 && k !== 12) return num + "nd";
+            if (j === 3 && k !== 13) return num + "rd";
+            return num + "th";
+        }
+        
+        // Convert number to ordinal words and speak it
+        function speakOrdinal(num) {
+            const ordinalWord = numberToOrdinalWords(num);
+            speak(ordinalWord);
+        }
+        
+        // Convert number to ordinal English words
+        function numberToOrdinalWords(num) {
+            const ones = ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth'];
+            const teens = ['tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth'];
+            const tens = ['', '', 'twentieth', 'thirtieth', 'fortieth', 'fiftieth', 'sixtieth', 'seventieth', 'eightieth', 'ninetieth'];
+            const tensBase = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            
+            if (num < 10) {
+                return ones[num];
+            } else if (num < 20) {
+                return teens[num - 10];
+            } else if (num < 100) {
+                const ten = Math.floor(num / 10);
+                const one = num % 10;
+                if (one === 0) {
+                    return tens[ten];
+                } else {
+                    return tensBase[ten] + ' ' + ones[one];
+                }
+            } else if (num === 100) {
+                return 'one hundredth';
+            }
+            return num.toString();
+        }
+    </script>
+</body>
+</html>
