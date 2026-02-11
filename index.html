@@ -96,6 +96,9 @@
                 font-size: 0.75rem;
                 flex: 1 1 calc(50% - 8px);
                 min-width: calc(50% - 8px);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             
             .tab.welcome-tab,
@@ -279,12 +282,12 @@
             }
             
             .number-cell {
-                padding: 8px 2px;
-                font-size: 0.65rem;
+                padding: 6px 1px;
+                font-size: 0.6rem;
             }
             
             .number-display {
-                font-size: 0.95rem;
+                font-size: 1.25rem;
             }
             
             .english-text {
@@ -395,7 +398,13 @@
             
             <!-- Temperature Content -->
             <div id="temperature" class="tab-content">
-                <h2 style="color: #667eea; margin-bottom: 20px;">🌡️ Temperature</h2>
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <h2 style="color: #667eea; margin: 0;">🌡️ Temperature</h2>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div>° = degree/degrees</div>
+                        <div>F = Fahrenheit</div>
+                    </div>
+                </div>
                 <div class="number-grid" id="temperatureGrid"></div>
             </div>
             
