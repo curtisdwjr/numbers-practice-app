@@ -89,6 +89,32 @@
             background: #3b82f6 !important;
         }
         
+        /* Mobile responsive tabs */
+        @media (max-width: 768px) {
+            .tab {
+                padding: 10px 12px;
+                font-size: 0.75rem;
+                flex: 1 1 calc(50% - 8px);
+                min-width: calc(50% - 8px);
+            }
+            
+            .tab.welcome-tab,
+            .tab.practice-tab {
+                flex-basis: 100%;
+                min-width: 100%;
+            }
+            
+            /* Age, Weight, Height in one row on mobile */
+            .tab[onclick="showTab('age')"],
+            .tab[onclick="showTab('weight')"],
+            .tab[onclick="showTab('height')"] {
+                flex: 1 1 calc(33.33% - 8px);
+                min-width: calc(33.33% - 8px);
+                padding: 10px 6px;
+                font-size: 0.7rem;
+            }
+        }
+        
         .tab:hover {
             background: #e0e0e0;
         }
@@ -210,6 +236,15 @@
             margin: 0 auto;
         }
         
+        /* Mobile responsive for number tables */
+        @media (max-width: 768px) {
+            .numbers-table {
+                max-width: 100%;
+                gap: 3px;
+                padding: 0 5px;
+            }
+        }
+        
         .number-cell {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             padding: 10px 5px;
@@ -242,6 +277,23 @@
             .number-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .number-cell {
+                padding: 8px 2px;
+                font-size: 0.65rem;
+            }
+            
+            .number-display {
+                font-size: 0.95rem;
+            }
+            
+            .english-text {
+                font-size: 0.7rem;
+            }
+            
+            .spanish-text {
+                font-size: 0.65rem;
+            }
         }
     </style>
 </head>
@@ -264,9 +316,9 @@
                 <button class="tab" onclick="showTab('temperature')">🌡️ Temperature</button>
                 <button class="tab" onclick="showTab('addresses')">🏠 Addresses</button>
                 <button class="tab" onclick="showTab('phone')">📱 Phone Numbers</button>
+                <button class="tab" onclick="showTab('age')">🎂 Age</button>
                 <button class="tab" onclick="showTab('weight')">⚖️ Weight</button>
                 <button class="tab" onclick="showTab('height')">📏 Height</button>
-                <button class="tab" onclick="showTab('age')">🎂 Age</button>
                 <button class="tab practice-tab" onclick="showTab('practice')">✏️ Daily Practice</button>
             </div>
             
@@ -349,13 +401,25 @@
             
             <!-- Weight Content -->
             <div id="weight" class="tab-content">
-                <h2 style="color: #667eea; margin-bottom: 20px;">⚖️ Weight</h2>
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <h2 style="color: #667eea; margin: 0;">⚖️ Weight</h2>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div>lb = pound</div>
+                        <div>lbs = pounds</div>
+                    </div>
+                </div>
                 <div class="number-grid" id="weightGrid"></div>
             </div>
             
             <!-- Height Content -->
             <div id="height" class="tab-content">
-                <h2 style="color: #667eea; margin-bottom: 20px;">📏 Height</h2>
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <h2 style="color: #667eea; margin: 0;">📏 Height</h2>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div>" = inch/inches</div>
+                        <div>' = foot/feet</div>
+                    </div>
+                </div>
                 <div class="number-grid" id="heightGrid"></div>
             </div>
             
