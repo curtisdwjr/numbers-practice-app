@@ -1082,23 +1082,68 @@
             spoken = normalizeAnswer(spoken);
             correct = normalizeAnswer(correct);
             
+            console.log('Spoken:', spoken);
+            console.log('Expected:', correct);
+            
             // Direct match
             if (spoken === correct) return true;
             
-            // Calculate similarity (allow 85% match)
+            // Check if spoken contains most of the key words
+            const spokenWords = spoken.split(' ');
+            const correctWords = correct.split(' ');
+            
+            // Count matching words
+            let matches = 0;
+            correctWords.forEach(word => {
+                if (spokenWords.includes(word) && word.length > 1) {
+                    matches++;
+                }
+            });
+            
+            // If 70% of words match, accept it
+            const wordMatchRate = matches / correctWords.length;
+            if (wordMatchRate >= 0.7) return true;
+            
+            // Calculate similarity (allow 70% match)
             const similarity = calculateSimilarity(spoken, correct);
-            return similarity >= 0.85;
+            console.log('Similarity:', similarity);
+            return similarity >= 0.70;
         }
         
         // Normalize answer for comparison
         function normalizeAnswer(text) {
             return text
                 .toLowerCase()
-                .replace(/[,.'"-]/g, '') // Remove punctuation
-                .replace(/\s+/g, ' ')     // Normalize spaces
-                .replace(/\band\b/g, '')  // Remove "and"
-                .replace(/\bor\b/g, '')   // Remove "or"
-                .replace(/oh/g, 'zero')   // Normalize "oh" to "zero"
+                .replace(/[,.'"-]/g, '')  // Remove punctuation
+                .replace(/\s+/g, ' ')      // Normalize spaces
+                .replace(/\band\b/g, '')   // Remove "and"
+                .replace(/\bor\b/g, '')    // Remove "or"
+                .replace(/\boh\b/g, 'zero') // Normalize "oh" to "zero"
+                .replace(/\bzero\b/g, 'oh') // Also accept zero as oh
+                .replace(/celsius/g, 'fahrenheit') // Handle temp variations
+                .replace(/degrees/g, '')   // Remove "degrees"
+                .replace(/degree/g, '')    // Remove "degree"
+                .replace(/fahrenheit/g, '') // Remove "fahrenheit"
+                .replace(/avenue/g, '')    // Remove "avenue"
+                .replace(/street/g, '')    // Remove "street"
+                .replace(/north/g, '')     // Remove directions
+                .replace(/south/g, '')
+                .replace(/east/g, '')
+                .replace(/west/g, '')
+                .replace(/pounds/g, '')    // Remove units
+                .replace(/pound/g, '')
+                .replace(/feet/g, '')
+                .replace(/foot/g, '')
+                .replace(/inches/g, '')
+                .replace(/inch/g, '')
+                .replace(/dollars/g, '')
+                .replace(/dollar/g, '')
+                .replace(/cents/g, '')
+                .replace(/years/g, '')
+                .replace(/year/g, '')
+                .replace(/months/g, '')
+                .replace(/month/g, '')
+                .replace(/old/g, '')
                 .trim();
         }
         
