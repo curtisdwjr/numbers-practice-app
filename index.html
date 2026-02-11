@@ -323,6 +323,7 @@
                 <button class="tab" onclick="showTab('weight')">⚖️ Weight</button>
                 <button class="tab" onclick="showTab('height')">📏 Height</button>
                 <button class="tab practice-tab" onclick="showTab('practice')">✏️ Daily Practice</button>
+                <button class="tab practice-tab" onclick="showTab('myinfo')">📝 My Information</button>
             </div>
             
             <!-- Intro Content -->
@@ -363,7 +364,10 @@
             <!-- Dates Content -->
             <div id="dates" class="tab-content">
                 <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
-                    <h2 style="color: #667eea; margin: 0;">📅 Dates</h2>
+                    <div>
+                        <h2 style="color: #667eea; margin: 0;">📅 Dates</h2>
+                        <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is the date?</p>
+                    </div>
                     <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px;">
                             <div>January = 1</div>
@@ -386,20 +390,29 @@
             
             <!-- Time Content -->
             <div id="time" class="tab-content">
-                <h2 style="color: #667eea; margin-bottom: 20px;">🕐 Time</h2>
+                <div>
+                    <h2 style="color: #667eea; margin: 0 0 10px 0;">🕐 Time</h2>
+                    <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 20px 0;">What time is it?</p>
+                </div>
                 <div class="number-grid" id="timeGrid"></div>
             </div>
             
             <!-- Prices Content -->
             <div id="prices" class="tab-content">
-                <h2 style="color: #667eea; margin-bottom: 20px;">💵 Money</h2>
+                <div>
+                    <h2 style="color: #667eea; margin: 0 0 10px 0;">💵 Money</h2>
+                    <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 20px 0;">How much is it?</p>
+                </div>
                 <div class="number-grid" id="pricesGrid"></div>
             </div>
             
             <!-- Temperature Content -->
             <div id="temperature" class="tab-content">
                 <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
-                    <h2 style="color: #667eea; margin: 0;">🌡️ Temperature</h2>
+                    <div>
+                        <h2 style="color: #667eea; margin: 0;">🌡️ Temperature</h2>
+                        <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is the temperature?</p>
+                    </div>
                     <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
                         <div>° = degree/degrees</div>
                         <div>F = Fahrenheit</div>
@@ -441,7 +454,10 @@
             <!-- Addresses Content -->
             <div id="addresses" class="tab-content">
                 <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
-                    <h2 style="color: #667eea; margin: 0;">🏠 Addresses</h2>
+                    <div>
+                        <h2 style="color: #667eea; margin: 0;">🏠 Addresses</h2>
+                        <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is the address?</p>
+                    </div>
                     <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
                         <div style="display: grid; grid-template-columns: auto auto auto; gap: 6px 16px;">
                             <div>Ave. = Avenue</div>
@@ -458,7 +474,10 @@
             
             <!-- Phone Numbers Content -->
             <div id="phone" class="tab-content">
-                <h2 style="color: #667eea; margin-bottom: 20px;">📱 Phone Numbers</h2>
+                <div>
+                    <h2 style="color: #667eea; margin: 0 0 10px 0;">📱 Phone Numbers</h2>
+                    <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 20px 0;">What is the phone number?</p>
+                </div>
                 <div class="number-grid" id="phoneGrid"></div>
             </div>
             
@@ -468,32 +487,78 @@
                 <p style="text-align: center; color: #666; margin-bottom: 20px; font-size: 0.9rem;">20 random examples that change every day - Click any item to hear it!</p>
                 <div class="number-grid" id="practiceGrid"></div>
             </div>
+            
+            <!-- My Information Content -->
+            <div id="myinfo" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 10px; text-align: center;">📝 My Information</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 0.9rem;">Practice writing your personal information</p>
+                
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <!-- Full Name -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                    </div>
+                    
+                    <!-- Birthdate -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Birthdate (MM/DD/YYYY)</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="birthdate" placeholder="MM/DD/YYYY" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                            <input type="date" id="birthdatePicker" min="1960-01-01" max="2025-12-31" style="padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px;">
+                        </div>
+                    </div>
+                    
+                    <!-- Address -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Address</label>
+                        <input type="text" id="address" placeholder="Enter your address" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                    </div>
+                    
+                    <!-- Telephone Number -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Telephone Number</label>
+                        <input type="tel" id="telephone" placeholder="(555) 123-4567" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                    </div>
+                    
+                    <!-- Email -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Email</label>
+                        <input type="email" id="email" placeholder="yourname@example.com" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                    </div>
+                    
+                    <!-- Reset Button -->
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button onclick="resetMyInfo()" style="background: #667eea; color: white; padding: 12px 40px; font-size: 1.1rem; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Reset All Fields</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
         // Data
         const addressesData = [
-            { display: "1225 Parker Ave.", english: "Twelve twenty-five Parker Avenue", spanish: "Mil doscientos veinticinco Avenida Parker" },
-            { display: "5697 29th Ave.", english: "Fifty-six ninety-seven Twenty-ninth Avenue", spanish: "Cinco mil seiscientos noventa siete Avenida Veintinueve" },
-            { display: "7421 E. 45th St.", english: "Seventy-four twenty-one East Forty-fifth Street", spanish: "Siete mil cuatrocientos veintiuno Calle Cuarenta cinco Este" },
-            { display: "3850 N. Oak St.", english: "Thirty-eight fifty North Oak Street", spanish: "Tres mil ochocientos cincuenta Calle Oak Norte" },
-            { display: "9102 Lyon Ave.", english: "Ninety-one oh two Lyon Avenue", spanish: "Nueve mil ciento dos Avenida Lyon" },
-            { display: "2468 13th Ave.", english: "Twenty-four sixty-eight Thirteenth Avenue", spanish: "Dos mil cuatrocientos sesenta ocho Avenida Trece" },
-            { display: "6543 W. 52nd St.", english: "Sixty-five forty-three West Fifty-second Street", spanish: "Seis mil quinientos cuarenta tres Calle Cincuenta dos Oeste" },
-            { display: "1089 Maple Ave.", english: "Ten eighty-nine Maple Avenue", spanish: "Mil ochenta nueve Avenida Maple" },
-            { display: "4720 18th St.", english: "Forty-seven twenty Eighteenth Street", spanish: "Cuatro mil setecientos veinte Calle Dieciocho" },
-            { display: "8305 67th Ave.", english: "Eighty-three oh five Sixty-seventh Avenue", spanish: "Ocho mil trescientos cinco Avenida Sesenta siete" },
-            { display: "2917 Pine St.", english: "Twenty-nine seventeen Pine Street", spanish: "Dos mil novecientos diecisiete Calle Pine" },
-            { display: "5234 22nd Ave.", english: "Fifty-two thirty-four Twenty-second Avenue", spanish: "Cinco mil doscientos treinta cuatro Avenida Veintidos" },
-            { display: "7890 N. Elm Ave.", english: "Seventy-eight ninety North Elm Avenue", spanish: "Siete mil ochocientos noventa Avenida Elm Norte" },
-            { display: "1456 S. 38th St.", english: "Fourteen fifty-six South Thirty-eighth Street", spanish: "Mil cuatrocientos cincuenta seis Calle Treinta ocho Sur" },
-            { display: "3601 Cedar Ave.", english: "Thirty-six oh one Cedar Avenue", spanish: "Tres mil seiscientos uno Avenida Cedar" },
-            { display: "6289 71st St.", english: "Sixty-two eighty-nine Seventy-first Street", spanish: "Seis mil doscientos ochenta nueve Calle Setenta uno" },
-            { display: "9047 Broadway Ave.", english: "Ninety oh forty-seven Broadway Avenue", spanish: "Nueve mil cuarenta siete Avenida Broadway" },
-            { display: "4315 15th Ave.", english: "Forty-three fifteen Fifteenth Avenue", spanish: "Cuatro mil trescientos quince Avenida Quince" },
-            { display: "8762 W. Oak St.", english: "Eighty-seven sixty-two West Oak Street", spanish: "Ocho mil setecientos sesenta dos Calle Oak Oeste" },
-            { display: "2103 84th Ave.", english: "Twenty-one oh three Eighty-fourth Avenue", spanish: "Dos mil ciento tres Avenida Ochenta cuatro" }
+            { display: "1225 Parker Ave.", english: "twelve twenty-five Parker Avenue", spanish: "mil doscientos veinticinco Avenida Parker" },
+            { display: "5697 29th Ave.", english: "fifty-six ninety-seven Twenty-ninth Avenue", spanish: "cinco mil seiscientos noventa siete Avenida Veintinueve" },
+            { display: "7421 E. 45th St.", english: "seventy-four twenty-one East Forty-fifth Street", spanish: "siete mil cuatrocientos veintiuno Calle Cuarenta cinco Este" },
+            { display: "3850 N. Oak St.", english: "thirty-eight fifty North Oak Street", spanish: "tres mil ochocientos cincuenta Calle Oak Norte" },
+            { display: "9102 Lyon Ave.", english: "ninety-one oh two Lyon Avenue", spanish: "nueve mil ciento dos Avenida Lyon" },
+            { display: "2468 13th Ave.", english: "twenty-four sixty-eight Thirteenth Avenue", spanish: "dos mil cuatrocientos sesenta ocho Avenida Trece" },
+            { display: "6543 W. 52nd St.", english: "sixty-five forty-three West Fifty-second Street", spanish: "seis mil quinientos cuarenta tres Calle Cincuenta dos Oeste" },
+            { display: "1089 Maple Ave.", english: "ten eighty-nine Maple Avenue", spanish: "mil ochenta nueve Avenida Maple" },
+            { display: "4720 18th St.", english: "forty-seven twenty Eighteenth Street", spanish: "cuatro mil setecientos veinte Calle Dieciocho" },
+            { display: "8305 67th Ave.", english: "eighty-three oh five Sixty-seventh Avenue", spanish: "ocho mil trescientos cinco Avenida Sesenta siete" },
+            { display: "2917 Pine St.", english: "twenty-nine seventeen Pine Street", spanish: "dos mil novecientos diecisiete Calle Pine" },
+            { display: "5234 22nd Ave.", english: "fifty-two thirty-four Twenty-second Avenue", spanish: "cinco mil doscientos treinta cuatro Avenida Veintidos" },
+            { display: "7890 N. Elm Ave.", english: "seventy-eight ninety North Elm Avenue", spanish: "siete mil ochocientos noventa Avenida Elm Norte" },
+            { display: "1456 S. 38th St.", english: "fourteen fifty-six South Thirty-eighth Street", spanish: "mil cuatrocientos cincuenta seis Calle Treinta ocho Sur" },
+            { display: "3601 Cedar Ave.", english: "thirty-six oh one Cedar Avenue", spanish: "tres mil seiscientos uno Avenida Cedar" },
+            { display: "6289 71st St.", english: "sixty-two eighty-nine Seventy-first Street", spanish: "seis mil doscientos ochenta nueve Calle Setenta uno" },
+            { display: "9047 Broadway Ave.", english: "ninety oh forty-seven Broadway Avenue", spanish: "nueve mil cuarenta siete Avenida Broadway" },
+            { display: "4315 15th Ave.", english: "forty-three fifteen Fifteenth Avenue", spanish: "cuatro mil trescientos quince Avenida Quince" },
+            { display: "8762 W. Oak St.", english: "eighty-seven sixty-two West Oak Street", spanish: "ocho mil setecientos sesenta dos Calle Oak Oeste" },
+            { display: "2103 84th Ave.", english: "twenty-one oh three Eighty-fourth Avenue", spanish: "dos mil ciento tres Avenida Ochenta cuatro" }
         ];
         
         const datesData = [
@@ -520,162 +585,162 @@
         ];
         
         const timeData = [
-            { display: "1:00", english: "One o'clock", spanish: "La una" },
-            { display: "2:03", english: "Two oh three", spanish: "Dos tres" },
-            { display: "3:15", english: "Three fifteen", spanish: "Tres quince" },
-            { display: "4:30", english: "Four thirty", spanish: "Cuatro treinta" },
-            { display: "5:45", english: "Five forty-five", spanish: "Cinco cuarenta y cinco" },
-            { display: "6:00", english: "Six o'clock", spanish: "Las seis" },
-            { display: "7:10", english: "Seven ten", spanish: "Siete diez" },
-            { display: "8:05", english: "Eight oh five", spanish: "Ocho cinco" },
-            { display: "9:20", english: "Nine twenty", spanish: "Nueve veinte" },
-            { display: "10:30", english: "Ten thirty", spanish: "Diez treinta" },
-            { display: "11:08", english: "Eleven oh eight", spanish: "Once ocho" },
-            { display: "12:00", english: "Twelve o'clock", spanish: "Las doce" },
-            { display: "12:50", english: "Twelve fifty", spanish: "Doce cincuenta" },
-            { display: "1:15", english: "One fifteen", spanish: "Una quince" },
-            { display: "2:25", english: "Two twenty-five", spanish: "Dos veinticinco" },
-            { display: "3:40", english: "Three forty", spanish: "Tres cuarenta" },
-            { display: "4:55", english: "Four fifty-five", spanish: "Cuatro cincuenta y cinco" },
-            { display: "6:07", english: "Six oh seven", spanish: "Seis siete" },
-            { display: "7:35", english: "Seven thirty-five", spanish: "Siete treinta y cinco" },
-            { display: "9:02", english: "Nine oh two", spanish: "Nueve dos" }
+            { display: "1:00", english: "one o'clock", spanish: "la una" },
+            { display: "2:03", english: "two oh three", spanish: "dos tres" },
+            { display: "3:15", english: "three fifteen", spanish: "tres quince" },
+            { display: "4:30", english: "four thirty", spanish: "cuatro treinta" },
+            { display: "5:45", english: "five forty-five", spanish: "cinco cuarenta cinco" },
+            { display: "6:00", english: "six o'clock", spanish: "las seis" },
+            { display: "7:10", english: "seven ten", spanish: "siete diez" },
+            { display: "8:05", english: "eight oh five", spanish: "ocho cinco" },
+            { display: "9:20", english: "nine twenty", spanish: "nueve veinte" },
+            { display: "10:30", english: "ten thirty", spanish: "diez treinta" },
+            { display: "11:08", english: "eleven oh eight", spanish: "once ocho" },
+            { display: "12:00", english: "twelve o'clock", spanish: "las doce" },
+            { display: "12:50", english: "twelve fifty", spanish: "doce cincuenta" },
+            { display: "1:15", english: "one fifteen", spanish: "una quince" },
+            { display: "2:25", english: "two twenty-five", spanish: "dos veinticinco" },
+            { display: "3:40", english: "three forty", spanish: "tres cuarenta" },
+            { display: "4:55", english: "four fifty-five", spanish: "cuatro cincuenta cinco" },
+            { display: "6:07", english: "six oh seven", spanish: "seis siete" },
+            { display: "7:35", english: "seven thirty-five", spanish: "siete treinta cinco" },
+            { display: "9:02", english: "nine oh two", spanish: "nueve dos" }
         ];
 
         const pricesData = [
-            { display: "$0.99", english: "Ninety-nine cents", spanish: "Noventa nueve centavos" },
-            { display: "$1.50", english: "One dollar and fifty cents", spanish: "Un dólar y cincuenta centavos" },
-            { display: "$2.99", english: "Two dollars and ninety-nine cents", spanish: "Dos dólares y noventa nueve centavos" },
-            { display: "$5.00", english: "Five dollars", spanish: "Cinco dólares" },
-            { display: "$9.99", english: "Nine dollars and ninety-nine cents", spanish: "Nueve dólares y noventa nueve centavos" },
-            { display: "$12.50", english: "Twelve dollars and fifty cents", spanish: "Doce dólares y cincuenta centavos" },
-            { display: "$19.95", english: "Nineteen dollars and ninety-five cents", spanish: "Diecinueve dólares y noventa cinco centavos" },
-            { display: "$25.00", english: "Twenty-five dollars", spanish: "Veinticinco dólares" },
-            { display: "$49.99", english: "Forty-nine dollars and ninety-nine cents", spanish: "Cuarenta nueve dólares y noventa nueve centavos" },
-            { display: "$75.00", english: "Seventy-five dollars", spanish: "Setenta cinco dólares" },
-            { display: "$99.99", english: "Ninety-nine dollars and ninety-nine cents", spanish: "Noventa nueve dólares y noventa nueve centavos" },
-            { display: "$100.00", english: "One hundred dollars", spanish: "Cien dólares" },
-            { display: "$3.25", english: "Three dollars and twenty-five cents", spanish: "Tres dólares y veinticinco centavos" },
-            { display: "$7.50", english: "Seven dollars and fifty cents", spanish: "Siete dólares y cincuenta centavos" },
-            { display: "$15.99", english: "Fifteen dollars and ninety-nine cents", spanish: "Quince dólares y noventa nueve centavos" },
-            { display: "$30.00", english: "Thirty dollars", spanish: "Treinta dólares" },
-            { display: "$45.75", english: "Forty-five dollars and seventy-five cents", spanish: "Cuarenta cinco dólares y setenta cinco centavos" },
-            { display: "$60.00", english: "Sixty dollars", spanish: "Sesenta dólares" },
-            { display: "$89.50", english: "Eighty-nine dollars and fifty cents", spanish: "Ochenta nueve dólares y cincuenta centavos" },
-            { display: "$200.00", english: "Two hundred dollars", spanish: "Doscientos dólares" }
+            { display: "$0.99", english: "ninety-nine cents", spanish: "noventa nueve centavos" },
+            { display: "$1.50", english: "one dollar and fifty cents", spanish: "un dólar y cincuenta centavos" },
+            { display: "$2.99", english: "two dollars and ninety-nine cents", spanish: "dos dólares y noventa nueve centavos" },
+            { display: "$5.00", english: "five dollars", spanish: "cinco dólares" },
+            { display: "$9.99", english: "nine dollars and ninety-nine cents", spanish: "nueve dólares y noventa nueve centavos" },
+            { display: "$12.50", english: "twelve dollars and fifty cents", spanish: "doce dólares y cincuenta centavos" },
+            { display: "$19.95", english: "nineteen dollars and ninety-five cents", spanish: "diecinueve dólares y noventa cinco centavos" },
+            { display: "$25.00", english: "twenty-five dollars", spanish: "veinticinco dólares" },
+            { display: "$49.99", english: "forty-nine dollars and ninety-nine cents", spanish: "cuarenta nueve dólares y noventa nueve centavos" },
+            { display: "$75.00", english: "seventy-five dollars", spanish: "setenta cinco dólares" },
+            { display: "$99.99", english: "ninety-nine dollars and ninety-nine cents", spanish: "noventa nueve dólares y noventa nueve centavos" },
+            { display: "$100.00", english: "one hundred dollars", spanish: "cien dólares" },
+            { display: "$3.25", english: "three dollars and twenty-five cents", spanish: "tres dólares y veinticinco centavos" },
+            { display: "$7.50", english: "seven dollars and fifty cents", spanish: "siete dólares y cincuenta centavos" },
+            { display: "$15.99", english: "fifteen dollars and ninety-nine cents", spanish: "quince dólares y noventa nueve centavos" },
+            { display: "$30.00", english: "thirty dollars", spanish: "treinta dólares" },
+            { display: "$45.75", english: "forty-five dollars and seventy-five cents", spanish: "cuarenta cinco dólares y setenta cinco centavos" },
+            { display: "$60.00", english: "sixty dollars", spanish: "sesenta dólares" },
+            { display: "$89.50", english: "eighty-nine dollars and fifty cents", spanish: "ochenta nueve dólares y cincuenta centavos" },
+            { display: "$200.00", english: "two hundred dollars", spanish: "doscientos dólares" }
         ];
 
         const temperatureData = [
-            { display: "32°F", english: "Thirty-two degrees Fahrenheit", spanish: "Treinta dos grados Fahrenheit" },
-            { display: "40°F", english: "Forty degrees Fahrenheit", spanish: "Cuarenta grados Fahrenheit" },
-            { display: "47°F", english: "Forty-seven degrees Fahrenheit", spanish: "Cuarenta siete grados Fahrenheit" },
-            { display: "50°F", english: "Fifty degrees Fahrenheit", spanish: "Cincuenta grados Fahrenheit" },
-            { display: "52°F", english: "Fifty-two degrees Fahrenheit", spanish: "Cincuenta dos grados Fahrenheit" },
-            { display: "55°F", english: "Fifty-five degrees Fahrenheit", spanish: "Cincuenta cinco grados Fahrenheit" },
-            { display: "58°F", english: "Fifty-eight degrees Fahrenheit", spanish: "Cincuenta ocho grados Fahrenheit" },
-            { display: "62°F", english: "Sixty-two degrees Fahrenheit", spanish: "Sesenta dos grados Fahrenheit" },
-            { display: "65°F", english: "Sixty-five degrees Fahrenheit", spanish: "Sesenta cinco grados Fahrenheit" },
-            { display: "68°F", english: "Sixty-eight degrees Fahrenheit", spanish: "Sesenta ocho grados Fahrenheit" },
-            { display: "70°F", english: "Seventy degrees Fahrenheit", spanish: "Setenta grados Fahrenheit" },
-            { display: "72°F", english: "Seventy-two degrees Fahrenheit", spanish: "Setenta dos grados Fahrenheit" },
-            { display: "75°F", english: "Seventy-five degrees Fahrenheit", spanish: "Setenta cinco grados Fahrenheit" },
-            { display: "76°F", english: "Seventy-six degrees Fahrenheit", spanish: "Setenta seis grados Fahrenheit" },
-            { display: "80°F", english: "Eighty degrees Fahrenheit", spanish: "Ochenta grados Fahrenheit" },
-            { display: "90°F", english: "Ninety degrees Fahrenheit", spanish: "Noventa grados Fahrenheit" },
-            { display: "98°F", english: "Ninety-eight degrees Fahrenheit", spanish: "Noventa ocho grados Fahrenheit" },
-            { display: "100°F", english: "One hundred degrees Fahrenheit", spanish: "Cien grados Fahrenheit" }
+            { display: "32°F", english: "thirty-two degrees Fahrenheit", spanish: "treinta dos grados Fahrenheit" },
+            { display: "40°F", english: "forty degrees Fahrenheit", spanish: "cuarenta grados Fahrenheit" },
+            { display: "47°F", english: "forty-seven degrees Fahrenheit", spanish: "cuarenta siete grados Fahrenheit" },
+            { display: "50°F", english: "fifty degrees Fahrenheit", spanish: "cincuenta grados Fahrenheit" },
+            { display: "52°F", english: "fifty-two degrees Fahrenheit", spanish: "cincuenta dos grados Fahrenheit" },
+            { display: "55°F", english: "fifty-five degrees Fahrenheit", spanish: "cincuenta cinco grados Fahrenheit" },
+            { display: "58°F", english: "fifty-eight degrees Fahrenheit", spanish: "cincuenta ocho grados Fahrenheit" },
+            { display: "62°F", english: "sixty-two degrees Fahrenheit", spanish: "sesenta dos grados Fahrenheit" },
+            { display: "65°F", english: "sixty-five degrees Fahrenheit", spanish: "sesenta cinco grados Fahrenheit" },
+            { display: "68°F", english: "sixty-eight degrees Fahrenheit", spanish: "sesenta ocho grados Fahrenheit" },
+            { display: "70°F", english: "seventy degrees Fahrenheit", spanish: "setenta grados Fahrenheit" },
+            { display: "72°F", english: "seventy-two degrees Fahrenheit", spanish: "setenta dos grados Fahrenheit" },
+            { display: "75°F", english: "seventy-five degrees Fahrenheit", spanish: "setenta cinco grados Fahrenheit" },
+            { display: "76°F", english: "seventy-six degrees Fahrenheit", spanish: "setenta seis grados Fahrenheit" },
+            { display: "80°F", english: "eighty degrees Fahrenheit", spanish: "ochenta grados Fahrenheit" },
+            { display: "90°F", english: "ninety degrees Fahrenheit", spanish: "noventa grados Fahrenheit" },
+            { display: "98°F", english: "ninety-eight degrees Fahrenheit", spanish: "noventa ocho grados Fahrenheit" },
+            { display: "100°F", english: "one hundred degrees Fahrenheit", spanish: "cien grados Fahrenheit" }
         ];
 
         const weightData = [
-            { display: "0.5 lb", english: "Half a pound", spanish: "Media libra" },
-            { display: "1 lb", english: "One pound", spanish: "Una libra" },
-            { display: "2.5 lbs", english: "Two and a half pounds", spanish: "Dos libras y media" },
-            { display: "3 lbs", english: "Three pounds", spanish: "Tres libras" },
-            { display: "5 lbs", english: "Five pounds", spanish: "Cinco libras" },
-            { display: "7 lbs", english: "Seven pounds", spanish: "Siete libras" },
-            { display: "10 lbs", english: "Ten pounds", spanish: "Diez libras" },
-            { display: "12.5 lbs", english: "Twelve and a half pounds", spanish: "Doce libras y media" },
-            { display: "15 lbs", english: "Fifteen pounds", spanish: "Quince libras" },
-            { display: "18 lbs", english: "Eighteen pounds", spanish: "Dieciocho libras" },
-            { display: "20 lbs", english: "Twenty pounds", spanish: "Veinte libras" },
-            { display: "25 lbs", english: "Twenty-five pounds", spanish: "Veinticinco libras" },
-            { display: "33 lbs", english: "Thirty-three pounds", spanish: "Treinta tres libras" },
-            { display: "45 lbs", english: "Forty-five pounds", spanish: "Cuarenta cinco libras" },
-            { display: "50 lbs", english: "Fifty pounds", spanish: "Cincuenta libras" },
-            { display: "67 lbs", english: "Sixty-seven pounds", spanish: "Sesenta siete libras" },
-            { display: "100 lbs", english: "One hundred pounds", spanish: "Cien libras" },
-            { display: "125 lbs", english: "One hundred twenty-five pounds", spanish: "Ciento veinticinco libras" },
-            { display: "150 lbs", english: "One hundred fifty pounds", spanish: "Ciento cincuenta libras" },
-            { display: "200 lbs", english: "Two hundred pounds", spanish: "Doscientas libras" }
+            { display: "0.5 lb", english: "half a pound", spanish: "media libra" },
+            { display: "1 lb", english: "one pound", spanish: "una libra" },
+            { display: "2.5 lbs", english: "two and a half pounds", spanish: "dos libras y media" },
+            { display: "3 lbs", english: "three pounds", spanish: "tres libras" },
+            { display: "5 lbs", english: "five pounds", spanish: "cinco libras" },
+            { display: "7 lbs", english: "seven pounds", spanish: "siete libras" },
+            { display: "10 lbs", english: "ten pounds", spanish: "diez libras" },
+            { display: "12.5 lbs", english: "twelve and a half pounds", spanish: "doce libras y media" },
+            { display: "15 lbs", english: "fifteen pounds", spanish: "quince libras" },
+            { display: "18 lbs", english: "eighteen pounds", spanish: "dieciocho libras" },
+            { display: "20 lbs", english: "twenty pounds", spanish: "veinte libras" },
+            { display: "25 lbs", english: "twenty-five pounds", spanish: "veinticinco libras" },
+            { display: "33 lbs", english: "thirty-three pounds", spanish: "treinta tres libras" },
+            { display: "45 lbs", english: "forty-five pounds", spanish: "cuarenta cinco libras" },
+            { display: "50 lbs", english: "fifty pounds", spanish: "cincuenta libras" },
+            { display: "67 lbs", english: "sixty-seven pounds", spanish: "sesenta siete libras" },
+            { display: "100 lbs", english: "one hundred pounds", spanish: "cien libras" },
+            { display: "125 lbs", english: "one hundred twenty-five pounds", spanish: "ciento veinticinco libras" },
+            { display: "150 lbs", english: "one hundred fifty pounds", spanish: "ciento cincuenta libras" },
+            { display: "200 lbs", english: "two hundred pounds", spanish: "doscientas libras" }
         ];
 
         const heightData = [
-            { display: "3'6\"", english: "Three feet six inches", spanish: "Tres pies seis pulgadas" },
-            { display: "4'0\"", english: "Four feet", spanish: "Cuatro pies" },
-            { display: "4'5\"", english: "Four feet five inches", spanish: "Cuatro pies cinco pulgadas" },
-            { display: "4'8\"", english: "Four feet eight inches", spanish: "Cuatro pies ocho pulgadas" },
-            { display: "4'10\"", english: "Four feet ten inches", spanish: "Cuatro pies diez pulgadas" },
-            { display: "4'11\"", english: "Four feet eleven inches", spanish: "Cuatro pies once pulgadas" },
-            { display: "5'0\"", english: "Five feet", spanish: "Cinco pies" },
-            { display: "5'1\"", english: "Five feet one inch", spanish: "Cinco pies una pulgada" },
-            { display: "5'2\"", english: "Five feet two inches", spanish: "Cinco pies dos pulgadas" },
-            { display: "5'3\"", english: "Five feet three inches", spanish: "Cinco pies tres pulgadas" },
-            { display: "5'4\"", english: "Five feet four inches", spanish: "Cinco pies cuatro pulgadas" },
-            { display: "5'5\"", english: "Five feet five inches", spanish: "Cinco pies cinco pulgadas" },
-            { display: "5'6\"", english: "Five feet six inches", spanish: "Cinco pies seis pulgadas" },
-            { display: "5'7\"", english: "Five feet seven inches", spanish: "Cinco pies siete pulgadas" },
-            { display: "5'8\"", english: "Five feet eight inches", spanish: "Cinco pies ocho pulgadas" },
-            { display: "5'9\"", english: "Five feet nine inches", spanish: "Cinco pies nueve pulgadas" },
-            { display: "5'10\"", english: "Five feet ten inches", spanish: "Cinco pies diez pulgadas" },
-            { display: "5'11\"", english: "Five feet eleven inches", spanish: "Cinco pies once pulgadas" },
-            { display: "6'0\"", english: "Six feet", spanish: "Seis pies" },
-            { display: "6'2\"", english: "Six feet two inches", spanish: "Seis pies dos pulgadas" }
+            { display: "3'6\"", english: "three feet six inches", spanish: "tres pies seis pulgadas" },
+            { display: "4'0\"", english: "four feet", spanish: "cuatro pies" },
+            { display: "4'5\"", english: "four feet five inches", spanish: "cuatro pies cinco pulgadas" },
+            { display: "4'8\"", english: "four feet eight inches", spanish: "cuatro pies ocho pulgadas" },
+            { display: "4'10\"", english: "four feet ten inches", spanish: "cuatro pies diez pulgadas" },
+            { display: "4'11\"", english: "four feet eleven inches", spanish: "cuatro pies once pulgadas" },
+            { display: "5'0\"", english: "five feet", spanish: "cinco pies" },
+            { display: "5'1\"", english: "five feet one inch", spanish: "cinco pies una pulgada" },
+            { display: "5'2\"", english: "five feet two inches", spanish: "cinco pies dos pulgadas" },
+            { display: "5'3\"", english: "five feet three inches", spanish: "cinco pies tres pulgadas" },
+            { display: "5'4\"", english: "five feet four inches", spanish: "cinco pies cuatro pulgadas" },
+            { display: "5'5\"", english: "five feet five inches", spanish: "cinco pies cinco pulgadas" },
+            { display: "5'6\"", english: "five feet six inches", spanish: "cinco pies seis pulgadas" },
+            { display: "5'7\"", english: "five feet seven inches", spanish: "cinco pies siete pulgadas" },
+            { display: "5'8\"", english: "five feet eight inches", spanish: "cinco pies ocho pulgadas" },
+            { display: "5'9\"", english: "five feet nine inches", spanish: "cinco pies nueve pulgadas" },
+            { display: "5'10\"", english: "five feet ten inches", spanish: "cinco pies diez pulgadas" },
+            { display: "5'11\"", english: "five feet eleven inches", spanish: "cinco pies once pulgadas" },
+            { display: "6'0\"", english: "six feet", spanish: "seis pies" },
+            { display: "6'2\"", english: "six feet two inches", spanish: "seis pies dos pulgadas" }
         ];
 
         const ageData = [
-            { display: "6 months old", english: "Six months old", spanish: "Seis meses" },
-            { display: "1 year old", english: "One year old", spanish: "Un año" },
-            { display: "1 year 6 months", english: "One year six months old", spanish: "Un año seis meses" },
-            { display: "2 years old", english: "Two years old", spanish: "Dos años" },
-            { display: "2 years 3 months", english: "Two years three months old", spanish: "Dos años tres meses" },
-            { display: "3 years old", english: "Three years old", spanish: "Tres años" },
-            { display: "3 years 9 months", english: "Three years nine months old", spanish: "Tres años nueve meses" },
-            { display: "5 years old", english: "Five years old", spanish: "Cinco años" },
-            { display: "8 years old", english: "Eight years old", spanish: "Ocho años" },
-            { display: "10 years old", english: "Ten years old", spanish: "Diez años" },
-            { display: "12 years old", english: "Twelve years old", spanish: "Doce años" },
-            { display: "15 years old", english: "Fifteen years old", spanish: "Quince años" },
-            { display: "18 years old", english: "Eighteen years old", spanish: "Dieciocho años" },
-            { display: "21 years old", english: "Twenty-one years old", spanish: "Veintiún años" },
-            { display: "25 years old", english: "Twenty-five years old", spanish: "Veinticinco años" },
-            { display: "30 years old", english: "Thirty years old", spanish: "Treinta años" },
-            { display: "45 years old", english: "Forty-five years old", spanish: "Cuarenta cinco años" },
-            { display: "60 years old", english: "Sixty years old", spanish: "Sesenta años" },
-            { display: "75 years old", english: "Seventy-five years old", spanish: "Setenta cinco años" },
-            { display: "90 years old", english: "Ninety years old", spanish: "Noventa años" }
+            { display: "6 months old", english: "six months old", spanish: "seis meses" },
+            { display: "1 year old", english: "one year old", spanish: "un año" },
+            { display: "1 year 6 months", english: "one year six months", spanish: "un año seis meses" },
+            { display: "2 years old", english: "two years old", spanish: "dos años" },
+            { display: "2 years 3 months", english: "two years three months", spanish: "dos años tres meses" },
+            { display: "3 years old", english: "three years old", spanish: "tres años" },
+            { display: "3 years 9 months", english: "three years nine months", spanish: "tres años nueve meses" },
+            { display: "5 years old", english: "five years old", spanish: "cinco años" },
+            { display: "8 years old", english: "eight years old", spanish: "ocho años" },
+            { display: "10 years old", english: "ten years old", spanish: "diez años" },
+            { display: "12 years old", english: "twelve years old", spanish: "doce años" },
+            { display: "15 years old", english: "fifteen years old", spanish: "quince años" },
+            { display: "18 years old", english: "eighteen years old", spanish: "dieciocho años" },
+            { display: "21 years old", english: "twenty-one years old", spanish: "veintiún años" },
+            { display: "25 years old", english: "twenty-five years old", spanish: "veinticinco años" },
+            { display: "30 years old", english: "thirty years old", spanish: "treinta años" },
+            { display: "45 years old", english: "forty-five years old", spanish: "cuarenta cinco años" },
+            { display: "60 years old", english: "sixty years old", spanish: "sesenta años" },
+            { display: "75 years old", english: "seventy-five years old", spanish: "setenta cinco años" },
+            { display: "90 years old", english: "ninety years old", spanish: "noventa años" }
         ];
 
         const phoneData = [
-            { display: "510-234-1234", english: "Five one zero, two three four, one two three four", spanish: "Cinco uno cero, dos tres cuatro, uno dos tres cuatro" },
-            { display: "510-678-0123", english: "Five one zero, six seven eight, zero one two three", spanish: "Cinco uno cero, seis siete ocho, cero uno dos tres" },
-            { display: "510-891-9876", english: "Five one zero, eight nine one, nine eight seven six", spanish: "Cinco uno cero, ocho nueve uno, nueve ocho siete seis" },
-            { display: "510-345-4567", english: "Five one zero, three four five, four five six seven", spanish: "Cinco uno cero, tres cuatro cinco, cuatro cinco seis siete" },
-            { display: "510-729-7890", english: "Five one zero, seven two nine, seven eight nine zero", spanish: "Cinco uno cero, siete dos nueve, siete ocho nueve cero" },
+            { display: "510-234-1234", english: "Five one zero, two three four, one two three four. Or, Five one oh, two three four, one two three four", spanish: "Cinco uno cero, dos tres cuatro, uno dos tres cuatro" },
+            { display: "510-678-0123", english: "Five one zero, six seven eight, zero one two three. Or, Five one oh, six seven eight, zero one two three", spanish: "Cinco uno cero, seis siete ocho, cero uno dos tres" },
+            { display: "510-891-9876", english: "Five one zero, eight nine one, nine eight seven six. Or, Five one oh, eight nine one, nine eight seven six", spanish: "Cinco uno cero, ocho nueve uno, nueve ocho siete seis" },
+            { display: "510-345-4567", english: "Five one zero, three four five, four five six seven. Or, Five one oh, three four five, four five six seven", spanish: "Cinco uno cero, tres cuatro cinco, cuatro cinco seis siete" },
+            { display: "510-729-7890", english: "Five one zero, seven two nine, seven eight nine zero. Or, Five one oh, seven two nine, seven eight nine zero", spanish: "Cinco uno cero, siete dos nueve, siete ocho nueve cero" },
             { display: "415-682-2468", english: "Four one five, six eight two, two four six eight", spanish: "Cuatro uno cinco, seis ocho dos, dos cuatro seis ocho" },
             { display: "415-391-1357", english: "Four one five, three nine one, one three five seven", spanish: "Cuatro uno cinco, tres nueve uno, uno tres cinco siete" },
             { display: "415-804-8024", english: "Four one five, eight zero four, eight zero two four", spanish: "Cuatro uno cinco, ocho cero cuatro, ocho cero dos cuatro" },
             { display: "415-267-6543", english: "Four one five, two six seven, six five four three", spanish: "Cuatro uno cinco, dos seis siete, seis cinco cuatro tres" },
             { display: "415-921-3210", english: "Four one five, nine two one, three two one zero", spanish: "Cuatro uno cinco, nueve dos uno, tres dos uno cero" },
-            { display: "510-456-0987", english: "Five one zero, four five six, zero nine eight seven", spanish: "Cinco uno cero, cuatro cinco seis, cero nueve ocho siete" },
-            { display: "510-305-5050", english: "Five one zero, three zero five, five zero five zero", spanish: "Cinco uno cero, tres cero cinco, cinco cero cinco cero" },
+            { display: "510-456-0987", english: "Five one zero, four five six, zero nine eight seven. Or, Five one oh, four five six, zero nine eight seven", spanish: "Cinco uno cero, cuatro cinco seis, cero nueve ocho siete" },
+            { display: "510-305-5050", english: "Five one zero, three zero five, five zero five zero. Or, Five one oh, three zero five, five zero five zero", spanish: "Cinco uno cero, tres cero cinco, cinco cero cinco cero" },
             { display: "415-700-7007", english: "Four one five, seven zero zero, seven zero zero seven", spanish: "Cuatro uno cinco, siete cero cero, siete cero cero siete" },
-            { display: "510-627-4183", english: "Five one zero, six two seven, four one eight three", spanish: "Cinco uno cero, seis dos siete, cuatro uno ocho tres" },
+            { display: "510-627-4183", english: "Five one zero, six two seven, four one eight three. Or, Five one oh, six two seven, four one eight three", spanish: "Cinco uno cero, seis dos siete, cuatro uno ocho tres" },
             { display: "415-882-2002", english: "Four one five, eight eight two, two zero zero two", spanish: "Cuatro uno cinco, ocho ocho dos, dos cero cero dos" },
-            { display: "510-548-2971", english: "Five one zero, five four eight, two nine seven one", spanish: "Cinco uno cero, cinco cuatro ocho, dos nueve siete uno" },
+            { display: "510-548-2971", english: "Five one zero, five four eight, two nine seven one. Or, Five one oh, five four eight, two nine seven one", spanish: "Cinco uno cero, cinco cuatro ocho, dos nueve siete uno" },
             { display: "415-112-1122", english: "Four one five, one one two, one one two two", spanish: "Cuatro uno cinco, uno uno dos, uno uno dos dos" },
-            { display: "510-304-3045", english: "Five one zero, three zero four, three zero four five", spanish: "Cinco uno cero, tres cero cuatro, tres cero cuatro cinco" },
+            { display: "510-304-3045", english: "Five one zero, three zero four, three zero four five. Or, Five one oh, three zero four, three zero four five", spanish: "Cinco uno cero, tres cero cuatro, tres cero cuatro cinco" },
             { display: "415-670-6700", english: "Four one five, six seven zero, six seven zero zero", spanish: "Cuatro uno cinco, seis siete cero, seis siete cero cero" },
-            { display: "510-900-9000", english: "Five one zero, nine zero zero, nine zero zero zero", spanish: "Cinco uno cero, nueve cero cero, nueve cero cero cero" }
+            { display: "510-900-9000", english: "Five one zero, nine zero zero zero. Or, Five one oh, nine zero zero zero", spanish: "Cinco uno cero, nueve cero cero cero" }
         ];
 
         // Populate grids
@@ -705,8 +770,9 @@
                     displayEnglish = item.english.replace('Five one zero,', 'Five one zero (oh),');
                 }
                 
-                // Check if this is practice grid - hide English and Spanish text
+                // Check if this is practice grid or phone grid - hide English text
                 const isPractice = gridId === 'practiceGrid';
+                const isPhone = gridId === 'phoneGrid';
                 
                 div.innerHTML = `
                     <div class="number-display" style="align-items: center;">
@@ -714,7 +780,7 @@
                         <span style="flex-grow: 1;">${item.display}</span>
                         <button class="speaker-btn" onclick="speak('${item.english.replace(/'/g, "\\'")}')">🔊</button>
                     </div>
-                    ${!isPractice ? `<div class="english-text">${displayEnglish}</div>` : ''}
+                    ${!isPractice && !isPhone ? `<div class="english-text">${displayEnglish}</div>` : ''}
                     ${!isPractice ? `<div class="spanish-text">${item.spanish}</div>` : ''}
                 `;
                 grid.appendChild(div);
@@ -843,6 +909,26 @@
         }
         
         generateDailyPractice();
+        
+        // My Information functions
+        // Sync date picker with text input
+        document.getElementById('birthdatePicker').addEventListener('change', function(e) {
+            const date = new Date(e.target.value);
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const year = date.getFullYear();
+            document.getElementById('birthdate').value = `${month}/${day}/${year}`;
+        });
+        
+        // Reset all My Information fields
+        function resetMyInfo() {
+            document.getElementById('fullName').value = '';
+            document.getElementById('birthdate').value = '';
+            document.getElementById('birthdatePicker').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('telephone').value = '';
+            document.getElementById('email').value = '';
+        }
 
         // Tab switching
         function showTab(tabName) {
