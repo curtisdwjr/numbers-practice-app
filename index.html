@@ -313,12 +313,12 @@
                 <button class="tab welcome-tab active" onclick="showTab('intro')">📚 Welcome</button>
                 <button class="tab" onclick="showTab('numbers')">🔢 Numbers 1-100</button>
                 <button class="tab" onclick="showTab('ordinals')">🔢 Ordinal Numbers</button>
-                <button class="tab" onclick="showTab('dates')">📅 Dates</button>
+                <button class="tab" onclick="showTab('dates')">📅 Date</button>
                 <button class="tab" onclick="showTab('time')">🕐 Time</button>
                 <button class="tab" onclick="showTab('prices')">💵 Money</button>
                 <button class="tab" onclick="showTab('temperature')">🌡️ Temperature</button>
-                <button class="tab" onclick="showTab('addresses')">🏠 Addresses</button>
-                <button class="tab" onclick="showTab('phone')">📱 Phone Numbers</button>
+                <button class="tab" onclick="showTab('addresses')">🏠 Address</button>
+                <button class="tab" onclick="showTab('phone')">📱 Phone Number</button>
                 <button class="tab" onclick="showTab('age')">🎂 Age</button>
                 <button class="tab" onclick="showTab('weight')">⚖️ Weight</button>
                 <button class="tab" onclick="showTab('height')">📏 Height</button>
@@ -365,7 +365,7 @@
             <div id="dates" class="tab-content">
                 <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
                     <div>
-                        <h2 style="color: #667eea; margin: 0;">📅 Dates</h2>
+                        <h2 style="color: #667eea; margin: 0;">📅 Date</h2>
                         <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is the date?</p>
                     </div>
                     <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
@@ -455,7 +455,7 @@
             <div id="addresses" class="tab-content">
                 <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
                     <div>
-                        <h2 style="color: #667eea; margin: 0;">🏠 Addresses</h2>
+                        <h2 style="color: #667eea; margin: 0;">🏠 Address</h2>
                         <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is the address?</p>
                     </div>
                     <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
@@ -475,7 +475,7 @@
             <!-- Phone Numbers Content -->
             <div id="phone" class="tab-content">
                 <div>
-                    <h2 style="color: #667eea; margin: 0 0 10px 0;">📱 Phone Numbers</h2>
+                    <h2 style="color: #667eea; margin: 0 0 10px 0;">📱 Phone Number</h2>
                     <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 20px 0;">What is the phone number?</p>
                 </div>
                 <div class="number-grid" id="phoneGrid"></div>
@@ -503,10 +503,7 @@
                     <!-- Birthdate -->
                     <div style="margin-bottom: 25px;">
                         <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Birthdate (MM/DD/YYYY)</label>
-                        <div style="display: flex; gap: 10px; align-items: center;">
-                            <input type="text" id="birthdate" placeholder="MM/DD/YYYY" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
-                            <input type="date" id="birthdatePicker" min="1960-01-01" max="2025-12-31" style="padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px;">
-                        </div>
+                        <input type="text" id="birthdate" placeholder="MM/DD/YYYY" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
                     </div>
                     
                     <!-- Address -->
@@ -721,26 +718,26 @@
         ];
 
         const phoneData = [
-            { display: "510-234-1234", english: "Five one zero, two three four, one two three four. Or, Five one oh, two three four, one two three four", spanish: "Cinco uno cero, dos tres cuatro, uno dos tres cuatro" },
-            { display: "510-678-0123", english: "Five one zero, six seven eight, zero one two three. Or, Five one oh, six seven eight, zero one two three", spanish: "Cinco uno cero, seis siete ocho, cero uno dos tres" },
-            { display: "510-891-9876", english: "Five one zero, eight nine one, nine eight seven six. Or, Five one oh, eight nine one, nine eight seven six", spanish: "Cinco uno cero, ocho nueve uno, nueve ocho siete seis" },
-            { display: "510-345-4567", english: "Five one zero, three four five, four five six seven. Or, Five one oh, three four five, four five six seven", spanish: "Cinco uno cero, tres cuatro cinco, cuatro cinco seis siete" },
-            { display: "510-729-7890", english: "Five one zero, seven two nine, seven eight nine zero. Or, Five one oh, seven two nine, seven eight nine zero", spanish: "Cinco uno cero, siete dos nueve, siete ocho nueve cero" },
-            { display: "415-682-2468", english: "Four one five, six eight two, two four six eight", spanish: "Cuatro uno cinco, seis ocho dos, dos cuatro seis ocho" },
-            { display: "415-391-1357", english: "Four one five, three nine one, one three five seven", spanish: "Cuatro uno cinco, tres nueve uno, uno tres cinco siete" },
-            { display: "415-804-8024", english: "Four one five, eight zero four, eight zero two four", spanish: "Cuatro uno cinco, ocho cero cuatro, ocho cero dos cuatro" },
-            { display: "415-267-6543", english: "Four one five, two six seven, six five four three", spanish: "Cuatro uno cinco, dos seis siete, seis cinco cuatro tres" },
-            { display: "415-921-3210", english: "Four one five, nine two one, three two one zero", spanish: "Cuatro uno cinco, nueve dos uno, tres dos uno cero" },
-            { display: "510-456-0987", english: "Five one zero, four five six, zero nine eight seven. Or, Five one oh, four five six, zero nine eight seven", spanish: "Cinco uno cero, cuatro cinco seis, cero nueve ocho siete" },
-            { display: "510-305-5050", english: "Five one zero, three zero five, five zero five zero. Or, Five one oh, three zero five, five zero five zero", spanish: "Cinco uno cero, tres cero cinco, cinco cero cinco cero" },
-            { display: "415-700-7007", english: "Four one five, seven zero zero, seven zero zero seven", spanish: "Cuatro uno cinco, siete cero cero, siete cero cero siete" },
-            { display: "510-627-4183", english: "Five one zero, six two seven, four one eight three. Or, Five one oh, six two seven, four one eight three", spanish: "Cinco uno cero, seis dos siete, cuatro uno ocho tres" },
-            { display: "415-882-2002", english: "Four one five, eight eight two, two zero zero two", spanish: "Cuatro uno cinco, ocho ocho dos, dos cero cero dos" },
-            { display: "510-548-2971", english: "Five one zero, five four eight, two nine seven one. Or, Five one oh, five four eight, two nine seven one", spanish: "Cinco uno cero, cinco cuatro ocho, dos nueve siete uno" },
-            { display: "415-112-1122", english: "Four one five, one one two, one one two two", spanish: "Cuatro uno cinco, uno uno dos, uno uno dos dos" },
-            { display: "510-304-3045", english: "Five one zero, three zero four, three zero four five. Or, Five one oh, three zero four, three zero four five", spanish: "Cinco uno cero, tres cero cuatro, tres cero cuatro cinco" },
-            { display: "415-670-6700", english: "Four one five, six seven zero, six seven zero zero", spanish: "Cuatro uno cinco, seis siete cero, seis siete cero cero" },
-            { display: "510-900-9000", english: "Five one zero, nine zero zero zero. Or, Five one oh, nine zero zero zero", spanish: "Cinco uno cero, nueve cero cero cero" }
+            { display: "510-234-1234", english: "Five one zero, two three four, one two three four. Or, Five one oh, two three four, one two three four", spanish: "cinco uno cero, dos tres cuatro, uno dos tres cuatro" },
+            { display: "510-678-0123", english: "Five one zero, six seven eight, zero one two three. Or, Five one oh, six seven eight, zero one two three", spanish: "cinco uno cero, seis siete ocho, cero uno dos tres" },
+            { display: "510-891-9876", english: "Five one zero, eight nine one, nine eight seven six. Or, Five one oh, eight nine one, nine eight seven six", spanish: "cinco uno cero, ocho nueve uno, nueve ocho siete seis" },
+            { display: "510-345-4567", english: "Five one zero, three four five, four five six seven. Or, Five one oh, three four five, four five six seven", spanish: "cinco uno cero, tres cuatro cinco, cuatro cinco seis siete" },
+            { display: "510-729-7890", english: "Five one zero, seven two nine, seven eight nine zero. Or, Five one oh, seven two nine, seven eight nine zero", spanish: "cinco uno cero, siete dos nueve, siete ocho nueve cero" },
+            { display: "415-682-2468", english: "Four one five, six eight two, two four six eight", spanish: "cuatro uno cinco, seis ocho dos, dos cuatro seis ocho" },
+            { display: "415-391-1357", english: "Four one five, three nine one, one three five seven", spanish: "cuatro uno cinco, tres nueve uno, uno tres cinco siete" },
+            { display: "415-804-8024", english: "Four one five, eight zero four, eight zero two four", spanish: "cuatro uno cinco, ocho cero cuatro, ocho cero dos cuatro" },
+            { display: "415-267-6543", english: "Four one five, two six seven, six five four three", spanish: "cuatro uno cinco, dos seis siete, seis cinco cuatro tres" },
+            { display: "415-921-3210", english: "Four one five, nine two one, three two one zero", spanish: "cuatro uno cinco, nueve dos uno, tres dos uno cero" },
+            { display: "510-456-0987", english: "Five one zero, four five six, zero nine eight seven. Or, Five one oh, four five six, zero nine eight seven", spanish: "cinco uno cero, cuatro cinco seis, cero nueve ocho siete" },
+            { display: "510-305-5050", english: "Five one zero, three zero five, five zero five zero. Or, Five one oh, three zero five, five zero five zero", spanish: "cinco uno cero, tres cero cinco, cinco cero cinco cero" },
+            { display: "415-700-7007", english: "Four one five, seven zero zero, seven zero zero seven", spanish: "cuatro uno cinco, siete cero cero, siete cero cero siete" },
+            { display: "510-627-4183", english: "Five one zero, six two seven, four one eight three. Or, Five one oh, six two seven, four one eight three", spanish: "cinco uno cero, seis dos siete, cuatro uno ocho tres" },
+            { display: "415-882-2002", english: "Four one five, eight eight two, two zero zero two", spanish: "cuatro uno cinco, ocho ocho dos, dos cero cero dos" },
+            { display: "510-548-2971", english: "Five one zero, five four eight, two nine seven one. Or, Five one oh, five four eight, two nine seven one", spanish: "cinco uno cero, cinco cuatro ocho, dos nueve siete uno" },
+            { display: "415-112-1122", english: "Four one five, one one two, one one two two", spanish: "cuatro uno cinco, uno uno dos, uno uno dos dos" },
+            { display: "510-304-3045", english: "Five one zero, three zero four, three zero four five. Or, Five one oh, three zero four, three zero four five", spanish: "cinco uno cero, tres cero cuatro, tres cero cuatro cinco" },
+            { display: "415-670-6700", english: "Four one five, six seven zero, six seven zero zero", spanish: "cuatro uno cinco, seis siete cero, seis siete cero cero" },
+            { display: "510-900-9000", english: "Five one zero, nine zero zero zero. Or, Five one oh, nine zero zero zero", spanish: "cinco uno cero, nueve cero cero cero" }
         ];
 
         // Populate grids
@@ -778,7 +775,7 @@
                     <div class="number-display" style="align-items: center;">
                         ${clockSVG}${thermometerSVG}
                         <span style="flex-grow: 1;">${item.display}</span>
-                        <button class="speaker-btn" onclick="speak('${item.english.replace(/'/g, "\\'")}')">🔊</button>
+                        <button class="speaker-btn" onclick="speak('${item.english.replace(/'/g, "\\'")}', '${gridId}')">🔊</button>
                     </div>
                     ${!isPractice && !isPhone ? `<div class="english-text">${displayEnglish}</div>` : ''}
                     ${!isPractice ? `<div class="spanish-text">${item.spanish}</div>` : ''}
@@ -905,26 +902,35 @@
             
             // Take first 20 items
             const dailyPractice = shuffled.slice(0, 20);
-            populateGrid('practiceGrid', dailyPractice);
+            
+            // Populate practice grid with microphone buttons
+            const grid = document.getElementById('practiceGrid');
+            grid.innerHTML = '';
+            
+            dailyPractice.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'number-item';
+                const itemId = 'practice-' + index;
+                
+                div.innerHTML = `
+                    <div class="number-display" style="align-items: center;">
+                        <span style="flex-grow: 1;">${item.display}</span>
+                        <button class="speaker-btn" onclick="speak('${item.english.replace(/'/g, "\\'")}', 'practiceGrid')" title="Listen">🔊</button>
+                        <button class="speaker-btn" onclick="startRecording('${item.english.replace(/'/g, "\\'")}', '${itemId}')" title="Record your answer" style="background: #ef4444;">🎤</button>
+                    </div>
+                    <div id="feedback-${itemId}" style="font-size: 1.5rem; font-weight: bold; text-align: center; min-height: 30px; margin-top: 5px;"></div>
+                `;
+                grid.appendChild(div);
+            });
         }
         
         generateDailyPractice();
         
         // My Information functions
-        // Sync date picker with text input
-        document.getElementById('birthdatePicker').addEventListener('change', function(e) {
-            const date = new Date(e.target.value);
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            const year = date.getFullYear();
-            document.getElementById('birthdate').value = `${month}/${day}/${year}`;
-        });
-        
         // Reset all My Information fields
         function resetMyInfo() {
             document.getElementById('fullName').value = '';
             document.getElementById('birthdate').value = '';
-            document.getElementById('birthdatePicker').value = '';
             document.getElementById('address').value = '';
             document.getElementById('telephone').value = '';
             document.getElementById('email').value = '';
@@ -945,27 +951,191 @@
         }
 
         // Text-to-speech
-        function speak(text) {
+        function speak(text, gridId = '') {
             if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'en-US';
-                utterance.rate = 0.8;
                 
                 const voices = window.speechSynthesis.getVoices();
-                const femaleVoice = voices.find(voice => 
-                    voice.name.includes('Female') || 
-                    voice.name.includes('Samantha') || 
-                    voice.name.includes('Victoria') ||
-                    voice.name.includes('Google US English') ||
-                    voice.name.includes('Microsoft Zira')
-                );
                 
-                if (femaleVoice) {
-                    utterance.voice = femaleVoice;
+                // Define voice settings based on tab
+                let selectedVoice = null;
+                let rate = 0.8;
+                let pitch = 1.0;
+                
+                if (gridId === 'datesGrid' || gridId === 'timeGrid' || gridId === 'pricesGrid') {
+                    // Female voice, slightly higher pitch for dates, time, money
+                    selectedVoice = voices.find(voice => 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('Samantha') || 
+                        voice.name.includes('Victoria') ||
+                        voice.name.includes('Google US English') ||
+                        voice.name.includes('Microsoft Zira')
+                    );
+                    pitch = 1.1;
+                    rate = 0.8;
+                } else if (gridId === 'temperatureGrid') {
+                    // Female voice, slower and calm for temperature
+                    selectedVoice = voices.find(voice => 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('Samantha') ||
+                        voice.name.includes('Google US English') ||
+                        voice.name.includes('Microsoft Zira')
+                    );
+                    pitch = 1.0;
+                    rate = 0.7;
+                } else if (gridId === 'addressesGrid' || gridId === 'phoneGrid') {
+                    // Male voice, clear and formal for addresses and phone numbers
+                    selectedVoice = voices.find(voice => 
+                        voice.name.includes('Male') ||
+                        voice.name.includes('David') ||
+                        voice.name.includes('Daniel') ||
+                        voice.name.includes('Google UK English Male') ||
+                        voice.name.includes('Microsoft Mark')
+                    );
+                    pitch = 1.0;
+                    rate = 0.75;
+                } else if (gridId === 'ageGrid' || gridId === 'weightGrid' || gridId === 'heightGrid') {
+                    // Female voice, friendly and warm for age, weight, height
+                    selectedVoice = voices.find(voice => 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('Samantha') ||
+                        voice.name.includes('Karen') ||
+                        voice.name.includes('Google US English') ||
+                        voice.name.includes('Microsoft Zira')
+                    );
+                    pitch = 1.05;
+                    rate = 0.8;
+                } else {
+                    // Default female voice for numbers, ordinals, practice
+                    selectedVoice = voices.find(voice => 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('Samantha') || 
+                        voice.name.includes('Victoria') ||
+                        voice.name.includes('Google US English') ||
+                        voice.name.includes('Microsoft Zira')
+                    );
+                    rate = 0.8;
                 }
+                
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
+                utterance.rate = rate;
+                utterance.pitch = pitch;
                 
                 window.speechSynthesis.speak(utterance);
             }
+        }
+        
+        // Speech recognition for practice
+        function startRecording(correctAnswer, itemId) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!SpeechRecognition) {
+                alert('Speech recognition is not supported in your browser. Please use Chrome, Edge, or Safari.');
+                return;
+            }
+            
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+            
+            // Show listening indicator
+            const feedbackEl = document.getElementById('feedback-' + itemId);
+            feedbackEl.innerHTML = '🎤 Listening...';
+            feedbackEl.style.color = '#3b82f6';
+            
+            recognition.start();
+            
+            recognition.onresult = (event) => {
+                const spokenText = event.results[0][0].transcript.toLowerCase();
+                const isCorrect = checkAnswer(spokenText, correctAnswer);
+                
+                // Show feedback
+                if (isCorrect) {
+                    feedbackEl.innerHTML = '✓';
+                    feedbackEl.style.color = '#10b981';
+                    feedbackEl.style.fontSize = '2rem';
+                } else {
+                    feedbackEl.innerHTML = '✗';
+                    feedbackEl.style.color = '#ef4444';
+                    feedbackEl.style.fontSize = '2rem';
+                }
+            };
+            
+            recognition.onerror = (event) => {
+                feedbackEl.innerHTML = '❌ Error';
+                feedbackEl.style.color = '#ef4444';
+                console.error('Speech recognition error:', event.error);
+            };
+            
+            recognition.onend = () => {
+                // Recognition ended
+            };
+        }
+        
+        // Check if spoken answer matches correct answer
+        function checkAnswer(spoken, correct) {
+            // Normalize both strings
+            spoken = normalizeAnswer(spoken);
+            correct = normalizeAnswer(correct);
+            
+            // Direct match
+            if (spoken === correct) return true;
+            
+            // Calculate similarity (allow 85% match)
+            const similarity = calculateSimilarity(spoken, correct);
+            return similarity >= 0.85;
+        }
+        
+        // Normalize answer for comparison
+        function normalizeAnswer(text) {
+            return text
+                .toLowerCase()
+                .replace(/[,.'"-]/g, '') // Remove punctuation
+                .replace(/\s+/g, ' ')     // Normalize spaces
+                .replace(/\band\b/g, '')  // Remove "and"
+                .replace(/\bor\b/g, '')   // Remove "or"
+                .replace(/oh/g, 'zero')   // Normalize "oh" to "zero"
+                .trim();
+        }
+        
+        // Calculate similarity between two strings
+        function calculateSimilarity(s1, s2) {
+            const longer = s1.length > s2.length ? s1 : s2;
+            const shorter = s1.length > s2.length ? s2 : s1;
+            
+            if (longer.length === 0) return 1.0;
+            
+            const editDistance = getEditDistance(longer, shorter);
+            return (longer.length - editDistance) / longer.length;
+        }
+        
+        // Levenshtein distance for fuzzy matching
+        function getEditDistance(s1, s2) {
+            s1 = s1.toLowerCase();
+            s2 = s2.toLowerCase();
+            
+            const costs = [];
+            for (let i = 0; i <= s1.length; i++) {
+                let lastValue = i;
+                for (let j = 0; j <= s2.length; j++) {
+                    if (i === 0) {
+                        costs[j] = j;
+                    } else if (j > 0) {
+                        let newValue = costs[j - 1];
+                        if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
+                            newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+                        }
+                        costs[j - 1] = lastValue;
+                        lastValue = newValue;
+                    }
+                }
+                if (i > 0) costs[s2.length] = lastValue;
+            }
+            return costs[s2.length];
         }
 
         // Load voices when available
