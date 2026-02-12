@@ -1046,29 +1046,30 @@
             const feedbackEl = document.getElementById('feedback-' + itemId);
             feedbackEl.innerHTML = '🎤 Listening...';
             feedbackEl.style.color = '#3b82f6';
+            feedbackEl.style.fontSize = '1rem';
             
             recognition.start();
             
             recognition.onresult = (event) => {
-                const spokenText = event.results[0][0].transcript.toLowerCase();
+                const spokenText = event.results[0][0].transcript;
                 const isCorrect = checkAnswer(spokenText, correctAnswer);
                 
-                // Show feedback
+                // Show what was heard and feedback
                 if (isCorrect) {
-                    feedbackEl.innerHTML = '✓';
+                    feedbackEl.innerHTML = `✓<br><span style="font-size: 0.8rem; color: #666;">You said: "${spokenText}"</span>`;
                     feedbackEl.style.color = '#10b981';
                     feedbackEl.style.fontSize = '2rem';
                 } else {
-                    feedbackEl.innerHTML = '✗';
+                    feedbackEl.innerHTML = `✗<br><span style="font-size: 0.8rem; color: #666;">You said: "${spokenText}"<br>Try again!</span>`;
                     feedbackEl.style.color = '#ef4444';
                     feedbackEl.style.fontSize = '2rem';
                 }
             };
             
             recognition.onerror = (event) => {
-                feedbackEl.innerHTML = '❌ Error';
+                feedbackEl.innerHTML = '❌ Error: ' + event.error;
                 feedbackEl.style.color = '#ef4444';
-                console.error('Speech recognition error:', event.error);
+                feedbackEl.style.fontSize = '1rem';
             };
             
             recognition.onend = () => {
@@ -1079,35 +1080,75 @@
         // Check if spoken answer matches correct answer
         function checkAnswer(spoken, correct) {
             // Normalize both strings
-            spoken = normalizeAnswer(spoken);
-            correct = normalizeAnswer(correct);
+            const spokenNorm = normalizeAnswer(spoken);
+            const correctNorm = normalizeAnswer(correct);
             
-            console.log('Spoken:', spoken);
+            console.log('You said:', spoken);
+            console.log('Normalized spoken:', spokenNorm);
             console.log('Expected:', correct);
+            console.log('Normalized expected:', correctNorm);
             
             // Direct match
-            if (spoken === correct) return true;
+            if (spokenNorm === correctNorm) {
+                console.log('✓ Direct match!');
+                return true;
+            }
+            
+            // Extract just the numbers/key words
+            const spokenNumbers = extractNumbers(spoken);
+            const correctNumbers = extractNumbers(correct);
+            
+            console.log('Spoken numbers:', spokenNumbers);
+            console.log('Expected numbers:', correctNumbers);
+            
+            // If numbers match, accept it
+            if (spokenNumbers === correctNumbers && spokenNumbers.length > 0) {
+                console.log('✓ Numbers match!');
+                return true;
+            }
             
             // Check if spoken contains most of the key words
-            const spokenWords = spoken.split(' ');
-            const correctWords = correct.split(' ');
+            const spokenWords = spokenNorm.split(' ').filter(w => w.length > 2);
+            const correctWords = correctNorm.split(' ').filter(w => w.length > 2);
             
             // Count matching words
             let matches = 0;
             correctWords.forEach(word => {
-                if (spokenWords.includes(word) && word.length > 1) {
+                if (spokenWords.includes(word)) {
                     matches++;
                 }
             });
             
-            // If 70% of words match, accept it
-            const wordMatchRate = matches / correctWords.length;
-            if (wordMatchRate >= 0.7) return true;
+            // If 60% of words match, accept it
+            const wordMatchRate = correctWords.length > 0 ? matches / correctWords.length : 0;
+            console.log('Word match rate:', wordMatchRate, `(${matches}/${correctWords.length})`);
+            if (wordMatchRate >= 0.6) {
+                console.log('✓ Word match!');
+                return true;
+            }
             
-            // Calculate similarity (allow 70% match)
-            const similarity = calculateSimilarity(spoken, correct);
+            // Calculate similarity (allow 60% match)
+            const similarity = calculateSimilarity(spokenNorm, correctNorm);
             console.log('Similarity:', similarity);
-            return similarity >= 0.70;
+            if (similarity >= 0.60) {
+                console.log('✓ Similarity match!');
+                return true;
+            }
+            
+            console.log('✗ No match');
+            return false;
+        }
+        
+        // Extract numbers from text for easier matching
+        function extractNumbers(text) {
+            const numberWords = ['zero', 'oh', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+                                 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 
+                                 'eighteen', 'nineteen', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 
+                                 'eighty', 'ninety', 'hundred', 'thousand'];
+            
+            const words = text.toLowerCase().replace(/[,.'"-]/g, '').split(' ');
+            const numbers = words.filter(word => numberWords.includes(word));
+            return numbers.join(' ');
         }
         
         // Normalize answer for comparison
@@ -1119,8 +1160,6 @@
                 .replace(/\band\b/g, '')   // Remove "and"
                 .replace(/\bor\b/g, '')    // Remove "or"
                 .replace(/\boh\b/g, 'zero') // Normalize "oh" to "zero"
-                .replace(/\bzero\b/g, 'oh') // Also accept zero as oh
-                .replace(/celsius/g, 'fahrenheit') // Handle temp variations
                 .replace(/degrees/g, '')   // Remove "degrees"
                 .replace(/degree/g, '')    // Remove "degree"
                 .replace(/fahrenheit/g, '') // Remove "fahrenheit"
@@ -1144,6 +1183,7 @@
                 .replace(/months/g, '')
                 .replace(/month/g, '')
                 .replace(/old/g, '')
+                .replace(/\s+/g, ' ')
                 .trim();
         }
         
