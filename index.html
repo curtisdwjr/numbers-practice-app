@@ -509,7 +509,12 @@
                     <!-- Address -->
                     <div style="margin-bottom: 25px;">
                         <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Address</label>
-                        <input type="text" id="address" placeholder="Enter your address" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                        <input type="text" id="address" placeholder="Street address" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; margin-bottom: 10px;">
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="city" placeholder="City" style="flex: 3; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                            <input type="text" id="state" placeholder="State" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; max-width: 80px;">
+                            <input type="text" id="zipcode" placeholder="Zip" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; max-width: 100px;">
+                        </div>
                     </div>
                     
                     <!-- Telephone Number -->
@@ -932,6 +937,9 @@
             document.getElementById('fullName').value = '';
             document.getElementById('birthdate').value = '';
             document.getElementById('address').value = '';
+            document.getElementById('city').value = '';
+            document.getElementById('state').value = '';
+            document.getElementById('zipcode').value = '';
             document.getElementById('telephone').value = '';
             document.getElementById('email').value = '';
         }
@@ -1052,139 +1060,18 @@
             
             recognition.onresult = (event) => {
                 const spokenText = event.results[0][0].transcript;
-                const isCorrect = checkAnswer(spokenText, correctAnswer);
                 
-                // Show what was heard and feedback
-                if (isCorrect) {
-                    feedbackEl.innerHTML = `✓<br><span style="font-size: 0.8rem; color: #666;">You said: "${spokenText}"</span>`;
-                    feedbackEl.style.color = '#10b981';
-                    feedbackEl.style.fontSize = '2rem';
-                } else {
-                    feedbackEl.innerHTML = `✗<br><span style="font-size: 0.8rem; color: #666;">You said: "${spokenText}"<br>Try again!</span>`;
-                    feedbackEl.style.color = '#ef4444';
-                    feedbackEl.style.fontSize = '2rem';
-                }
+                // Show what was said (no grading)
+                feedbackEl.innerHTML = `<span style="font-size: 0.9rem; color: #667eea; font-style: italic;">You said: "${spokenText}"</span>`;
             };
             
             recognition.onerror = (event) => {
-                feedbackEl.innerHTML = '❌ Error: ' + event.error;
-                feedbackEl.style.color = '#ef4444';
-                feedbackEl.style.fontSize = '1rem';
+                feedbackEl.innerHTML = '<span style="font-size: 0.85rem; color: #ef4444;">Could not hear you. Try again!</span>';
             };
             
             recognition.onend = () => {
                 // Recognition ended
             };
-        }
-        
-        // Check if spoken answer matches correct answer
-        function checkAnswer(spoken, correct) {
-            // Normalize both strings
-            const spokenNorm = normalizeAnswer(spoken);
-            const correctNorm = normalizeAnswer(correct);
-            
-            console.log('You said:', spoken);
-            console.log('Normalized spoken:', spokenNorm);
-            console.log('Expected:', correct);
-            console.log('Normalized expected:', correctNorm);
-            
-            // Direct match
-            if (spokenNorm === correctNorm) {
-                console.log('✓ Direct match!');
-                return true;
-            }
-            
-            // Extract just the numbers/key words
-            const spokenNumbers = extractNumbers(spoken);
-            const correctNumbers = extractNumbers(correct);
-            
-            console.log('Spoken numbers:', spokenNumbers);
-            console.log('Expected numbers:', correctNumbers);
-            
-            // If numbers match, accept it
-            if (spokenNumbers === correctNumbers && spokenNumbers.length > 0) {
-                console.log('✓ Numbers match!');
-                return true;
-            }
-            
-            // Check if spoken contains most of the key words
-            const spokenWords = spokenNorm.split(' ').filter(w => w.length > 2);
-            const correctWords = correctNorm.split(' ').filter(w => w.length > 2);
-            
-            // Count matching words
-            let matches = 0;
-            correctWords.forEach(word => {
-                if (spokenWords.includes(word)) {
-                    matches++;
-                }
-            });
-            
-            // If 60% of words match, accept it
-            const wordMatchRate = correctWords.length > 0 ? matches / correctWords.length : 0;
-            console.log('Word match rate:', wordMatchRate, `(${matches}/${correctWords.length})`);
-            if (wordMatchRate >= 0.6) {
-                console.log('✓ Word match!');
-                return true;
-            }
-            
-            // Calculate similarity (allow 60% match)
-            const similarity = calculateSimilarity(spokenNorm, correctNorm);
-            console.log('Similarity:', similarity);
-            if (similarity >= 0.60) {
-                console.log('✓ Similarity match!');
-                return true;
-            }
-            
-            console.log('✗ No match');
-            return false;
-        }
-        
-        // Extract numbers from text for easier matching
-        function extractNumbers(text) {
-            const numberWords = ['zero', 'oh', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-                                 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 
-                                 'eighteen', 'nineteen', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 
-                                 'eighty', 'ninety', 'hundred', 'thousand'];
-            
-            const words = text.toLowerCase().replace(/[,.'"-]/g, '').split(' ');
-            const numbers = words.filter(word => numberWords.includes(word));
-            return numbers.join(' ');
-        }
-        
-        // Normalize answer for comparison
-        function normalizeAnswer(text) {
-            return text
-                .toLowerCase()
-                .replace(/[,.'"-]/g, '')  // Remove punctuation
-                .replace(/\s+/g, ' ')      // Normalize spaces
-                .replace(/\band\b/g, '')   // Remove "and"
-                .replace(/\bor\b/g, '')    // Remove "or"
-                .replace(/\boh\b/g, 'zero') // Normalize "oh" to "zero"
-                .replace(/degrees/g, '')   // Remove "degrees"
-                .replace(/degree/g, '')    // Remove "degree"
-                .replace(/fahrenheit/g, '') // Remove "fahrenheit"
-                .replace(/avenue/g, '')    // Remove "avenue"
-                .replace(/street/g, '')    // Remove "street"
-                .replace(/north/g, '')     // Remove directions
-                .replace(/south/g, '')
-                .replace(/east/g, '')
-                .replace(/west/g, '')
-                .replace(/pounds/g, '')    // Remove units
-                .replace(/pound/g, '')
-                .replace(/feet/g, '')
-                .replace(/foot/g, '')
-                .replace(/inches/g, '')
-                .replace(/inch/g, '')
-                .replace(/dollars/g, '')
-                .replace(/dollar/g, '')
-                .replace(/cents/g, '')
-                .replace(/years/g, '')
-                .replace(/year/g, '')
-                .replace(/months/g, '')
-                .replace(/month/g, '')
-                .replace(/old/g, '')
-                .replace(/\s+/g, ' ')
-                .trim();
         }
         
         // Calculate similarity between two strings
