@@ -618,26 +618,26 @@
         ];
         
         const datesData = [
-            { display: "1/15/1992", english: "January fifteenth, nineteen ninety-two", spanish: "Quince de enero de mil novecientos noventa dos" },
-            { display: "7/4/1995", english: "July fourth, nineteen ninety-five", spanish: "Cuatro de julio de mil novecientos noventa cinco" },
-            { display: "12/25/1998", english: "December twenty-fifth, nineteen ninety-eight", spanish: "Veinticinco de diciembre de mil novecientos noventa ocho" },
-            { display: "3/10/2000", english: "March tenth, two thousand", spanish: "Diez de marzo de dos mil" },
-            { display: "9/11/2001", english: "September eleventh, two thousand one", spanish: "Once de septiembre de dos mil uno" },
-            { display: "2/14/2005", english: "February fourteenth, two thousand five", spanish: "Catorce de febrero de dos mil cinco" },
-            { display: "10/31/2008", english: "October thirty-first, two thousand eight", spanish: "Treinta uno de octubre de dos mil ocho" },
-            { display: "6/15/2010", english: "June fifteenth, two thousand ten", spanish: "Quince de junio de dos mil diez" },
-            { display: "11/23/2012", english: "November twenty-third, two thousand twelve", spanish: "Veintitres de noviembre de dos mil doce" },
-            { display: "4/1/2015", english: "April first, two thousand fifteen", spanish: "Primero de abril de dos mil quince" },
-            { display: "8/8/2018", english: "August eighth, two thousand eighteen", spanish: "Ocho de agosto de dos mil dieciocho" },
-            { display: "1/1/2020", english: "January first, two thousand twenty", spanish: "Primero de enero de dos mil veinte" },
-            { display: "5/20/2021", english: "May twentieth, two thousand twenty-one", spanish: "Veinte de mayo de dos mil veintiuno" },
-            { display: "7/4/2022", english: "July fourth, two thousand twenty-two", spanish: "Cuatro de julio de dos mil veintidos" },
-            { display: "12/31/2023", english: "December thirty-first, two thousand twenty-three", spanish: "Treinta uno de diciembre de dos mil veintitres" },
-            { display: "2/10/2024", english: "February tenth, two thousand twenty-four", spanish: "Diez de febrero de dos mil veinticuatro" },
-            { display: "6/30/2025", english: "June thirtieth, two thousand twenty-five", spanish: "Treinta de junio de dos mil veinticinco" },
-            { display: "3/17/2026", english: "March seventeenth, two thousand twenty-six", spanish: "Diecisiete de marzo de dos mil veintiseis" },
-            { display: "10/5/1997", english: "October fifth, nineteen ninety-seven", spanish: "Cinco de octubre de mil novecientos noventa siete" },
-            { display: "4/22/2019", english: "April twenty-second, two thousand nineteen", spanish: "Veintidos de abril de dos mil diecinueve" }
+            { display: "1/15/1992", english: "January 15th, 1992", spanish: "Quince de enero de mil novecientos noventa dos" },
+            { display: "7/4/1995", english: "July 4th, 1995", spanish: "Cuatro de julio de mil novecientos noventa cinco" },
+            { display: "12/25/1998", english: "December 25th, 1998", spanish: "Veinticinco de diciembre de mil novecientos noventa ocho" },
+            { display: "3/10/2000", english: "March 10th, 2000", spanish: "Diez de marzo de dos mil" },
+            { display: "9/11/2001", english: "September 11th, 2001", spanish: "Once de septiembre de dos mil uno" },
+            { display: "2/14/2005", english: "February 14th, 2005", spanish: "Catorce de febrero de dos mil cinco" },
+            { display: "10/31/2008", english: "October 31st, 2008", spanish: "Treinta uno de octubre de dos mil ocho" },
+            { display: "6/15/2010", english: "June 15th, 2010", spanish: "Quince de junio de dos mil diez" },
+            { display: "11/23/2012", english: "November 23rd, 2012", spanish: "Veintitres de noviembre de dos mil doce" },
+            { display: "4/1/2015", english: "April 1st, 2015", spanish: "Primero de abril de dos mil quince" },
+            { display: "8/8/2018", english: "August 8th, 2018", spanish: "Ocho de agosto de dos mil dieciocho" },
+            { display: "1/1/2020", english: "January 1st, 2020", spanish: "Primero de enero de dos mil veinte" },
+            { display: "5/20/2021", english: "May 20th, 2021", spanish: "Veinte de mayo de dos mil veintiuno" },
+            { display: "7/4/2022", english: "July 4th, 2022", spanish: "Cuatro de julio de dos mil veintidos" },
+            { display: "12/31/2023", english: "December 31st, 2023", spanish: "Treinta uno de diciembre de dos mil veintitres" },
+            { display: "2/10/2024", english: "February 10th, 2024", spanish: "Diez de febrero de dos mil veinticuatro" },
+            { display: "6/30/2025", english: "June 30th, 2025", spanish: "Treinta de junio de dos mil veinticinco" },
+            { display: "3/17/2026", english: "March 17th, 2026", spanish: "Diecisiete de marzo de dos mil veintiseis" },
+            { display: "10/5/1997", english: "October 5th, 1997", spanish: "Cinco de octubre de mil novecientos noventa siete" },
+            { display: "4/22/2019", english: "April 22nd, 2019", spanish: "Veintidos de abril de dos mil diecinueve" }
         ];
         
         const timeData = [
@@ -875,6 +875,8 @@
                 // Check if this is practice grid or phone grid - hide English text
                 const isPractice = gridId === 'practiceGrid';
                 const isPhone = gridId === 'phoneGrid';
+                const isAddress = gridId === 'addressesGrid';
+                const isID = gridId === 'idGrid';
                 
                 div.innerHTML = `
                     <div class="number-display" style="align-items: center;">
@@ -882,7 +884,7 @@
                         <span style="flex-grow: 1;">${item.display}</span>
                         <button class="speaker-btn" onclick="speak('${item.english.replace(/'/g, "\\'")}', '${gridId}')">🔊</button>
                     </div>
-                    ${!isPractice && !isPhone ? `<div class="english-text">${displayEnglish}</div>` : ''}
+                    ${!isPractice && !isPhone && !isAddress && !isID ? `<div class="english-text">${displayEnglish}</div>` : ''}
                     ${!isPractice ? `<div class="spanish-text">${item.spanish}</div>` : ''}
                 `;
                 grid.appendChild(div);
