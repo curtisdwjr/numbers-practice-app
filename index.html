@@ -291,11 +291,11 @@
             }
             
             .english-text {
-                font-size: 0.7rem;
+                font-size: 0.95rem;
             }
             
             .spanish-text {
-                font-size: 0.65rem;
+                font-size: 0.85rem;
             }
             
             /* My Information address fields on mobile */
@@ -337,6 +337,8 @@
                 <button class="tab" onclick="showTab('temperature')">🌡️ Temperature</button>
                 <button class="tab" onclick="showTab('addresses')">🏠 Address</button>
                 <button class="tab" onclick="showTab('phone')">📱 Phone Number</button>
+                <button class="tab" onclick="showTab('workpay')">💼 Work Pay</button>
+                <button class="tab" onclick="showTab('idnumber')">🪪 ID</button>
                 <button class="tab" onclick="showTab('age')">🎂 Age</button>
                 <button class="tab" onclick="showTab('weight')">⚖️ Weight</button>
                 <button class="tab" onclick="showTab('height')">📏 Height</button>
@@ -499,6 +501,37 @@
                 <div class="number-grid" id="phoneGrid"></div>
             </div>
             
+            <!-- Work Pay Content -->
+            <div id="workpay" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div>
+                        <h2 style="color: #667eea; margin: 0;">💼 Work Pay</h2>
+                        <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is your pay?</p>
+                    </div>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div>/hr = per hour</div>
+                        <div>/wk = per week</div>
+                    </div>
+                </div>
+                <div class="number-grid" id="workpayGrid"></div>
+            </div>
+            
+            <!-- ID Content -->
+            <div id="idnumber" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div>
+                        <h2 style="color: #667eea; margin: 0;">🪪 ID</h2>
+                        <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is your ID number?</p>
+                    </div>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div>SSN = Social Security</div>
+                        <div>DL = Driver's License</div>
+                        <div>PP = Passport</div>
+                    </div>
+                </div>
+                <div class="number-grid" id="idGrid"></div>
+            </div>
+            
             <!-- Practice Content -->
             <div id="practice" class="tab-content">
                 <h2 style="color: #667eea; margin-bottom: 10px; text-align: center;">✏️ Daily Practice</h2>
@@ -512,10 +545,13 @@
                 <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 0.9rem;">Practice writing your personal information</p>
                 
                 <div style="max-width: 600px; margin: 0 auto;">
-                    <!-- Full Name -->
+                    <!-- Name -->
                     <div style="margin-bottom: 25px;">
-                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Full Name</label>
-                        <input type="text" id="fullName" placeholder="Enter your full name" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Name</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="lastName" placeholder="Last Name" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                            <input type="text" id="firstName" placeholder="First Name" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                        </div>
                     </div>
                     
                     <!-- Birthdate -->
@@ -529,7 +565,7 @@
                         <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Address</label>
                         <input type="text" id="address" placeholder="Street address" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; margin-bottom: 10px;">
                         <div style="display: flex; gap: 8px;">
-                            <input type="text" id="city" placeholder="City" style="flex: 3; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                            <input type="text" id="city" placeholder="City" style="flex: 2; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
                             <input type="text" id="state" placeholder="State" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; max-width: 80px;">
                             <input type="text" id="zipcode" placeholder="Zip" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; max-width: 100px;">
                         </div>
@@ -605,26 +641,26 @@
         ];
         
         const timeData = [
-            { display: "1:00", english: "one o'clock", spanish: "la una" },
-            { display: "2:03", english: "two oh three", spanish: "dos tres" },
             { display: "3:15", english: "three fifteen", spanish: "tres quince" },
-            { display: "4:30", english: "four thirty", spanish: "cuatro treinta" },
-            { display: "5:45", english: "five forty-five", spanish: "cinco cuarenta cinco" },
-            { display: "6:00", english: "six o'clock", spanish: "las seis" },
-            { display: "7:10", english: "seven ten", spanish: "siete diez" },
-            { display: "8:05", english: "eight oh five", spanish: "ocho cinco" },
-            { display: "9:20", english: "nine twenty", spanish: "nueve veinte" },
-            { display: "10:30", english: "ten thirty", spanish: "diez treinta" },
-            { display: "11:08", english: "eleven oh eight", spanish: "once ocho" },
+            { display: "9:45", english: "nine forty-five", spanish: "nueve cuarenta cinco" },
+            { display: "1:00", english: "one o'clock", spanish: "la una" },
+            { display: "7:28", english: "seven twenty-eight", spanish: "siete veintiocho" },
+            { display: "11:05", english: "eleven oh five", spanish: "once cinco" },
+            { display: "4:50", english: "four fifty", spanish: "cuatro cincuenta" },
+            { display: "2:12", english: "two twelve", spanish: "dos doce" },
+            { display: "8:33", english: "eight thirty-three", spanish: "ocho treinta tres" },
             { display: "12:00", english: "twelve o'clock", spanish: "las doce" },
-            { display: "12:50", english: "twelve fifty", spanish: "doce cincuenta" },
-            { display: "1:15", english: "one fifteen", spanish: "una quince" },
-            { display: "2:25", english: "two twenty-five", spanish: "dos veinticinco" },
-            { display: "3:40", english: "three forty", spanish: "tres cuarenta" },
-            { display: "4:55", english: "four fifty-five", spanish: "cuatro cincuenta cinco" },
-            { display: "6:07", english: "six oh seven", spanish: "seis siete" },
-            { display: "7:35", english: "seven thirty-five", spanish: "siete treinta cinco" },
-            { display: "9:02", english: "nine oh two", spanish: "nueve dos" }
+            { display: "5:07", english: "five oh seven", spanish: "cinco siete" },
+            { display: "10:22", english: "ten twenty-two", spanish: "diez veintidós" },
+            { display: "6:40", english: "six forty", spanish: "seis cuarenta" },
+            { display: "1:55", english: "one fifty-five", spanish: "una cincuenta cinco" },
+            { display: "9:18", english: "nine eighteen", spanish: "nueve dieciocho" },
+            { display: "3:03", english: "three oh three", spanish: "tres tres" },
+            { display: "7:52", english: "seven fifty-two", spanish: "siete cincuenta dos" },
+            { display: "11:30", english: "eleven thirty", spanish: "once treinta" },
+            { display: "2:44", english: "two forty-four", spanish: "dos cuarenta cuatro" },
+            { display: "6:00", english: "six o'clock", spanish: "las seis" },
+            { display: "4:16", english: "four sixteen", spanish: "cuatro dieciséis" }
         ];
 
         const pricesData = [
@@ -762,6 +798,52 @@
             { display: "415-670-6700", english: "Four one five, six seven zero, six seven zero zero", spanish: "cuatro uno cinco, seis siete cero, seis siete cero cero" },
             { display: "510-900-9000", english: "Five one zero, nine zero zero zero. Or, Five one oh, nine zero zero zero", spanish: "cinco uno cero, nueve cero cero cero" }
         ];
+        
+        const workpayData = [
+            { display: "$22.50/hr", english: "twenty-two dollars and fifty cents per hour", spanish: "veintidós dólares y cincuenta centavos por hora" },
+            { display: "$45.75/hr", english: "forty-five dollars and seventy-five cents per hour", spanish: "cuarenta cinco dólares y setenta cinco centavos por hora" },
+            { display: "$18.25/hr", english: "eighteen dollars and twenty-five cents per hour", spanish: "dieciocho dólares y veinticinco centavos por hora" },
+            { display: "$55/hr", english: "fifty-five dollars per hour", spanish: "cincuenta cinco dólares por hora" },
+            { display: "$28.80/hr", english: "twenty-eight dollars and eighty cents per hour", spanish: "veintiocho dólares y ochenta centavos por hora" },
+            { display: "$38.50/hr", english: "thirty-eight dollars and fifty cents per hour", spanish: "treinta ocho dólares y cincuenta centavos por hora" },
+            { display: "$16.75/hr", english: "sixteen dollars and seventy-five cents per hour", spanish: "dieciséis dólares y setenta cinco centavos por hora" },
+            { display: "$32/hr", english: "thirty-two dollars per hour", spanish: "treinta dos dólares por hora" },
+            { display: "$48.60/hr", english: "forty-eight dollars and sixty cents per hour", spanish: "cuarenta ocho dólares y sesenta centavos por hora" },
+            { display: "$25.40/hr", english: "twenty-five dollars and forty cents per hour", spanish: "veinticinco dólares y cuarenta centavos por hora" },
+            { display: "$750/wk", english: "seven hundred fifty dollars per week", spanish: "setecientos cincuenta dólares por semana" },
+            { display: "$1100/wk", english: "one thousand one hundred dollars per week", spanish: "mil cien dólares por semana" },
+            { display: "$580/wk", english: "five hundred eighty dollars per week", spanish: "quinientos ochenta dólares por semana" },
+            { display: "$950/wk", english: "nine hundred fifty dollars per week", spanish: "novecientos cincuenta dólares por semana" },
+            { display: "$1350/wk", english: "one thousand three hundred fifty dollars per week", spanish: "mil trescientos cincuenta dólares por semana" },
+            { display: "$680/wk", english: "six hundred eighty dollars per week", spanish: "seiscientos ochenta dólares por semana" },
+            { display: "$1800/wk", english: "one thousand eight hundred dollars per week", spanish: "mil ochocientos dólares por semana" },
+            { display: "$850/wk", english: "eight hundred fifty dollars per week", spanish: "ochocientos cincuenta dólares por semana" },
+            { display: "$1250/wk", english: "one thousand two hundred fifty dollars per week", spanish: "mil doscientos cincuenta dólares por semana" },
+            { display: "$620/wk", english: "six hundred twenty dollars per week", spanish: "seiscientos veinte dólares por semana" }
+        ];
+        
+        const idData = [
+            { display: "SSN: 247-83-5691", english: "SSN: two four seven, eight three, five six nine one", spanish: "SSN: dos cuatro siete, ocho tres, cinco seis nueve uno" },
+            { display: "SSN: 389-52-4017", english: "SSN: three eight nine, five two, four zero one seven", spanish: "SSN: tres ocho nueve, cinco dos, cuatro cero uno siete" },
+            { display: "SSN: 561-24-7893", english: "SSN: five six one, two four, seven eight nine three", spanish: "SSN: cinco seis uno, dos cuatro, siete ocho nueve tres" },
+            { display: "SSN: 824-67-3105", english: "SSN: eight two four, six seven, three one zero five", spanish: "SSN: ocho dos cuatro, seis siete, tres uno cero cinco" },
+            { display: "SSN: 195-48-6270", english: "SSN: one nine five, four eight, six two seven zero", spanish: "SSN: uno nueve cinco, cuatro ocho, seis dos siete cero" },
+            { display: "SSN: 673-91-2458", english: "SSN: six seven three, nine one, two four five eight", spanish: "SSN: seis siete tres, nueve uno, dos cuatro cinco ocho" },
+            { display: "DL: D4582917", english: "driver's license: D four five eight two nine one seven", spanish: "licencia de conducir: D cuatro cinco ocho dos nueve uno siete" },
+            { display: "DL: M7361924", english: "driver's license: M seven three six one nine two four", spanish: "licencia de conducir: M siete tres seis uno nueve dos cuatro" },
+            { display: "DL: C9283746", english: "driver's license: C nine two eight three seven four six", spanish: "licencia de conducir: C nueve dos ocho tres siete cuatro seis" },
+            { display: "DL: A5194682", english: "driver's license: A five one nine four six eight two", spanish: "licencia de conducir: A cinco uno nueve cuatro seis ocho dos" },
+            { display: "DL: B8647253", english: "driver's license: B eight six four seven two five three", spanish: "licencia de conducir: B ocho seis cuatro siete dos cinco tres" },
+            { display: "DL: D2975381", english: "driver's license: D two nine seven five three eight one", spanish: "licencia de conducir: D dos nueve siete cinco tres ocho uno" },
+            { display: "DL: M6418729", english: "driver's license: M six four one eight seven two nine", spanish: "licencia de conducir: M seis cuatro uno ocho siete dos nueve" },
+            { display: "PP: KR4825769", english: "passport: K R four eight two five seven six nine", spanish: "pasaporte: K R cuatro ocho dos cinco siete seis nueve" },
+            { display: "PP: LN7396284", english: "passport: L N seven three nine six two eight four", spanish: "pasaporte: L N siete tres nueve seis dos ocho cuatro" },
+            { display: "PP: PT9517836", english: "passport: P T nine five one seven eight three six", spanish: "pasaporte: P T nueve cinco uno siete ocho tres seis" },
+            { display: "PP: MJ2864195", english: "passport: M J two eight six four one nine five", spanish: "pasaporte: M J dos ocho seis cuatro uno nueve cinco" },
+            { display: "PP: XW5731924", english: "passport: X W five seven three one nine two four", spanish: "pasaporte: X W cinco siete tres uno nueve dos cuatro" },
+            { display: "PP: FS8246517", english: "passport: F S eight two four six five one seven", spanish: "pasaporte: F S ocho dos cuatro seis cinco uno siete" },
+            { display: "PP: VH3951782", english: "passport: V H three nine five one seven eight two", spanish: "pasaporte: V H tres nueve cinco uno siete ocho dos" }
+        ];
 
         // Populate grids
         function populateGrid(gridId, data) {
@@ -891,8 +973,67 @@
         populateGrid('heightGrid', heightData);
         populateGrid('ageGrid', ageData);
         populateGrid('phoneGrid', phoneData);
+        populateGrid('workpayGrid', workpayData);
+        populateGrid('idGrid', idData);
         
         // Generate daily practice examples
+        // Number to word conversion helpers
+        function numberToWords(num) {
+            const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+            const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            
+            if (num === 0) return 'zero';
+            if (num < 10) return ones[num];
+            if (num < 20) return teens[num - 10];
+            if (num < 100) {
+                const ten = Math.floor(num / 10);
+                const one = num % 10;
+                return tens[ten] + (one ? '-' + ones[one] : '');
+            }
+            if (num < 1000) {
+                const hundred = Math.floor(num / 100);
+                const rest = num % 100;
+                return ones[hundred] + ' hundred' + (rest ? ' ' + numberToWords(rest) : '');
+            }
+            if (num < 10000) {
+                const thousand = Math.floor(num / 1000);
+                const rest = num % 1000;
+                return ones[thousand] + ' thousand' + (rest ? ' ' + numberToWords(rest) : '');
+            }
+            return num.toString();
+        }
+        
+        function numberToSpanish(num) {
+            const ones = ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve'];
+            const teens = ['diez', 'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'diecisiete', 'dieciocho', 'diecinueve'];
+            const twenties = ['veinte', 'veintiuno', 'veintidós', 'veintitrés', 'veinticuatro', 'veinticinco', 'veintiséis', 'veintisiete', 'veintiocho', 'veintinueve'];
+            const tens = ['', '', 'veinte', 'treinta', 'cuarenta', 'cincuenta', 'sesenta', 'setenta', 'ochenta', 'noventa'];
+            
+            if (num === 0) return 'cero';
+            if (num < 10) return ones[num];
+            if (num < 20) return teens[num - 10];
+            if (num < 30) return twenties[num - 20];
+            if (num < 100) {
+                const ten = Math.floor(num / 10);
+                const one = num % 10;
+                return tens[ten] + (one ? ' ' + ones[one] : '');
+            }
+            if (num === 100) return 'cien';
+            if (num < 1000) {
+                const hundred = Math.floor(num / 100);
+                const rest = num % 100;
+                const hundredWord = hundred === 1 ? 'ciento' : ones[hundred] + 'cientos';
+                return hundredWord + (rest ? ' ' + numberToSpanish(rest) : '');
+            }
+            if (num < 10000) {
+                const thousand = Math.floor(num / 1000);
+                const rest = num % 1000;
+                return (thousand === 1 ? 'mil' : ones[thousand] + ' mil') + (rest ? ' ' + numberToSpanish(rest) : '');
+            }
+            return num.toString();
+        }
+        
         function generateDailyPractice() {
             // Get today's date as seed for consistent daily examples
             const today = new Date();
@@ -904,27 +1045,268 @@
                 return x - Math.floor(x);
             }
             
-            const allData = [
-                ...addressesData,
-                ...datesData,
-                ...timeData,
-                ...pricesData,
-                ...temperatureData,
-                ...weightData,
-                ...heightData,
-                ...ageData,
-                ...phoneData
-            ];
-            
-            // Shuffle array using seeded random
-            const shuffled = [...allData];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(seededRandom(dayOfYear + i) * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            // Generate random dates (matching format: "1/15/1992" → "January fifteenth, nineteen ninety-two")
+            function generateRandomDate(seed) {
+                const month = Math.floor(seededRandom(seed) * 12) + 1;
+                const day = Math.floor(seededRandom(seed + 1) * 28) + 1;
+                const year = 1980 + Math.floor(seededRandom(seed + 2) * 46);
+                
+                const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                const ordinals = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth',
+                    'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 
+                    'nineteenth', 'twentieth', 'twenty-first', 'twenty-second', 'twenty-third', 'twenty-fourth', 'twenty-fifth', 
+                    'twenty-sixth', 'twenty-seventh', 'twenty-eighth'];
+                
+                const yearFirst = Math.floor(year / 100);
+                const yearSecond = year % 100;
+                const yearWords = year < 2000 ? 
+                    `nineteen ${numberToWords(year - 1900)}` :
+                    `two thousand ${yearSecond > 0 ? numberToWords(yearSecond) : ''}`;
+                
+                return {
+                    display: `${month}/${day}/${year}`,
+                    english: `${months[month-1]} ${ordinals[day-1]}, ${yearWords}`,
+                    spanish: `${day} de ${months[month-1].toLowerCase()} de mil ${numberToSpanish(year - 1000)}`
+                };
             }
             
-            // Take first 20 items
-            const dailyPractice = shuffled.slice(0, 20);
+            // Generate random times (matching format: "2:03" → "two oh three")
+            function generateRandomTime(seed) {
+                const hour = Math.floor(seededRandom(seed) * 12) + 1;
+                const minute = Math.floor(seededRandom(seed + 1) * 60);
+                
+                let minuteWords;
+                if (minute === 0) {
+                    minuteWords = "o'clock";
+                } else if (minute < 10) {
+                    minuteWords = `oh ${numberToWords(minute)}`;
+                } else {
+                    minuteWords = numberToWords(minute);
+                }
+                
+                return {
+                    display: `${hour}:${minute.toString().padStart(2, '0')}`,
+                    english: `${numberToWords(hour)} ${minuteWords}`,
+                    spanish: `${numberToSpanish(hour)} ${numberToSpanish(minute)}`
+                };
+            }
+            
+            // Generate random temperatures (matching format: "72°F" → "seventy-two degrees Fahrenheit")
+            function generateRandomTemp(seed) {
+                const temp = 30 + Math.floor(seededRandom(seed) * 75);
+                return {
+                    display: `${temp}°F`,
+                    english: `${numberToWords(temp)} degrees Fahrenheit`,
+                    spanish: `${numberToSpanish(temp)} grados Fahrenheit`
+                };
+            }
+            
+            // Generate random prices (matching format: "$2.99" → "two dollars and ninety-nine cents")
+            function generateRandomPrice(seed) {
+                const dollars = Math.floor(seededRandom(seed) * 200);
+                const cents = Math.floor(seededRandom(seed + 1) * 100);
+                
+                const dollarWord = dollars === 1 ? 'dollar' : 'dollars';
+                const centWord = cents === 1 ? 'centavo' : 'centavos';
+                const dollarWordSpanish = dollars === 1 ? 'dólar' : 'dólares';
+                
+                const english = cents === 0 ?
+                    `${numberToWords(dollars)} ${dollarWord}` :
+                    `${numberToWords(dollars)} ${dollarWord} and ${numberToWords(cents)} cents`;
+                
+                const spanish = cents === 0 ?
+                    `${numberToSpanish(dollars)} ${dollarWordSpanish}` :
+                    `${numberToSpanish(dollars)} ${dollarWordSpanish} y ${numberToSpanish(cents)} ${centWord}`;
+                
+                return {
+                    display: `$${dollars}.${cents.toString().padStart(2, '0')}`,
+                    english: english,
+                    spanish: spanish
+                };
+            }
+            
+            // Generate random addresses (matching format: "1225 Parker Ave." → "twelve twenty-five Parker Avenue")
+            function generateRandomAddress(seed) {
+                const streetNum = 1000 + Math.floor(seededRandom(seed) * 9000);
+                const streets = ['Parker', 'Lyon', 'Maple', 'Pine', 'Elm', 'Cedar', 'Oak', 'Birch', 'Walnut', 'Cherry'];
+                const types = ['Ave.', 'St.'];
+                const street = streets[Math.floor(seededRandom(seed + 1) * streets.length)];
+                const type = types[Math.floor(seededRandom(seed + 2) * types.length)];
+                
+                const first = Math.floor(streetNum / 100);
+                const second = streetNum % 100;
+                const numWords = `${numberToWords(first)} ${numberToWords(second)}`;
+                
+                return {
+                    display: `${streetNum} ${street} ${type}`,
+                    english: `${numWords} ${street} ${type === 'Ave.' ? 'Avenue' : 'Street'}`,
+                    spanish: `${numberToSpanish(streetNum)} ${type === 'Ave.' ? 'Avenida' : 'Calle'} ${street}`
+                };
+            }
+            
+            // Generate random phone numbers (matching format: "510-234-1234")
+            function generateRandomPhone(seed) {
+                const areaCodes = ['510', '415'];
+                const areaCode = areaCodes[Math.floor(seededRandom(seed) * areaCodes.length)];
+                const middle = Math.floor(seededRandom(seed + 1) * 900) + 100;
+                const last = Math.floor(seededRandom(seed + 2) * 9000) + 1000;
+                
+                const middleDigits = middle.toString().split('').map(d => numberToWords(parseInt(d))).join(' ');
+                const lastDigits = last.toString().split('').map(d => numberToWords(parseInt(d))).join(' ');
+                
+                const areaSpoken = areaCode === '510' ?
+                    `five one zero, ${middleDigits}, ${lastDigits}. Or, five one oh, ${middleDigits}, ${lastDigits}` :
+                    `four one five, ${middleDigits}, ${lastDigits}`;
+                
+                const areaSpanish = areaCode === '510' ? 'cinco uno cero' : 'cuatro uno cinco';
+                
+                return {
+                    display: `${areaCode}-${middle}-${last}`,
+                    english: areaSpoken,
+                    spanish: `${areaSpanish}, ${middleDigits}, ${lastDigits}`
+                };
+            }
+            
+            // Generate random ages (matching format: "25 years old" → "twenty-five years old")
+            function generateRandomAge(seed) {
+                const age = Math.floor(seededRandom(seed) * 90) + 5;
+                return {
+                    display: `${age} years old`,
+                    english: `${numberToWords(age)} years old`,
+                    spanish: `${numberToSpanish(age)} años`
+                };
+            }
+            
+            // Generate random weights (matching format: "25 lbs" → "twenty-five pounds")
+            function generateRandomWeight(seed) {
+                const weight = Math.floor(seededRandom(seed) * 200) + 5;
+                return {
+                    display: `${weight} lbs`,
+                    english: `${numberToWords(weight)} pounds`,
+                    spanish: `${numberToSpanish(weight)} libras`
+                };
+            }
+            
+            // Generate random heights (matching format: "5'6\"" → "five feet six inches")
+            function generateRandomHeight(seed) {
+                const feet = Math.floor(seededRandom(seed) * 4) + 3;
+                const inches = Math.floor(seededRandom(seed + 1) * 12);
+                
+                const inchWord = inches === 1 ? 'inch' : 'inches';
+                const inchWordSpanish = inches === 1 ? 'pulgada' : 'pulgadas';
+                
+                return {
+                    display: `${feet}'${inches}"`,
+                    english: inches === 0 ? `${numberToWords(feet)} feet` : `${numberToWords(feet)} feet ${numberToWords(inches)} ${inchWord}`,
+                    spanish: `${numberToSpanish(feet)} pies ${numberToSpanish(inches)} ${inchWordSpanish}`
+                };
+            }
+            
+            // Generate random work pay (matching format: "$21/hr" → "twenty-one dollars per hour")
+            function generateRandomWorkPay(seed) {
+                const isHourly = seededRandom(seed) > 0.5;
+                if (isHourly) {
+                    const rate = 15 + Math.floor(seededRandom(seed + 1) * 50);
+                    return {
+                        display: `$${rate}/hr`,
+                        english: `${numberToWords(rate)} dollars per hour`,
+                        spanish: `${numberToSpanish(rate)} dólares por hora`
+                    };
+                } else {
+                    const rate = 500 + Math.floor(seededRandom(seed + 1) * 1600);
+                    return {
+                        display: `$${rate}/wk`,
+                        english: `${numberToWords(rate)} dollars per week`,
+                        spanish: `${numberToSpanish(rate)} dólares por semana`
+                    };
+                }
+            }
+            
+            // Generate random ID (matching format with letters and numbers)
+            function generateRandomID(seed) {
+                const types = ['SSN', 'DL', 'PP'];
+                const type = types[Math.floor(seededRandom(seed) * types.length)];
+                
+                // Helper to shuffle digits
+                function shuffleDigits(num) {
+                    const digits = num.toString().split('');
+                    for (let i = digits.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [digits[i], digits[j]] = [digits[j], digits[i]];
+                    }
+                    return digits.join('');
+                }
+                
+                if (type === 'SSN') {
+                    // Generate random 3-digit, 2-digit, and 4-digit parts
+                    let part1 = shuffleDigits(Math.floor(seededRandom(seed + 1) * 900) + 100);
+                    let part2 = shuffleDigits(Math.floor(seededRandom(seed + 2) * 90) + 10);
+                    let part3 = shuffleDigits(Math.floor(seededRandom(seed + 3) * 9000) + 1000);
+                    
+                    const p1Digits = part1.split('').map(d => numberToWords(parseInt(d))).join(' ');
+                    const p2Digits = part2.split('').map(d => numberToWords(parseInt(d))).join(' ');
+                    const p3Digits = part3.split('').map(d => numberToWords(parseInt(d))).join(' ');
+                    
+                    const p1Spanish = part1.split('').map(d => numberToSpanish(parseInt(d))).join(' ');
+                    const p2Spanish = part2.split('').map(d => numberToSpanish(parseInt(d))).join(' ');
+                    const p3Spanish = part3.split('').map(d => numberToSpanish(parseInt(d))).join(' ');
+                    
+                    return {
+                        display: `SSN: ${part1}-${part2}-${part3}`,
+                        english: `SSN: ${p1Digits}, ${p2Digits}, ${p3Digits}`,
+                        spanish: `SSN: ${p1Spanish}, ${p2Spanish}, ${p3Spanish}`
+                    };
+                } else if (type === 'DL') {
+                    // Driver's License: only D, M, C, A, B
+                    const dlLetters = ['D', 'M', 'C', 'A', 'B'];
+                    const letter = dlLetters[Math.floor(seededRandom(seed + 1) * dlLetters.length)];
+                    const num = shuffleDigits(Math.floor(seededRandom(seed + 2) * 9000000) + 1000000);
+                    const numDigits = num.split('').map(d => numberToWords(parseInt(d))).join(' ');
+                    const numSpanish = num.split('').map(d => numberToSpanish(parseInt(d))).join(' ');
+                    
+                    return {
+                        display: `DL: ${letter}${num}`,
+                        english: `driver's license: ${letter} ${numDigits}`,
+                        spanish: `licencia de conducir: ${letter} ${numSpanish}`
+                    };
+                } else {
+                    // Passport: more varied letter combinations
+                    const ppLetters = ['K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W', 'X', 'F', 'H', 'J'];
+                    const letter1 = ppLetters[Math.floor(seededRandom(seed + 1) * ppLetters.length)];
+                    const letter2 = ppLetters[Math.floor(seededRandom(seed + 2) * ppLetters.length)];
+                    const num = shuffleDigits(Math.floor(seededRandom(seed + 3) * 9000000) + 1000000);
+                    const numDigits = num.split('').map(d => numberToWords(parseInt(d))).join(' ');
+                    const numSpanish = num.split('').map(d => numberToSpanish(parseInt(d))).join(' ');
+                    
+                    return {
+                        display: `PP: ${letter1}${letter2}${num}`,
+                        english: `passport: ${letter1} ${letter2} ${numDigits}`,
+                        spanish: `pasaporte: ${letter1} ${letter2} ${numSpanish}`
+                    };
+                }
+            }
+            
+            // Generate 20 random examples
+            const dailyPractice = [];
+            let seedCounter = dayOfYear;
+            
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomDate(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomTime(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomTemp(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomPrice(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomAddress(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomPhone(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomWorkPay(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomID(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomAge(seedCounter++));
+            for (let i = 0; i < 1; i++) dailyPractice.push(generateRandomWeight(seedCounter++));
+            for (let i = 0; i < 1; i++) dailyPractice.push(generateRandomHeight(seedCounter++));
+            
+            // Shuffle the array
+            for (let i = dailyPractice.length - 1; i > 0; i--) {
+                const j = Math.floor(seededRandom(dayOfYear + i + 1000) * (i + 1));
+                [dailyPractice[i], dailyPractice[j]] = [dailyPractice[j], dailyPractice[i]];
+            }
             
             // Populate practice grid with microphone buttons
             const grid = document.getElementById('practiceGrid');
@@ -936,10 +1318,10 @@
                 const itemId = 'practice-' + index;
                 
                 div.innerHTML = `
-                    <div class="number-display" style="align-items: center;">
-                        <span style="flex-grow: 1;">${item.display}</span>
-                        <button class="speaker-btn" onclick="speak('${item.english.replace(/'/g, "\\'")}', 'practiceGrid')" title="Listen">🔊</button>
-                        <button class="speaker-btn" onclick="startRecording('${item.english.replace(/'/g, "\\'")}', '${itemId}')" title="Record your answer" style="background: #ef4444;">🎤</button>
+                    <div class="number-display" style="align-items: center; display: flex; gap: 10px;">
+                        <button class="speaker-btn" onclick="speak('${item.english.replace(/'/g, "\\'")}', 'practiceGrid')" title="Listen to example">🔊</button>
+                        <span style="flex-grow: 1; text-align: center;">${item.display}</span>
+                        <button class="speaker-btn" onclick="startRecording('${item.english.replace(/'/g, "\\'")}', '${itemId}')" title="Record your voice" style="background: #ef4444;">🎤</button>
                     </div>
                     <div id="feedback-${itemId}" style="font-size: 1.5rem; font-weight: bold; text-align: center; min-height: 30px; margin-top: 5px;"></div>
                 `;
@@ -952,7 +1334,8 @@
         // My Information functions
         // Reset all My Information fields
         function resetMyInfo() {
-            document.getElementById('fullName').value = '';
+            document.getElementById('lastName').value = '';
+            document.getElementById('firstName').value = '';
             document.getElementById('birthdate').value = '';
             document.getElementById('address').value = '';
             document.getElementById('city').value = '';
