@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESL Alphabet & Phonics Practice</title>
+    <title>Numbers Practice in English</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Quicksand:wght@400;600;700&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
@@ -14,849 +12,1341 @@
         }
         
         body {
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #60a5fa;
             min-height: 100vh;
             padding: 20px;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(76, 175, 80, 0.2);
-            overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 30px;
+            border-radius: 15px 15px 0 0;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         .header h1 {
-            font-family: 'Bubblegum Sans', cursive;
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         
         .header p {
-            font-size: 1.1rem;
-            opacity: 0.95;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 0 0 15px 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 400px;
         }
         
         /* Tabs */
         .tabs {
             display: flex;
+            gap: 5px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
-            background: #f1f8e9;
-            padding: 10px;
-            gap: 8px;
-            border-bottom: 3px solid #4caf50;
+            border-bottom: 2px solid #e0e0e0;
         }
         
         .tab {
-            flex: 1;
-            min-width: 150px;
-            padding: 15px 20px;
-            background: white;
+            padding: 12px 20px;
+            background: #f5f5f5;
             border: none;
-            border-radius: 12px;
-            font-family: 'Quicksand', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #4caf50;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #666;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s;
+        }
+        
+        .tab.welcome-tab,
+        .tab.practice-tab {
+            flex-basis: 100%;
+            text-align: center;
+            background: #93c5fd !important;
+            color: white !important;
+        }
+        
+        .tab.welcome-tab:hover,
+        .tab.practice-tab:hover {
+            background: #60a5fa !important;
+        }
+        
+        .tab.welcome-tab.active,
+        .tab.practice-tab.active {
+            background: #3b82f6 !important;
+        }
+        
+        /* Mobile responsive tabs */
+        @media (max-width: 768px) {
+            .tab {
+                padding: 10px 12px;
+                font-size: 0.75rem;
+                flex: 1 1 calc(50% - 8px);
+                min-width: calc(50% - 8px);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            .tab.welcome-tab,
+            .tab.practice-tab {
+                flex-basis: 100%;
+                min-width: 100%;
+            }
+            
+            /* Age, Weight, Height in one row on mobile */
+            .tab[onclick="showTab('age')"],
+            .tab[onclick="showTab('weight')"],
+            .tab[onclick="showTab('height')"] {
+                flex: 1 1 calc(33.33% - 8px);
+                min-width: calc(33.33% - 8px);
+                padding: 10px 6px;
+                font-size: 0.7rem;
+            }
         }
         
         .tab:hover {
-            background: #e8f5e9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+            background: #e0e0e0;
         }
         
         .tab.active {
-            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+            background: #667eea;
             color: white;
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
         }
         
         /* Content */
         .tab-content {
             display: none;
-            padding: 40px;
-            animation: fadeIn 0.4s ease;
         }
         
         .tab-content.active {
             display: block;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Welcome Tab */
-        .welcome-content {
+        .intro {
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
         }
         
-        .welcome-content h2 {
-            font-family: 'Bubblegum Sans', cursive;
-            font-size: 2.2rem;
-            color: #4caf50;
+        .intro img {
+            max-width: 150px;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .intro h2 {
+            color: #667eea;
             margin-bottom: 20px;
         }
         
-        .welcome-content p {
-            font-size: 1.2rem;
+        .intro p {
+            color: #666;
             line-height: 1.8;
-            color: #555;
             margin-bottom: 15px;
         }
         
-        .language-section {
-            background: #f1f8e9;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
+        .intro .features {
+            text-align: left;
+            margin: 30px auto;
+            max-width: 400px;
         }
         
-        .language-section h3 {
-            font-family: 'Bubblegum Sans', cursive;
-            color: #4caf50;
+        .intro .features h3 {
+            color: #666;
+            font-size: 0.95rem;
             margin-bottom: 10px;
         }
         
-        /* Alphabet Grid */
-        .alphabet-grid {
+        .intro .features ul {
+            list-style: none;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        /* Number items */
+        .number-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
         
-        .letter-card {
-            background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
-            border: 3px solid #4caf50;
-            border-radius: 15px;
+        .number-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             padding: 20px;
-            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .number-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .number-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .speaker-btn {
+            background: none;
+            border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+            font-size: 1.3rem;
+            padding: 0;
+            transition: transform 0.2s;
         }
         
-        .letter-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
-            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+        .speaker-btn:hover {
+            transform: scale(1.2);
         }
         
-        .letter-card:active {
-            transform: scale(0.98);
-        }
-        
-        .letter-upper {
-            font-family: 'Bubblegum Sans', cursive;
-            font-size: 3rem;
-            color: #2e7d32;
-            display: block;
+        .english-text {
+            font-size: 1.1rem;
+            color: #333;
             margin-bottom: 5px;
         }
         
-        .letter-lower {
-            font-family: 'Bubblegum Sans', cursive;
-            font-size: 2rem;
-            color: #66bb6a;
-            display: block;
-        }
-        
-        .speaker-icon {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            font-size: 1.2rem;
-        }
-        
-        /* Vowel Cards */
-        .vowel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .vowel-card {
-            background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
-            border: 4px solid #4caf50;
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-        }
-        
-        .vowel-letter {
-            font-family: 'Bubblegum Sans', cursive;
-            font-size: 4rem;
-            color: #2e7d32;
-            margin-bottom: 10px;
-        }
-        
-        .vowel-sound {
-            font-size: 2rem;
-            color: #66bb6a;
-            margin-bottom: 20px;
+        .spanish-text {
+            font-size: 0.95rem;
+            color: #666;
             font-style: italic;
         }
         
-        .example-words {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        /* Numbers table */
+        .numbers-table {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 4px;
+            max-width: 500px;
+            margin: 0 auto;
         }
         
-        .word-item {
-            background: white;
-            border: 2px solid #a5d6a7;
-            border-radius: 10px;
-            padding: 12px 15px;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #2e7d32;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .word-item:hover {
-            background: #e8f5e9;
-            transform: translateX(5px);
-            border-color: #4caf50;
-        }
-        
-        .word-emoji {
-            font-size: 1.5rem;
-            position: relative;
-            cursor: pointer;
-        }
-        
-        .word-emoji:hover::after {
-            content: '🔊';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.2rem;
-            background: rgba(76, 175, 80, 0.9);
-            border-radius: 50%;
-            padding: 4px;
-        }
-        
-        .section-title {
-            font-family: 'Bubblegum Sans', cursive;
-            font-size: 2rem;
-            color: #4caf50;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-        
-        /* Mobile Responsive */
+        /* Mobile responsive for number tables */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .numbers-table {
+                max-width: 100%;
+                gap: 3px;
+                padding: 0 5px;
             }
-            
-            .tabs {
-                flex-direction: column;
+        }
+        
+        .number-cell {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 10px 5px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        
+        .number-cell:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5rem;
             }
             
             .tab {
-                min-width: auto;
+                padding: 10px 15px;
+                font-size: 0.85rem;
             }
             
-            .alphabet-grid {
-                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-                gap: 10px;
-            }
-            
-            .letter-upper {
-                font-size: 2.5rem;
-            }
-            
-            .letter-lower {
-                font-size: 1.8rem;
-            }
-            
-            .vowel-grid {
+            .number-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .number-cell {
+                padding: 6px 1px;
+                font-size: 0.6rem;
+            }
+            
+            .number-display {
+                font-size: 1.25rem;
+            }
+            
+            .english-text {
+                font-size: 0.95rem;
+            }
+            
+            .spanish-text {
+                font-size: 0.85rem;
+            }
+            
+            /* My Information address fields on mobile */
+            #city {
+                font-size: 0.85rem !important;
+                padding: 10px 6px !important;
+            }
+            
+            #state {
+                font-size: 0.85rem !important;
+                padding: 10px 4px !important;
+                max-width: 50px !important;
+            }
+            
+            #zipcode {
+                font-size: 0.85rem !important;
+                padding: 10px 4px !important;
+                max-width: 60px !important;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
-            <h1>🔤 ESL Alphabet & Phonics</h1>
-            <p>Learn English Letters and Sounds</p>
+            <h1>Numbers Practice in English</h1>
+            <p>Learn to use numbers in everyday English</p>
         </div>
         
-        <!-- Tabs -->
-        <div class="tabs">
-            <button class="tab active" onclick="showTab('welcome')">📚 Welcome</button>
-            <button class="tab" onclick="showTab('alphabet')">🔤 Alphabet</button>
-            <button class="tab" onclick="showTab('short-vowels')">Short Vowels</button>
-            <button class="tab" onclick="showTab('long-vowels')">Long Vowels</button>
-            <button class="tab" onclick="showTab('short-consonants')">Consonants (Short Vowel)</button>
-            <button class="tab" onclick="showTab('long-consonants')">Consonants (Long Vowel)</button>
-            <button class="tab" onclick="showTab('blends')">Blends</button>
-            <button class="tab" onclick="showTab('special-sounds')">ch, sh, th, wh Sounds</button>
-        </div>
-        
-        <!-- Welcome Content -->
-        <div id="welcome" class="tab-content active">
-            <div class="welcome-content">
-                <h2>Welcome to Alphabet & Phonics Practice! 👋</h2>
-                
-                <div class="language-section">
-                    <h3>English</h3>
-                    <p>Learn the English alphabet and vowel sounds. Click any letter to hear it. Practice short and long vowel sounds with example words. Perfect for ESL students!</p>
+        <div class="card">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab welcome-tab active" onclick="showTab('intro')">📚 Welcome</button>
+                <button class="tab" onclick="showTab('numbers')">🔢 Numbers 1-100</button>
+                <button class="tab" onclick="showTab('ordinals')">🔢 Ordinal Numbers</button>
+                <button class="tab" onclick="showTab('dates')">📅 Date</button>
+                <button class="tab" onclick="showTab('time')">🕐 Time</button>
+                <button class="tab" onclick="showTab('prices')">💵 Money</button>
+                <button class="tab" onclick="showTab('temperature')">🌡️ Temperature</button>
+                <button class="tab" onclick="showTab('addresses')">🏠 Address</button>
+                <button class="tab" onclick="showTab('phone')">📱 Phone Number</button>
+                <button class="tab" onclick="showTab('workpay')">💼 Work Pay</button>
+                <button class="tab" onclick="showTab('idnumber')">🪪 ID</button>
+                <button class="tab" onclick="showTab('age')">🎂 Age</button>
+                <button class="tab" onclick="showTab('weight')">⚖️ Weight</button>
+                <button class="tab" onclick="showTab('height')">📏 Height</button>
+                <button class="tab practice-tab" onclick="showTab('practice')">✏️ Daily Practice</button>
+                <button class="tab practice-tab" onclick="showTab('myinfo')">📝 My Information</button>
+            </div>
+            
+            <!-- Intro Content -->
+            <div id="intro" class="tab-content active">
+                <div class="intro">
+                    <h2>Welcome!</h2>
+                    <p>This app will help you practice using numbers in real-life situations. Click 'Next' or choose a topic above to begin!</p>
+                    
+                    <p style="font-style: italic; color: #666;">¡Bienvenido! Esta aplicación te ayudará a practicar el uso de números en situaciones de la vida real. ¡Haz clic en 'Siguiente' o elige un tema arriba para comenzar!</p>
+                    
+                    <div class="features">
+                        <h3>Features:</h3>
+                        <ul>
+                            <li>🔢 Numbers 1-100</li>
+                            <li>🇲🇽 Spanish translations</li>
+                            <li>🔊 Audio pronunciation</li>
+                            <li>📖 Real-world examples</li>
+                            <li>📱 Mobile friendly</li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
+            
+            <!-- Numbers 1-100 Content -->
+            <div id="numbers" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">🔢 Numbers 1-100</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 20px;">Click any number to hear it</p>
+                <div id="numbersTable"></div>
+            </div>
+            
+            <!-- Ordinal Numbers 1-100 Content -->
+            <div id="ordinals" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">🔢 Ordinal Numbers 1-100</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 20px;">Click any number to hear it</p>
+                <div id="ordinalsTable"></div>
+            </div>
+            
+            <!-- Dates Content -->
+            <div id="dates" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div>
+                        <h2 style="color: #667eea; margin: 0;">📅 Date</h2>
+                        <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is the date?</p>
+                    </div>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px;">
+                            <div>January = 1</div>
+                            <div>July = 7</div>
+                            <div>February = 2</div>
+                            <div>August = 8</div>
+                            <div>March = 3</div>
+                            <div>September = 9</div>
+                            <div>April = 4</div>
+                            <div>October = 10</div>
+                            <div>May = 5</div>
+                            <div>November = 11</div>
+                            <div>June = 6</div>
+                            <div>December = 12</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="number-grid" id="datesGrid"></div>
+            </div>
+            
+            <!-- Time Content -->
+            <div id="time" class="tab-content">
+                <div>
+                    <h2 style="color: #667eea; margin: 0 0 10px 0;">🕐 Time</h2>
+                    <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 20px 0;">What time is it?</p>
+                </div>
+                <div class="number-grid" id="timeGrid"></div>
+            </div>
+            
+            <!-- Prices Content -->
+            <div id="prices" class="tab-content">
+                <div>
+                    <h2 style="color: #667eea; margin: 0 0 10px 0;">💵 Money</h2>
+                    <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 20px 0;">How much is it?</p>
+                </div>
+                <div class="number-grid" id="pricesGrid"></div>
+            </div>
+            
+            <!-- Temperature Content -->
+            <div id="temperature" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div>
+                        <h2 style="color: #667eea; margin: 0;">🌡️ Temperature</h2>
+                        <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is the temperature?</p>
+                    </div>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div>° = degree/degrees</div>
+                        <div>F = Fahrenheit</div>
+                    </div>
+                </div>
+                <div class="number-grid" id="temperatureGrid"></div>
+            </div>
+            
+            <!-- Weight Content -->
+            <div id="weight" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <h2 style="color: #667eea; margin: 0;">⚖️ Weight</h2>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div>lb = pound</div>
+                        <div>lbs = pounds</div>
+                    </div>
+                </div>
+                <div class="number-grid" id="weightGrid"></div>
+            </div>
+            
+            <!-- Height Content -->
+            <div id="height" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <h2 style="color: #667eea; margin: 0;">📏 Height</h2>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div>" = inch/inches</div>
+                        <div>' = foot/feet</div>
+                    </div>
+                </div>
+                <div class="number-grid" id="heightGrid"></div>
+            </div>
+            
+            <!-- Age Content -->
+            <div id="age" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">🎂 Age</h2>
+                <div class="number-grid" id="ageGrid"></div>
+            </div>
+            
+            <!-- Addresses Content -->
+            <div id="addresses" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div>
+                        <h2 style="color: #667eea; margin: 0;">🏠 Address</h2>
+                        <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is the address?</p>
+                    </div>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div style="display: grid; grid-template-columns: auto auto auto; gap: 6px 16px;">
+                            <div>Ave. = Avenue</div>
+                            <div>E. = East</div>
+                            <div>N. = North</div>
+                            <div>St. = Street</div>
+                            <div>W. = West</div>
+                            <div>S. = South</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="number-grid" id="addressesGrid"></div>
+            </div>
+            
+            <!-- Phone Numbers Content -->
+            <div id="phone" class="tab-content">
+                <div>
+                    <h2 style="color: #667eea; margin: 0 0 10px 0;">📱 Phone Number</h2>
+                    <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 20px 0;">What is the phone number?</p>
+                </div>
+                <div class="number-grid" id="phoneGrid"></div>
+            </div>
+            
+            <!-- Work Pay Content -->
+            <div id="workpay" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div>
+                        <h2 style="color: #667eea; margin: 0;">💼 Work Pay</h2>
+                        <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is your pay?</p>
+                    </div>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div>/hr = per hour</div>
+                        <div>/wk = per week</div>
+                    </div>
+                </div>
+                <div class="number-grid" id="workpayGrid"></div>
+            </div>
+            
+            <!-- ID Content -->
+            <div id="idnumber" class="tab-content">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div>
+                        <h2 style="color: #667eea; margin: 0;">🪪 ID</h2>
+                        <p style="font-style: italic; color: #666; font-size: 1.3rem; margin: 5px 0 0 0;">What is your ID number?</p>
+                    </div>
+                    <div style="background: #f5f7fa; border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; line-height: 1.4; border: 1px solid #e0e0e0;">
+                        <div>SSN = Social Security</div>
+                        <div>DL = Driver's License</div>
+                        <div>PP = Passport</div>
+                    </div>
+                </div>
+                <div class="number-grid" id="idGrid"></div>
+            </div>
+            
+            <!-- Practice Content -->
+            <div id="practice" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 10px; text-align: center;">✏️ Daily Practice</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 20px; font-size: 0.9rem;">20 random examples that change every day - Click any item to hear it!</p>
+                <div class="number-grid" id="practiceGrid"></div>
+            </div>
+            
+            <!-- My Information Content -->
+            <div id="myinfo" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 10px; text-align: center;">📝 My Information</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 0.9rem;">Practice writing your personal information</p>
                 
-                <div class="language-section">
-                    <h3>Español (Spanish)</h3>
-                    <p>Aprende el alfabeto en inglés y los sonidos de las vocales. Haz clic en cualquier letra para escucharla. Practica los sonidos cortos y largos de las vocales con palabras de ejemplo. ¡Perfecto para estudiantes de ESL!</p>
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <!-- Name -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Name</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="lastName" placeholder="Last Name" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                            <input type="text" id="firstName" placeholder="First Name" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                        </div>
+                    </div>
+                    
+                    <!-- Birthdate -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Birthdate (MM/DD/YYYY)</label>
+                        <input type="text" id="birthdate" placeholder="MM/DD/YYYY" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                    </div>
+                    
+                    <!-- Address -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Address</label>
+                        <input type="text" id="address" placeholder="Street address" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; margin-bottom: 10px;">
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="city" placeholder="City" style="flex: 2; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                            <input type="text" id="state" placeholder="State" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; max-width: 80px;">
+                            <input type="text" id="zipcode" placeholder="Zip" style="flex: 1; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; max-width: 100px;">
+                        </div>
+                    </div>
+                    
+                    <!-- Telephone Number -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Telephone Number</label>
+                        <input type="tel" id="telephone" placeholder="(555) 123-4567" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                    </div>
+                    
+                    <!-- Email -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-weight: bold; color: #667eea; margin-bottom: 8px; font-size: 1.1rem;">Email</label>
+                        <input type="email" id="email" placeholder="yourname@example.com" style="width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; box-sizing: border-box;">
+                    </div>
+                    
+                    <!-- Reset Button -->
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button onclick="resetMyInfo()" style="background: #667eea; color: white; padding: 12px 40px; font-size: 1.1rem; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Reset All Fields</button>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Alphabet Content -->
-        <div id="alphabet" class="tab-content">
-            <h2 class="section-title">The English Alphabet</h2>
-            <p class="section-subtitle">Click any letter to hear its name</p>
-            <div class="alphabet-grid" id="alphabetGrid"></div>
-        </div>
-        
-        <!-- Short Vowels Content -->
-        <div id="short-vowels" class="tab-content">
-            <h2 class="section-title">Short Vowel Sounds</h2>
-            <p class="section-subtitle">Click the words to hear them</p>
-            <div class="vowel-grid" id="shortVowelsGrid"></div>
-        </div>
-        
-        <!-- Long Vowels Content -->
-        <div id="long-vowels" class="tab-content">
-            <h2 class="section-title">Long Vowel Sounds</h2>
-            <p class="section-subtitle">Click the words to hear them</p>
-            <div class="vowel-grid" id="longVowelsGrid"></div>
-        </div>
-        
-        <!-- Short Consonants Content -->
-        <div id="short-consonants" class="tab-content">
-            <h2 class="section-title">Consonants with Short Vowel Sounds</h2>
-            <p class="section-subtitle">Click the words to hear them</p>
-            <div class="vowel-grid" id="shortConsonantsGrid"></div>
-        </div>
-        
-        <!-- Long Consonants Content -->
-        <div id="long-consonants" class="tab-content">
-            <h2 class="section-title">Consonants with Long Vowel Sounds</h2>
-            <p class="section-subtitle">Click the words to hear them</p>
-            <div class="vowel-grid" id="longConsonantsGrid"></div>
-        </div>
-        
-        <!-- Blends Content -->
-        <div id="blends" class="tab-content">
-            <h2 class="section-title">Consonant Blends</h2>
-            <p class="section-subtitle">Click the words to hear them</p>
-            <div class="vowel-grid" id="blendsGrid"></div>
-        </div>
-        
-        <!-- Special Sounds Content -->
-        <div id="special-sounds" class="tab-content">
-            <h2 class="section-title">ch, sh, th, wh Sounds</h2>
-            <p class="section-subtitle">Click the words to hear them</p>
-            <div class="vowel-grid" id="specialSoundsGrid"></div>
-        </div>
     </div>
-    
+
     <script>
-        // Alphabet data
-        const alphabet = [
-            { upper: 'A', lower: 'a', name: 'ay' },
-            { upper: 'B', lower: 'b', name: 'bee' },
-            { upper: 'C', lower: 'c', name: 'see' },
-            { upper: 'D', lower: 'd', name: 'dee' },
-            { upper: 'E', lower: 'e', name: 'ee' },
-            { upper: 'F', lower: 'f', name: 'eff' },
-            { upper: 'G', lower: 'g', name: 'gee' },
-            { upper: 'H', lower: 'h', name: 'aitch' },
-            { upper: 'I', lower: 'i', name: 'eye' },
-            { upper: 'J', lower: 'j', name: 'jay' },
-            { upper: 'K', lower: 'k', name: 'kay' },
-            { upper: 'L', lower: 'l', name: 'ell' },
-            { upper: 'M', lower: 'm', name: 'em' },
-            { upper: 'N', lower: 'n', name: 'en' },
-            { upper: 'O', lower: 'o', name: 'oh' },
-            { upper: 'P', lower: 'p', name: 'pee' },
-            { upper: 'Q', lower: 'q', name: 'cue' },
-            { upper: 'R', lower: 'r', name: 'are' },
-            { upper: 'S', lower: 's', name: 'ess' },
-            { upper: 'T', lower: 't', name: 'tee' },
-            { upper: 'U', lower: 'u', name: 'you' },
-            { upper: 'V', lower: 'v', name: 'vee' },
-            { upper: 'W', lower: 'w', name: 'double-you' },
-            { upper: 'X', lower: 'x', name: 'ex' },
-            { upper: 'Y', lower: 'y', name: 'why' },
-            { upper: 'Z', lower: 'z', name: 'zee' }
+        // Data
+        const addressesData = [
+            { display: "1225 Parker Ave.", english: "twelve twenty-five Parker Avenue", spanish: "mil doscientos veinticinco Avenida Parker" },
+            { display: "5697 29th Ave.", english: "fifty-six ninety-seven Twenty-ninth Avenue", spanish: "cinco mil seiscientos noventa siete Avenida Veintinueve" },
+            { display: "7421 E. 45th St.", english: "seventy-four twenty-one East Forty-fifth Street", spanish: "siete mil cuatrocientos veintiuno Calle Cuarenta cinco Este" },
+            { display: "3850 N. Oak St.", english: "thirty-eight fifty North Oak Street", spanish: "tres mil ochocientos cincuenta Calle Oak Norte" },
+            { display: "9102 Lyon Ave.", english: "ninety-one oh two Lyon Avenue", spanish: "nueve mil ciento dos Avenida Lyon" },
+            { display: "2468 13th Ave.", english: "twenty-four sixty-eight Thirteenth Avenue", spanish: "dos mil cuatrocientos sesenta ocho Avenida Trece" },
+            { display: "6543 W. 52nd St.", english: "sixty-five forty-three West Fifty-second Street", spanish: "seis mil quinientos cuarenta tres Calle Cincuenta dos Oeste" },
+            { display: "1089 Maple Ave.", english: "ten eighty-nine Maple Avenue", spanish: "mil ochenta nueve Avenida Maple" },
+            { display: "4720 18th St.", english: "forty-seven twenty Eighteenth Street", spanish: "cuatro mil setecientos veinte Calle Dieciocho" },
+            { display: "8305 67th Ave.", english: "eighty-three oh five Sixty-seventh Avenue", spanish: "ocho mil trescientos cinco Avenida Sesenta siete" },
+            { display: "2917 Pine St.", english: "twenty-nine seventeen Pine Street", spanish: "dos mil novecientos diecisiete Calle Pine" },
+            { display: "5234 22nd Ave.", english: "fifty-two thirty-four Twenty-second Avenue", spanish: "cinco mil doscientos treinta cuatro Avenida Veintidos" },
+            { display: "7890 N. Elm Ave.", english: "seventy-eight ninety North Elm Avenue", spanish: "siete mil ochocientos noventa Avenida Elm Norte" },
+            { display: "1456 S. 38th St.", english: "fourteen fifty-six South Thirty-eighth Street", spanish: "mil cuatrocientos cincuenta seis Calle Treinta ocho Sur" },
+            { display: "3601 Cedar Ave.", english: "thirty-six oh one Cedar Avenue", spanish: "tres mil seiscientos uno Avenida Cedar" },
+            { display: "6289 71st St.", english: "sixty-two eighty-nine Seventy-first Street", spanish: "seis mil doscientos ochenta nueve Calle Setenta uno" },
+            { display: "9047 Broadway Ave.", english: "ninety oh forty-seven Broadway Avenue", spanish: "nueve mil cuarenta siete Avenida Broadway" },
+            { display: "4315 15th Ave.", english: "forty-three fifteen Fifteenth Avenue", spanish: "cuatro mil trescientos quince Avenida Quince" },
+            { display: "8762 W. Oak St.", english: "eighty-seven sixty-two West Oak Street", spanish: "ocho mil setecientos sesenta dos Calle Oak Oeste" },
+            { display: "2103 84th Ave.", english: "twenty-one oh three Eighty-fourth Avenue", spanish: "dos mil ciento tres Avenida Ochenta cuatro" }
         ];
         
-        // Short vowels data
-        const shortVowels = [
-            { letter: 'A', sound: 'ă', words: [
-                { word: 'cat', emoji: '🐱' },
-                { word: 'hat', emoji: '🎩' },
-                { word: 'mat', emoji: '🧹' }
-            ]},
-            { letter: 'E', sound: 'ĕ', words: [
-                { word: 'bed', emoji: '🛏️' },
-                { word: 'red', emoji: '🔴' },
-                { word: 'pen', emoji: '🖊️' }
-            ]},
-            { letter: 'I', sound: 'ĭ', words: [
-                { word: 'pig', emoji: '🐷' },
-                { word: 'sit', emoji: '🪑' },
-                { word: 'pin', emoji: '📌' }
-            ]},
-            { letter: 'O', sound: 'ŏ', words: [
-                { word: 'dog', emoji: '🐕' },
-                { word: 'hot', emoji: '🔥' },
-                { word: 'box', emoji: '📦' }
-            ]},
-            { letter: 'U', sound: 'ŭ', words: [
-                { word: 'cup', emoji: '☕' },
-                { word: 'sun', emoji: '☀️' },
-                { word: 'bus', emoji: '🚌' }
-            ]}
+        const datesData = [
+            { display: "1/15/1992", english: "January 15th, 1992", spanish: "Quince de enero de mil novecientos noventa dos" },
+            { display: "7/4/1995", english: "July 4th, 1995", spanish: "Cuatro de julio de mil novecientos noventa cinco" },
+            { display: "12/25/1998", english: "December 25th, 1998", spanish: "Veinticinco de diciembre de mil novecientos noventa ocho" },
+            { display: "3/10/2000", english: "March 10th, 2000", spanish: "Diez de marzo de dos mil" },
+            { display: "9/11/2001", english: "September 11th, 2001", spanish: "Once de septiembre de dos mil uno" },
+            { display: "2/14/2005", english: "February 14th, 2005", spanish: "Catorce de febrero de dos mil cinco" },
+            { display: "10/31/2008", english: "October 31st, 2008", spanish: "Treinta uno de octubre de dos mil ocho" },
+            { display: "6/15/2010", english: "June 15th, 2010", spanish: "Quince de junio de dos mil diez" },
+            { display: "11/23/2012", english: "November 23rd, 2012", spanish: "Veintitres de noviembre de dos mil doce" },
+            { display: "4/1/2015", english: "April 1st, 2015", spanish: "Primero de abril de dos mil quince" },
+            { display: "8/8/2018", english: "August 8th, 2018", spanish: "Ocho de agosto de dos mil dieciocho" },
+            { display: "1/1/2020", english: "January 1st, 2020", spanish: "Primero de enero de dos mil veinte" },
+            { display: "5/20/2021", english: "May 20th, 2021", spanish: "Veinte de mayo de dos mil veintiuno" },
+            { display: "7/4/2022", english: "July 4th, 2022", spanish: "Cuatro de julio de dos mil veintidos" },
+            { display: "12/31/2023", english: "December 31st, 2023", spanish: "Treinta uno de diciembre de dos mil veintitres" },
+            { display: "2/10/2024", english: "February 10th, 2024", spanish: "Diez de febrero de dos mil veinticuatro" },
+            { display: "6/30/2025", english: "June 30th, 2025", spanish: "Treinta de junio de dos mil veinticinco" },
+            { display: "3/17/2026", english: "March 17th, 2026", spanish: "Diecisiete de marzo de dos mil veintiseis" },
+            { display: "10/5/1997", english: "October 5th, 1997", spanish: "Cinco de octubre de mil novecientos noventa siete" },
+            { display: "4/22/2019", english: "April 22nd, 2019", spanish: "Veintidos de abril de dos mil diecinueve" }
         ];
         
-        // Long vowels data
-        const longVowels = [
-            { letter: 'A', sound: 'ā', words: [
-                { word: 'cake', emoji: '🍰' },
-                { word: 'rain', emoji: '🌧️' },
-                { word: 'day', emoji: '📅' }
-            ]},
-            { letter: 'E', sound: 'ē', words: [
-                { word: 'bee', emoji: '🐝' },
-                { word: 'feet', emoji: '👣' },
-                { word: 'tree', emoji: '🌳' }
-            ]},
-            { letter: 'I', sound: 'ī', words: [
-                { word: 'bike', emoji: '🚲' },
-                { word: 'kite', emoji: '🪁' },
-                { word: 'pie', emoji: '🥧' }
-            ]},
-            { letter: 'O', sound: 'ō', words: [
-                { word: 'boat', emoji: '⛵' },
-                { word: 'bone', emoji: '🦴' },
-                { word: 'toe', emoji: '🦶' }
-            ]},
-            { letter: 'U', sound: 'ū', words: [
-                { word: 'cube', emoji: '🧊' },
-                { word: 'tube', emoji: '🧪' },
-                { word: 'blue', emoji: '🔵' }
-            ]}
+        const timeData = [
+            { display: "3:15", english: "three fifteen", spanish: "tres quince" },
+            { display: "9:45", english: "nine forty-five", spanish: "nueve cuarenta cinco" },
+            { display: "1:00", english: "one o'clock", spanish: "la una" },
+            { display: "7:28", english: "seven twenty-eight", spanish: "siete veintiocho" },
+            { display: "11:05", english: "eleven oh five", spanish: "once cinco" },
+            { display: "4:50", english: "four fifty", spanish: "cuatro cincuenta" },
+            { display: "2:12", english: "two twelve", spanish: "dos doce" },
+            { display: "8:33", english: "eight thirty-three", spanish: "ocho treinta tres" },
+            { display: "12:00", english: "twelve o'clock", spanish: "las doce" },
+            { display: "5:07", english: "five oh seven", spanish: "cinco siete" },
+            { display: "10:22", english: "ten twenty-two", spanish: "diez veintidós" },
+            { display: "6:40", english: "six forty", spanish: "seis cuarenta" },
+            { display: "1:55", english: "one fifty-five", spanish: "una cincuenta cinco" },
+            { display: "9:18", english: "nine eighteen", spanish: "nueve dieciocho" },
+            { display: "3:03", english: "three oh three", spanish: "tres tres" },
+            { display: "7:52", english: "seven fifty-two", spanish: "siete cincuenta dos" },
+            { display: "11:30", english: "eleven thirty", spanish: "once treinta" },
+            { display: "2:44", english: "two forty-four", spanish: "dos cuarenta cuatro" },
+            { display: "6:00", english: "six o'clock", spanish: "las seis" },
+            { display: "4:16", english: "four sixteen", spanish: "cuatro dieciséis" }
+        ];
+
+        const pricesData = [
+            { display: "$0.99", english: "ninety-nine cents", spanish: "noventa nueve centavos" },
+            { display: "$1.50", english: "one dollar and fifty cents", spanish: "un dólar y cincuenta centavos" },
+            { display: "$2.99", english: "two dollars and ninety-nine cents", spanish: "dos dólares y noventa nueve centavos" },
+            { display: "$5.00", english: "five dollars", spanish: "cinco dólares" },
+            { display: "$9.99", english: "nine dollars and ninety-nine cents", spanish: "nueve dólares y noventa nueve centavos" },
+            { display: "$12.50", english: "twelve dollars and fifty cents", spanish: "doce dólares y cincuenta centavos" },
+            { display: "$19.95", english: "nineteen dollars and ninety-five cents", spanish: "diecinueve dólares y noventa cinco centavos" },
+            { display: "$25.00", english: "twenty-five dollars", spanish: "veinticinco dólares" },
+            { display: "$49.99", english: "forty-nine dollars and ninety-nine cents", spanish: "cuarenta nueve dólares y noventa nueve centavos" },
+            { display: "$75.00", english: "seventy-five dollars", spanish: "setenta cinco dólares" },
+            { display: "$99.99", english: "ninety-nine dollars and ninety-nine cents", spanish: "noventa nueve dólares y noventa nueve centavos" },
+            { display: "$100.00", english: "one hundred dollars", spanish: "cien dólares" },
+            { display: "$3.25", english: "three dollars and twenty-five cents", spanish: "tres dólares y veinticinco centavos" },
+            { display: "$7.50", english: "seven dollars and fifty cents", spanish: "siete dólares y cincuenta centavos" },
+            { display: "$15.99", english: "fifteen dollars and ninety-nine cents", spanish: "quince dólares y noventa nueve centavos" },
+            { display: "$30.00", english: "thirty dollars", spanish: "treinta dólares" },
+            { display: "$45.75", english: "forty-five dollars and seventy-five cents", spanish: "cuarenta cinco dólares y setenta cinco centavos" },
+            { display: "$60.00", english: "sixty dollars", spanish: "sesenta dólares" },
+            { display: "$89.50", english: "eighty-nine dollars and fifty cents", spanish: "ochenta nueve dólares y cincuenta centavos" },
+            { display: "$200.00", english: "two hundred dollars", spanish: "doscientos dólares" }
+        ];
+
+        const temperatureData = [
+            { display: "32°F", english: "thirty-two degrees Fahrenheit", spanish: "treinta dos grados Fahrenheit" },
+            { display: "40°F", english: "forty degrees Fahrenheit", spanish: "cuarenta grados Fahrenheit" },
+            { display: "47°F", english: "forty-seven degrees Fahrenheit", spanish: "cuarenta siete grados Fahrenheit" },
+            { display: "50°F", english: "fifty degrees Fahrenheit", spanish: "cincuenta grados Fahrenheit" },
+            { display: "52°F", english: "fifty-two degrees Fahrenheit", spanish: "cincuenta dos grados Fahrenheit" },
+            { display: "55°F", english: "fifty-five degrees Fahrenheit", spanish: "cincuenta cinco grados Fahrenheit" },
+            { display: "58°F", english: "fifty-eight degrees Fahrenheit", spanish: "cincuenta ocho grados Fahrenheit" },
+            { display: "62°F", english: "sixty-two degrees Fahrenheit", spanish: "sesenta dos grados Fahrenheit" },
+            { display: "65°F", english: "sixty-five degrees Fahrenheit", spanish: "sesenta cinco grados Fahrenheit" },
+            { display: "68°F", english: "sixty-eight degrees Fahrenheit", spanish: "sesenta ocho grados Fahrenheit" },
+            { display: "70°F", english: "seventy degrees Fahrenheit", spanish: "setenta grados Fahrenheit" },
+            { display: "72°F", english: "seventy-two degrees Fahrenheit", spanish: "setenta dos grados Fahrenheit" },
+            { display: "75°F", english: "seventy-five degrees Fahrenheit", spanish: "setenta cinco grados Fahrenheit" },
+            { display: "76°F", english: "seventy-six degrees Fahrenheit", spanish: "setenta seis grados Fahrenheit" },
+            { display: "80°F", english: "eighty degrees Fahrenheit", spanish: "ochenta grados Fahrenheit" },
+            { display: "90°F", english: "ninety degrees Fahrenheit", spanish: "noventa grados Fahrenheit" },
+            { display: "98°F", english: "ninety-eight degrees Fahrenheit", spanish: "noventa ocho grados Fahrenheit" },
+            { display: "100°F", english: "one hundred degrees Fahrenheit", spanish: "cien grados Fahrenheit" }
+        ];
+
+        const weightData = [
+            { display: "0.5 lb", english: "half a pound", spanish: "media libra" },
+            { display: "1 lb", english: "one pound", spanish: "una libra" },
+            { display: "2.5 lbs", english: "two and a half pounds", spanish: "dos libras y media" },
+            { display: "3 lbs", english: "three pounds", spanish: "tres libras" },
+            { display: "5 lbs", english: "five pounds", spanish: "cinco libras" },
+            { display: "7 lbs", english: "seven pounds", spanish: "siete libras" },
+            { display: "10 lbs", english: "ten pounds", spanish: "diez libras" },
+            { display: "12.5 lbs", english: "twelve and a half pounds", spanish: "doce libras y media" },
+            { display: "15 lbs", english: "fifteen pounds", spanish: "quince libras" },
+            { display: "18 lbs", english: "eighteen pounds", spanish: "dieciocho libras" },
+            { display: "20 lbs", english: "twenty pounds", spanish: "veinte libras" },
+            { display: "25 lbs", english: "twenty-five pounds", spanish: "veinticinco libras" },
+            { display: "33 lbs", english: "thirty-three pounds", spanish: "treinta tres libras" },
+            { display: "45 lbs", english: "forty-five pounds", spanish: "cuarenta cinco libras" },
+            { display: "50 lbs", english: "fifty pounds", spanish: "cincuenta libras" },
+            { display: "67 lbs", english: "sixty-seven pounds", spanish: "sesenta siete libras" },
+            { display: "100 lbs", english: "one hundred pounds", spanish: "cien libras" },
+            { display: "125 lbs", english: "one hundred twenty-five pounds", spanish: "ciento veinticinco libras" },
+            { display: "150 lbs", english: "one hundred fifty pounds", spanish: "ciento cincuenta libras" },
+            { display: "200 lbs", english: "two hundred pounds", spanish: "doscientas libras" }
+        ];
+
+        const heightData = [
+            { display: "3'6\"", english: "three feet six inches", spanish: "tres pies seis pulgadas" },
+            { display: "4'0\"", english: "four feet", spanish: "cuatro pies" },
+            { display: "4'5\"", english: "four feet five inches", spanish: "cuatro pies cinco pulgadas" },
+            { display: "4'8\"", english: "four feet eight inches", spanish: "cuatro pies ocho pulgadas" },
+            { display: "4'10\"", english: "four feet ten inches", spanish: "cuatro pies diez pulgadas" },
+            { display: "4'11\"", english: "four feet eleven inches", spanish: "cuatro pies once pulgadas" },
+            { display: "5'0\"", english: "five feet", spanish: "cinco pies" },
+            { display: "5'1\"", english: "five feet one inch", spanish: "cinco pies una pulgada" },
+            { display: "5'2\"", english: "five feet two inches", spanish: "cinco pies dos pulgadas" },
+            { display: "5'3\"", english: "five feet three inches", spanish: "cinco pies tres pulgadas" },
+            { display: "5'4\"", english: "five feet four inches", spanish: "cinco pies cuatro pulgadas" },
+            { display: "5'5\"", english: "five feet five inches", spanish: "cinco pies cinco pulgadas" },
+            { display: "5'6\"", english: "five feet six inches", spanish: "cinco pies seis pulgadas" },
+            { display: "5'7\"", english: "five feet seven inches", spanish: "cinco pies siete pulgadas" },
+            { display: "5'8\"", english: "five feet eight inches", spanish: "cinco pies ocho pulgadas" },
+            { display: "5'9\"", english: "five feet nine inches", spanish: "cinco pies nueve pulgadas" },
+            { display: "5'10\"", english: "five feet ten inches", spanish: "cinco pies diez pulgadas" },
+            { display: "5'11\"", english: "five feet eleven inches", spanish: "cinco pies once pulgadas" },
+            { display: "6'0\"", english: "six feet", spanish: "seis pies" },
+            { display: "6'2\"", english: "six feet two inches", spanish: "seis pies dos pulgadas" }
+        ];
+
+        const ageData = [
+            { display: "6 months old", english: "six months old", spanish: "seis meses" },
+            { display: "1 year old", english: "one year old", spanish: "un año" },
+            { display: "1 year 6 months", english: "one year six months", spanish: "un año seis meses" },
+            { display: "2 years old", english: "two years old", spanish: "dos años" },
+            { display: "2 years 3 months", english: "two years three months", spanish: "dos años tres meses" },
+            { display: "3 years old", english: "three years old", spanish: "tres años" },
+            { display: "3 years 9 months", english: "three years nine months", spanish: "tres años nueve meses" },
+            { display: "5 years old", english: "five years old", spanish: "cinco años" },
+            { display: "8 years old", english: "eight years old", spanish: "ocho años" },
+            { display: "10 years old", english: "ten years old", spanish: "diez años" },
+            { display: "12 years old", english: "twelve years old", spanish: "doce años" },
+            { display: "15 years old", english: "fifteen years old", spanish: "quince años" },
+            { display: "18 years old", english: "eighteen years old", spanish: "dieciocho años" },
+            { display: "21 years old", english: "twenty-one years old", spanish: "veintiún años" },
+            { display: "25 years old", english: "twenty-five years old", spanish: "veinticinco años" },
+            { display: "30 years old", english: "thirty years old", spanish: "treinta años" },
+            { display: "45 years old", english: "forty-five years old", spanish: "cuarenta cinco años" },
+            { display: "60 years old", english: "sixty years old", spanish: "sesenta años" },
+            { display: "75 years old", english: "seventy-five years old", spanish: "setenta cinco años" },
+            { display: "90 years old", english: "ninety years old", spanish: "noventa años" }
+        ];
+
+        const phoneData = [
+            { display: "510-234-1234", english: "Five one zero, two three four, one two three four. Or, Five one oh, two three four, one two three four", spanish: "cinco uno cero, dos tres cuatro, uno dos tres cuatro" },
+            { display: "510-678-0123", english: "Five one zero, six seven eight, zero one two three. Or, Five one oh, six seven eight, zero one two three", spanish: "cinco uno cero, seis siete ocho, cero uno dos tres" },
+            { display: "510-891-9876", english: "Five one zero, eight nine one, nine eight seven six. Or, Five one oh, eight nine one, nine eight seven six", spanish: "cinco uno cero, ocho nueve uno, nueve ocho siete seis" },
+            { display: "510-345-4567", english: "Five one zero, three four five, four five six seven. Or, Five one oh, three four five, four five six seven", spanish: "cinco uno cero, tres cuatro cinco, cuatro cinco seis siete" },
+            { display: "510-729-7890", english: "Five one zero, seven two nine, seven eight nine zero. Or, Five one oh, seven two nine, seven eight nine zero", spanish: "cinco uno cero, siete dos nueve, siete ocho nueve cero" },
+            { display: "415-682-2468", english: "Four one five, six eight two, two four six eight", spanish: "cuatro uno cinco, seis ocho dos, dos cuatro seis ocho" },
+            { display: "415-391-1357", english: "Four one five, three nine one, one three five seven", spanish: "cuatro uno cinco, tres nueve uno, uno tres cinco siete" },
+            { display: "415-804-8024", english: "Four one five, eight zero four, eight zero two four", spanish: "cuatro uno cinco, ocho cero cuatro, ocho cero dos cuatro" },
+            { display: "415-267-6543", english: "Four one five, two six seven, six five four three", spanish: "cuatro uno cinco, dos seis siete, seis cinco cuatro tres" },
+            { display: "415-921-3210", english: "Four one five, nine two one, three two one zero", spanish: "cuatro uno cinco, nueve dos uno, tres dos uno cero" },
+            { display: "510-456-0987", english: "Five one zero, four five six, zero nine eight seven. Or, Five one oh, four five six, zero nine eight seven", spanish: "cinco uno cero, cuatro cinco seis, cero nueve ocho siete" },
+            { display: "510-305-5050", english: "Five one zero, three zero five, five zero five zero. Or, Five one oh, three zero five, five zero five zero", spanish: "cinco uno cero, tres cero cinco, cinco cero cinco cero" },
+            { display: "415-700-7007", english: "Four one five, seven zero zero, seven zero zero seven", spanish: "cuatro uno cinco, siete cero cero, siete cero cero siete" },
+            { display: "510-627-4183", english: "Five one zero, six two seven, four one eight three. Or, Five one oh, six two seven, four one eight three", spanish: "cinco uno cero, seis dos siete, cuatro uno ocho tres" },
+            { display: "415-882-2002", english: "Four one five, eight eight two, two zero zero two", spanish: "cuatro uno cinco, ocho ocho dos, dos cero cero dos" },
+            { display: "510-548-2971", english: "Five one zero, five four eight, two nine seven one. Or, Five one oh, five four eight, two nine seven one", spanish: "cinco uno cero, cinco cuatro ocho, dos nueve siete uno" },
+            { display: "415-112-1122", english: "Four one five, one one two, one one two two", spanish: "cuatro uno cinco, uno uno dos, uno uno dos dos" },
+            { display: "510-304-3045", english: "Five one zero, three zero four, three zero four five. Or, Five one oh, three zero four, three zero four five", spanish: "cinco uno cero, tres cero cuatro, tres cero cuatro cinco" },
+            { display: "415-670-6700", english: "Four one five, six seven zero, six seven zero zero", spanish: "cuatro uno cinco, seis siete cero, seis siete cero cero" },
+            { display: "510-900-9000", english: "Five one zero, nine zero zero zero. Or, Five one oh, nine zero zero zero", spanish: "cinco uno cero, nueve cero cero cero" }
         ];
         
-        // Short Consonants data - Words with SHORT vowel sounds
-        const shortConsonants = [
-            { letter: 'B', sound: 'b', words: [
-                { word: 'bag', emoji: '👜' },
-                { word: 'bat', emoji: '🦇' },
-                { word: 'bed', emoji: '🛏️' }
-            ]},
-            { letter: 'C', sound: 'c', words: [
-                { word: 'cat', emoji: '🐱' },
-                { word: 'cup', emoji: '☕' },
-                { word: 'can', emoji: '🥫' }
-            ]},
-            { letter: 'D', sound: 'd', words: [
-                { word: 'dad', emoji: '👨' },
-                { word: 'dog', emoji: '🐕' },
-                { word: 'dot', emoji: '⚫' }
-            ]},
-            { letter: 'F', sound: 'f', words: [
-                { word: 'fist', emoji: '✊' },
-                { word: 'fox', emoji: '🦊' },
-                { word: 'fish', emoji: '🐟' }
-            ]},
-            { letter: 'G', sound: 'g', words: [
-                { word: 'gas', emoji: '⛽' },
-                { word: 'gum', emoji: '🍬' },
-                { word: 'gift', emoji: '🎁' }
-            ]},
-            { letter: 'H', sound: 'h', words: [
-                { word: 'hat', emoji: '🎩' },
-                { word: 'ham', emoji: '🍖' },
-                { word: 'hip', emoji: '🦴' }
-            ]},
-            { letter: 'J', sound: 'j', words: [
-                { word: 'jam', emoji: '🍓' },
-                { word: 'jet', emoji: '✈️' },
-                { word: 'jog', emoji: '🏃' }
-            ]},
-            { letter: 'K', sound: 'k', words: [
-                { word: 'kid', emoji: '👶' },
-                { word: 'kit', emoji: '🧰' },
-                { word: 'kiss', emoji: '💋' }
-            ]},
-            { letter: 'L', sound: 'l', words: [
-                { word: 'leg', emoji: '🦵' },
-                { word: 'lip', emoji: '👄' },
-                { word: 'lab', emoji: '🧪' }
-            ]},
-            { letter: 'M', sound: 'm', words: [
-                { word: 'man', emoji: '👨' },
-                { word: 'mop', emoji: '🧹' },
-                { word: 'mom', emoji: '👩' }
-            ]},
-            { letter: 'N', sound: 'n', words: [
-                { word: 'nap', emoji: '😴' },
-                { word: 'net', emoji: '🥅' },
-                { word: 'nut', emoji: '🥜' }
-            ]},
-            { letter: 'P', sound: 'p', words: [
-                { word: 'pan', emoji: '🍳' },
-                { word: 'pet', emoji: '🐕' },
-                { word: 'pin', emoji: '📌' }
-            ]},
-            { letter: 'R', sound: 'r', words: [
-                { word: 'rat', emoji: '🐀' },
-                { word: 'red', emoji: '🔴' },
-                { word: 'run', emoji: '🏃' }
-            ]},
-            { letter: 'S', sound: 's', words: [
-                { word: 'sad', emoji: '😢' },
-                { word: 'sit', emoji: '🪑' },
-                { word: 'sun', emoji: '☀️' }
-            ]},
-            { letter: 'T', sound: 't', words: [
-                { word: 'ten', emoji: '🔟' },
-                { word: 'top', emoji: '🔝' },
-                { word: 'tax', emoji: '💸' }
-            ]},
-            { letter: 'V', sound: 'v', words: [
-                { word: 'van', emoji: '🚐' },
-                { word: 'vet', emoji: '👨‍⚕️' },
-                { word: 'vest', emoji: '🦺' }
-            ]},
-            { letter: 'W', sound: 'w', words: [
-                { word: 'wet', emoji: '💧' },
-                { word: 'web', emoji: '🕸️' },
-                { word: 'win', emoji: '🏆' }
-            ]},
-            { letter: 'X', sound: 'x', words: [
-                { word: 'box', emoji: '📦' }
-            ]},
-            { letter: 'Y', sound: 'y', words: [
-                { word: 'yes', emoji: '✅' }
-            ]},
-            { letter: 'Z', sound: 'z', words: [
-                { word: 'zip', emoji: '🤐' }
-            ]}
+        const workpayData = [
+            { display: "$22.50/hr", english: "twenty-two dollars and fifty cents per hour", spanish: "veintidós dólares y cincuenta centavos por hora" },
+            { display: "$45.75/hr", english: "forty-five dollars and seventy-five cents per hour", spanish: "cuarenta cinco dólares y setenta cinco centavos por hora" },
+            { display: "$18.25/hr", english: "eighteen dollars and twenty-five cents per hour", spanish: "dieciocho dólares y veinticinco centavos por hora" },
+            { display: "$55/hr", english: "fifty-five dollars per hour", spanish: "cincuenta cinco dólares por hora" },
+            { display: "$28.80/hr", english: "twenty-eight dollars and eighty cents per hour", spanish: "veintiocho dólares y ochenta centavos por hora" },
+            { display: "$38.50/hr", english: "thirty-eight dollars and fifty cents per hour", spanish: "treinta ocho dólares y cincuenta centavos por hora" },
+            { display: "$16.75/hr", english: "sixteen dollars and seventy-five cents per hour", spanish: "dieciséis dólares y setenta cinco centavos por hora" },
+            { display: "$32/hr", english: "thirty-two dollars per hour", spanish: "treinta dos dólares por hora" },
+            { display: "$48.60/hr", english: "forty-eight dollars and sixty cents per hour", spanish: "cuarenta ocho dólares y sesenta centavos por hora" },
+            { display: "$25.40/hr", english: "twenty-five dollars and forty cents per hour", spanish: "veinticinco dólares y cuarenta centavos por hora" },
+            { display: "$750/wk", english: "seven hundred fifty dollars per week", spanish: "setecientos cincuenta dólares por semana" },
+            { display: "$1100/wk", english: "one thousand one hundred dollars per week", spanish: "mil cien dólares por semana" },
+            { display: "$580/wk", english: "five hundred eighty dollars per week", spanish: "quinientos ochenta dólares por semana" },
+            { display: "$950/wk", english: "nine hundred fifty dollars per week", spanish: "novecientos cincuenta dólares por semana" },
+            { display: "$1350/wk", english: "one thousand three hundred fifty dollars per week", spanish: "mil trescientos cincuenta dólares por semana" },
+            { display: "$680/wk", english: "six hundred eighty dollars per week", spanish: "seiscientos ochenta dólares por semana" },
+            { display: "$1800/wk", english: "one thousand eight hundred dollars per week", spanish: "mil ochocientos dólares por semana" },
+            { display: "$850/wk", english: "eight hundred fifty dollars per week", spanish: "ochocientos cincuenta dólares por semana" },
+            { display: "$1250/wk", english: "one thousand two hundred fifty dollars per week", spanish: "mil doscientos cincuenta dólares por semana" },
+            { display: "$620/wk", english: "six hundred twenty dollars per week", spanish: "seiscientos veinte dólares por semana" }
         ];
         
-        // Long Consonants data - Words with LONG vowel sounds
-        const longConsonants = [
-            { letter: 'B', sound: 'b', words: [
-                { word: 'baby', emoji: '👶' },
-                { word: 'bike', emoji: '🚲' },
-                { word: 'bean', emoji: '🫘' }
-            ]},
-            { letter: 'C', sound: 'c', words: [
-                { word: 'cake', emoji: '🍰' },
-                { word: 'cone', emoji: '🍦' },
-                { word: 'cute', emoji: '🥰' }
-            ]},
-            { letter: 'D', sound: 'd', words: [
-                { word: 'date', emoji: '📅' },
-                { word: 'deep', emoji: '🌊' },
-                { word: 'dime', emoji: '💰' }
-            ]},
-            { letter: 'F', sound: 'f', words: [
-                { word: 'face', emoji: '😊' },
-                { word: 'feet', emoji: '👣' },
-                { word: 'five', emoji: '5️⃣' }
-            ]},
-            { letter: 'G', sound: 'g', words: [
-                { word: 'gate', emoji: '🚧' },
-                { word: 'goal', emoji: '⚽' },
-                { word: 'game', emoji: '🎮' }
-            ]},
-            { letter: 'H', sound: 'h', words: [
-                { word: 'hate', emoji: '😠' },
-                { word: 'heat', emoji: '🔥' },
-                { word: 'home', emoji: '🏠' }
-            ]},
-            { letter: 'J', sound: 'j', words: [
-                { word: 'jade', emoji: '💚' },
-                { word: 'jeep', emoji: '🚙' },
-                { word: 'joke', emoji: '😂' }
-            ]},
-            { letter: 'K', sound: 'k', words: [
-                { word: 'kale', emoji: '🥬' },
-                { word: 'keep', emoji: '🔒' },
-                { word: 'kite', emoji: '🪁' }
-            ]},
-            { letter: 'L', sound: 'l', words: [
-                { word: 'lake', emoji: '🏞️' },
-                { word: 'leaf', emoji: '🍃' },
-                { word: 'lime', emoji: '🍋' }
-            ]},
-            { letter: 'M', sound: 'm', words: [
-                { word: 'mail', emoji: '📬' },
-                { word: 'meat', emoji: '🥩' },
-                { word: 'mile', emoji: '🛣️' }
-            ]},
-            { letter: 'N', sound: 'n', words: [
-                { word: 'name', emoji: '📛' },
-                { word: 'nine', emoji: '9️⃣' },
-                { word: 'nail', emoji: '💅' }
-            ]},
-            { letter: 'P', sound: 'p', words: [
-                { word: 'page', emoji: '📄' },
-                { word: 'pail', emoji: '🪣' },
-                { word: 'pea', emoji: '🫛' }
-            ]},
-            { letter: 'R', sound: 'r', words: [
-                { word: 'race', emoji: '🏁' },
-                { word: 'read', emoji: '📖' },
-                { word: 'rope', emoji: '🪢' }
-            ]},
-            { letter: 'S', sound: 's', words: [
-                { word: 'safe', emoji: '🔐' },
-                { word: 'seed', emoji: '🌱' },
-                { word: 'side', emoji: '↔️' }
-            ]},
-            { letter: 'T', sound: 't', words: [
-                { word: 'tape', emoji: '📼' },
-                { word: 'tea', emoji: '🍵' },
-                { word: 'tide', emoji: '🌊' }
-            ]},
-            { letter: 'V', sound: 'v', words: [
-                { word: 'vase', emoji: '🏺' },
-                { word: 'veal', emoji: '🥩' },
-                { word: 'vine', emoji: '🍇' }
-            ]},
-            { letter: 'W', sound: 'w', words: [
-                { word: 'wake', emoji: '⏰' },
-                { word: 'we', emoji: '👥' },
-                { word: 'wipe', emoji: '🧻' }
-            ]},
-            { letter: 'X', sound: 'x', words: [
-                { word: 'xray', emoji: '🩻' }
-            ]},
-            { letter: 'Y', sound: 'y', words: [
-                { word: 'yay', emoji: '🎉' }
-            ]},
-            { letter: 'Z', sound: 'z', words: [
-                { word: 'zone', emoji: '🚧' }
-            ]}
+        const idData = [
+            { display: "SSN: 247-83-5691", english: "SSN: two four seven, eight three, five six nine one", spanish: "SSN: dos cuatro siete, ocho tres, cinco seis nueve uno" },
+            { display: "SSN: 389-52-4017", english: "SSN: three eight nine, five two, four zero one seven", spanish: "SSN: tres ocho nueve, cinco dos, cuatro cero uno siete" },
+            { display: "SSN: 561-24-7893", english: "SSN: five six one, two four, seven eight nine three", spanish: "SSN: cinco seis uno, dos cuatro, siete ocho nueve tres" },
+            { display: "SSN: 824-67-3105", english: "SSN: eight two four, six seven, three one zero five", spanish: "SSN: ocho dos cuatro, seis siete, tres uno cero cinco" },
+            { display: "SSN: 195-48-6270", english: "SSN: one nine five, four eight, six two seven zero", spanish: "SSN: uno nueve cinco, cuatro ocho, seis dos siete cero" },
+            { display: "SSN: 673-91-2458", english: "SSN: six seven three, nine one, two four five eight", spanish: "SSN: seis siete tres, nueve uno, dos cuatro cinco ocho" },
+            { display: "DL: D4582917", english: "driver's license: D four five eight two nine one seven", spanish: "licencia de conducir: D cuatro cinco ocho dos nueve uno siete" },
+            { display: "DL: M7361924", english: "driver's license: M seven three six one nine two four", spanish: "licencia de conducir: M siete tres seis uno nueve dos cuatro" },
+            { display: "DL: C9283746", english: "driver's license: C nine two eight three seven four six", spanish: "licencia de conducir: C nueve dos ocho tres siete cuatro seis" },
+            { display: "DL: A5194682", english: "driver's license: A five one nine four six eight two", spanish: "licencia de conducir: A cinco uno nueve cuatro seis ocho dos" },
+            { display: "DL: B8647253", english: "driver's license: B eight six four seven two five three", spanish: "licencia de conducir: B ocho seis cuatro siete dos cinco tres" },
+            { display: "DL: D2975381", english: "driver's license: D two nine seven five three eight one", spanish: "licencia de conducir: D dos nueve siete cinco tres ocho uno" },
+            { display: "DL: M6418729", english: "driver's license: M six four one eight seven two nine", spanish: "licencia de conducir: M seis cuatro uno ocho siete dos nueve" },
+            { display: "PP: KR4825769", english: "passport: K R four eight two five seven six nine", spanish: "pasaporte: K R cuatro ocho dos cinco siete seis nueve" },
+            { display: "PP: LN7396284", english: "passport: L N seven three nine six two eight four", spanish: "pasaporte: L N siete tres nueve seis dos ocho cuatro" },
+            { display: "PP: PT9517836", english: "passport: P T nine five one seven eight three six", spanish: "pasaporte: P T nueve cinco uno siete ocho tres seis" },
+            { display: "PP: MJ2864195", english: "passport: M J two eight six four one nine five", spanish: "pasaporte: M J dos ocho seis cuatro uno nueve cinco" },
+            { display: "PP: XW5731924", english: "passport: X W five seven three one nine two four", spanish: "pasaporte: X W cinco siete tres uno nueve dos cuatro" },
+            { display: "PP: FS8246517", english: "passport: F S eight two four six five one seven", spanish: "pasaporte: F S ocho dos cuatro seis cinco uno siete" },
+            { display: "PP: VH3951782", english: "passport: V H three nine five one seven eight two", spanish: "pasaporte: V H tres nueve cinco uno siete ocho dos" }
         ];
-        
-        // Blends data - 2 words each with clear emojis
-        const blends = [
-            { letter: 'bl', sound: 'bl', words: [
-                { word: 'black', emoji: '⬛' },
-                { word: 'blue', emoji: '🔵' }
-            ]},
-            { letter: 'cl', sound: 'cl', words: [
-                { word: 'clap', emoji: '👏' },
-                { word: 'cloud', emoji: '☁️' }
-            ]},
-            { letter: 'fl', sound: 'fl', words: [
-                { word: 'flag', emoji: '🚩' },
-                { word: 'fly', emoji: '🪰' }
-            ]},
-            { letter: 'gl', sound: 'gl', words: [
-                { word: 'glass', emoji: '🥛' },
-                { word: 'glue', emoji: '🧴' }
-            ]},
-            { letter: 'pl', sound: 'pl', words: [
-                { word: 'plate', emoji: '🍽️' },
-                { word: 'play', emoji: '🎮' }
-            ]},
-            { letter: 'sl', sound: 'sl', words: [
-                { word: 'slide', emoji: '🛝' },
-                { word: 'sleep', emoji: '😴' }
-            ]},
-            { letter: 'br', sound: 'br', words: [
-                { word: 'bread', emoji: '🍞' },
-                { word: 'brown', emoji: '🟤' }
-            ]},
-            { letter: 'cr', sound: 'cr', words: [
-                { word: 'crab', emoji: '🦀' },
-                { word: 'cry', emoji: '😢' }
-            ]},
-            { letter: 'dr', sound: 'dr', words: [
-                { word: 'drum', emoji: '🥁' },
-                { word: 'drink', emoji: '🥤' }
-            ]},
-            { letter: 'fr', sound: 'fr', words: [
-                { word: 'frog', emoji: '🐸' },
-                { word: 'fruit', emoji: '🍎' }
-            ]},
-            { letter: 'gr', sound: 'gr', words: [
-                { word: 'green', emoji: '🟢' },
-                { word: 'grass', emoji: '🌱' }
-            ]},
-            { letter: 'tr', sound: 'tr', words: [
-                { word: 'tree', emoji: '🌳' },
-                { word: 'truck', emoji: '🚚' }
-            ]},
-            { letter: 'sc', sound: 'sc', words: [
-                { word: 'scare', emoji: '😱' },
-                { word: 'scale', emoji: '⚖️' }
-            ]},
-            { letter: 'sk', sound: 'sk', words: [
-                { word: 'skip', emoji: '🤸' },
-                { word: 'skate', emoji: '⛸️' }
-            ]},
-            { letter: 'sm', sound: 'sm', words: [
-                { word: 'smile', emoji: '😊' },
-                { word: 'small', emoji: '🤏' }
-            ]},
-            { letter: 'sn', sound: 'sn', words: [
-                { word: 'snake', emoji: '🐍' },
-                { word: 'snow', emoji: '❄️' }
-            ]},
-            { letter: 'sp', sound: 'sp', words: [
-                { word: 'spoon', emoji: '🥄' },
-                { word: 'spider', emoji: '🕷️' }
-            ]},
-            { letter: 'st', sound: 'st', words: [
-                { word: 'stop', emoji: '🛑' },
-                { word: 'star', emoji: '⭐' }
-            ]},
-            { letter: 'sw', sound: 'sw', words: [
-                { word: 'swim', emoji: '🏊' },
-                { word: 'swing', emoji: '🎪' }
-            ]}
-        ];
-        
-        // Special Sounds (ch, sh, th, wh) data - 2 words each
-        const specialSounds = [
-            { letter: 'ch', sound: 'ch', words: [
-                { word: 'chair', emoji: '🪑' },
-                { word: 'cheese', emoji: '🧀' }
-            ]},
-            { letter: 'sh', sound: 'sh', words: [
-                { word: 'ship', emoji: '🚢' },
-                { word: 'shoe', emoji: '👞' }
-            ]},
-            { letter: 'th', sound: 'th', words: [
-                { word: 'three', emoji: '3️⃣' },
-                { word: 'thumb', emoji: '👍' }
-            ]},
-            { letter: 'wh', sound: 'wh', words: [
-                { word: 'whale', emoji: '🐋' },
-                { word: 'wheel', emoji: '🎡' }
-            ]}
-        ];
-        
-        // Text-to-speech function
-        function speak(text, isAlphabet = false) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // Stop any ongoing speech
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'en-US';
+
+        // Populate grids
+        function populateGrid(gridId, data) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';
+            
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'number-item';
                 
-                if (isAlphabet) {
-                    // Cheerful voice for alphabet - higher pitch, slightly faster
-                    utterance.rate = 0.9;
-                    utterance.pitch = 1.3;
-                    
-                    // Try to get a female voice which tends to sound more cheerful
-                    const voices = window.speechSynthesis.getVoices();
-                    const cheerfulVoice = voices.find(voice => 
-                        voice.name.includes('Female') || 
-                        voice.name.includes('Samantha') ||
-                        voice.name.includes('Karen') ||
-                        voice.name.includes('Google US English') ||
-                        voice.name.includes('Microsoft Zira')
-                    );
-                    if (cheerfulVoice) {
-                        utterance.voice = cheerfulVoice;
-                    }
-                } else {
-                    // Normal voice for words
-                    utterance.rate = 0.8;
-                    utterance.pitch = 1.0;
+                // Check if this is time data to add clock
+                let clockSVG = '';
+                if (gridId === 'timeGrid' && item.display.includes(':')) {
+                    clockSVG = generateClock(item.display);
                 }
                 
-                window.speechSynthesis.speak(utterance);
+                // Check if this is temperature data to add thermometer
+                let thermometerSVG = '';
+                if (gridId === 'temperatureGrid' && item.display.includes('°F')) {
+                    thermometerSVG = generateThermometer(item.display);
+                }
+                
+                // For phone numbers, add (oh) to display for 510 area code
+                let displayEnglish = item.english;
+                if (gridId === 'phoneGrid' && item.display.startsWith('510')) {
+                    displayEnglish = item.english.replace('Five one zero,', 'Five one zero (oh),');
+                }
+                
+                // Check if this is practice grid or phone grid - hide English text
+                const isPractice = gridId === 'practiceGrid';
+                const isPhone = gridId === 'phoneGrid';
+                const isAddress = gridId === 'addressesGrid';
+                const isID = gridId === 'idGrid';
+                
+                div.innerHTML = `
+                    <div class="number-display" style="align-items: center;">
+                        ${clockSVG}${thermometerSVG}
+                        <span style="flex-grow: 1;">${item.display}</span>
+                        <button class="speaker-btn" onclick="speak('${item.english.replace(/'/g, "\\'")}', '${gridId}')">🔊</button>
+                    </div>
+                    ${!isPractice && !isPhone && !isAddress && !isID ? `<div class="english-text">${displayEnglish}</div>` : ''}
+                    ${!isPractice ? `<div class="spanish-text">${item.spanish}</div>` : ''}
+                `;
+                grid.appendChild(div);
+            });
+        }
+        
+        // Generate thermometer SVG
+        function generateThermometer(tempStr) {
+            const temp = parseInt(tempStr);
+            
+            // Calculate fill height based on temperature (0-100°F range)
+            // Map 32°F (freezing) to bottom, 100°F to top
+            const fillPercent = Math.max(0, Math.min(100, ((temp - 32) / 68) * 100));
+            const fillHeight = 35 * (fillPercent / 100);
+            
+            // Color based on temperature
+            let fillColor = '#667eea'; // default blue
+            if (temp >= 80) fillColor = '#e53e3e'; // hot = red
+            else if (temp >= 60) fillColor = '#ed8936'; // warm = orange
+            else if (temp >= 40) fillColor = '#48bb78'; // cool = green
+            
+            return `
+                <svg width="50" height="50" viewBox="0 0 100 100" style="margin-right: 10px; flex-shrink: 0;">
+                    <!-- Thermometer tube -->
+                    <rect x="42" y="15" width="16" height="50" rx="8" fill="white" stroke="#667eea" stroke-width="2"/>
+                    
+                    <!-- Thermometer bulb -->
+                    <circle cx="50" cy="75" r="12" fill="white" stroke="#667eea" stroke-width="2"/>
+                    
+                    <!-- Temperature fill in bulb -->
+                    <circle cx="50" cy="75" r="9" fill="${fillColor}"/>
+                    
+                    <!-- Temperature fill in tube -->
+                    <rect x="44" y="${65 - fillHeight}" width="12" height="${fillHeight}" fill="${fillColor}"/>
+                    
+                    <!-- Tick marks -->
+                    <line x1="38" y1="25" x2="42" y2="25" stroke="#999" stroke-width="1"/>
+                    <line x1="38" y1="40" x2="42" y2="40" stroke="#999" stroke-width="1"/>
+                    <line x1="38" y1="55" x2="42" y2="55" stroke="#999" stroke-width="1"/>
+                </svg>
+            `;
+        }
+        
+        // Generate analog clock SVG
+        function generateClock(time) {
+            const [hours, minutes] = time.split(':').map(Number);
+            
+            // Calculate angles (12 o'clock = 0°, clockwise)
+            const minuteAngle = (minutes * 6) - 90; // 6° per minute
+            const hourAngle = ((hours % 12) * 30 + minutes * 0.5) - 90; // 30° per hour + 0.5° per minute
+            
+            // Calculate hand end points (centered at 50,50)
+            const hourX = 50 + 25 * Math.cos(hourAngle * Math.PI / 180);
+            const hourY = 50 + 25 * Math.sin(hourAngle * Math.PI / 180);
+            const minuteX = 50 + 35 * Math.cos(minuteAngle * Math.PI / 180);
+            const minuteY = 50 + 35 * Math.sin(minuteAngle * Math.PI / 180);
+            
+            return `
+                <svg width="50" height="50" viewBox="0 0 100 100" style="margin-right: 10px; flex-shrink: 0;">
+                    <!-- Clock face -->
+                    <circle cx="50" cy="50" r="45" fill="white" stroke="#667eea" stroke-width="3"/>
+                    
+                    <!-- Hour markers -->
+                    <circle cx="50" cy="10" r="2" fill="#667eea"/>
+                    <circle cx="50" cy="90" r="2" fill="#667eea"/>
+                    <circle cx="10" cy="50" r="2" fill="#667eea"/>
+                    <circle cx="90" cy="50" r="2" fill="#667eea"/>
+                    
+                    <!-- Hour hand -->
+                    <line x1="50" y1="50" x2="${hourX}" y2="${hourY}" stroke="#333" stroke-width="4" stroke-linecap="round"/>
+                    
+                    <!-- Minute hand -->
+                    <line x1="50" y1="50" x2="${minuteX}" y2="${minuteY}" stroke="#667eea" stroke-width="3" stroke-linecap="round"/>
+                    
+                    <!-- Center dot -->
+                    <circle cx="50" cy="50" r="4" fill="#667eea"/>
+                </svg>
+            `;
+        }
+
+        // Initialize grids
+        populateGrid('addressesGrid', addressesData);
+        populateGrid('datesGrid', datesData);
+        populateGrid('timeGrid', timeData);
+        populateGrid('pricesGrid', pricesData);
+        populateGrid('temperatureGrid', temperatureData);
+        populateGrid('weightGrid', weightData);
+        populateGrid('heightGrid', heightData);
+        populateGrid('ageGrid', ageData);
+        populateGrid('phoneGrid', phoneData);
+        populateGrid('workpayGrid', workpayData);
+        populateGrid('idGrid', idData);
+        
+        // Generate daily practice examples
+        // Number to word conversion helpers
+        function numberToWords(num) {
+            const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+            const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            
+            if (num === 0) return 'zero';
+            if (num < 10) return ones[num];
+            if (num < 20) return teens[num - 10];
+            if (num < 100) {
+                const ten = Math.floor(num / 10);
+                const one = num % 10;
+                return tens[ten] + (one ? '-' + ones[one] : '');
             }
+            if (num < 1000) {
+                const hundred = Math.floor(num / 100);
+                const rest = num % 100;
+                return ones[hundred] + ' hundred' + (rest ? ' ' + numberToWords(rest) : '');
+            }
+            if (num < 10000) {
+                const thousand = Math.floor(num / 1000);
+                const rest = num % 1000;
+                return ones[thousand] + ' thousand' + (rest ? ' ' + numberToWords(rest) : '');
+            }
+            return num.toString();
         }
         
-        // Populate alphabet grid
-        function populateAlphabet() {
-            const grid = document.getElementById('alphabetGrid');
-            alphabet.forEach(letter => {
-                const card = document.createElement('div');
-                card.className = 'letter-card';
-                card.innerHTML = `
-                    <span class="speaker-icon">🔊</span>
-                    <span class="letter-upper">${letter.upper}</span>
-                    <span class="letter-lower">${letter.lower}</span>
+        function numberToSpanish(num) {
+            const ones = ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve'];
+            const teens = ['diez', 'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'diecisiete', 'dieciocho', 'diecinueve'];
+            const twenties = ['veinte', 'veintiuno', 'veintidós', 'veintitrés', 'veinticuatro', 'veinticinco', 'veintiséis', 'veintisiete', 'veintiocho', 'veintinueve'];
+            const tens = ['', '', 'veinte', 'treinta', 'cuarenta', 'cincuenta', 'sesenta', 'setenta', 'ochenta', 'noventa'];
+            
+            if (num === 0) return 'cero';
+            if (num < 10) return ones[num];
+            if (num < 20) return teens[num - 10];
+            if (num < 30) return twenties[num - 20];
+            if (num < 100) {
+                const ten = Math.floor(num / 10);
+                const one = num % 10;
+                return tens[ten] + (one ? ' ' + ones[one] : '');
+            }
+            if (num === 100) return 'cien';
+            if (num < 1000) {
+                const hundred = Math.floor(num / 100);
+                const rest = num % 100;
+                const hundredWord = hundred === 1 ? 'ciento' : ones[hundred] + 'cientos';
+                return hundredWord + (rest ? ' ' + numberToSpanish(rest) : '');
+            }
+            if (num < 10000) {
+                const thousand = Math.floor(num / 1000);
+                const rest = num % 1000;
+                return (thousand === 1 ? 'mil' : ones[thousand] + ' mil') + (rest ? ' ' + numberToSpanish(rest) : '');
+            }
+            return num.toString();
+        }
+        
+        function generateDailyPractice() {
+            // Get today's date as seed for consistent daily examples
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+            
+            // Seed random number generator with day of year
+            function seededRandom(seed) {
+                const x = Math.sin(seed++) * 10000;
+                return x - Math.floor(x);
+            }
+            
+            // Generate random dates (matching format: "1/15/1992" → "January fifteenth, nineteen ninety-two")
+            function generateRandomDate(seed) {
+                const month = Math.floor(seededRandom(seed) * 12) + 1;
+                const day = Math.floor(seededRandom(seed + 1) * 28) + 1;
+                const year = 1980 + Math.floor(seededRandom(seed + 2) * 46);
+                
+                const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                const ordinals = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth',
+                    'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 
+                    'nineteenth', 'twentieth', 'twenty-first', 'twenty-second', 'twenty-third', 'twenty-fourth', 'twenty-fifth', 
+                    'twenty-sixth', 'twenty-seventh', 'twenty-eighth'];
+                
+                const yearFirst = Math.floor(year / 100);
+                const yearSecond = year % 100;
+                const yearWords = year < 2000 ? 
+                    `nineteen ${numberToWords(year - 1900)}` :
+                    `two thousand ${yearSecond > 0 ? numberToWords(yearSecond) : ''}`;
+                
+                return {
+                    display: `${month}/${day}/${year}`,
+                    english: `${months[month-1]} ${ordinals[day-1]}, ${yearWords}`,
+                    spanish: `${day} de ${months[month-1].toLowerCase()} de mil ${numberToSpanish(year - 1000)}`
+                };
+            }
+            
+            // Generate random times (matching format: "2:03" → "two oh three")
+            function generateRandomTime(seed) {
+                const hour = Math.floor(seededRandom(seed) * 12) + 1;
+                const minute = Math.floor(seededRandom(seed + 1) * 60);
+                
+                let minuteWords;
+                if (minute === 0) {
+                    minuteWords = "o'clock";
+                } else if (minute < 10) {
+                    minuteWords = `oh ${numberToWords(minute)}`;
+                } else {
+                    minuteWords = numberToWords(minute);
+                }
+                
+                return {
+                    display: `${hour}:${minute.toString().padStart(2, '0')}`,
+                    english: `${numberToWords(hour)} ${minuteWords}`,
+                    spanish: `${numberToSpanish(hour)} ${numberToSpanish(minute)}`
+                };
+            }
+            
+            // Generate random temperatures (matching format: "72°F" → "seventy-two degrees Fahrenheit")
+            function generateRandomTemp(seed) {
+                const temp = 30 + Math.floor(seededRandom(seed) * 75);
+                return {
+                    display: `${temp}°F`,
+                    english: `${numberToWords(temp)} degrees Fahrenheit`,
+                    spanish: `${numberToSpanish(temp)} grados Fahrenheit`
+                };
+            }
+            
+            // Generate random prices (matching format: "$2.99" → "two dollars and ninety-nine cents")
+            function generateRandomPrice(seed) {
+                const dollars = Math.floor(seededRandom(seed) * 200);
+                const cents = Math.floor(seededRandom(seed + 1) * 100);
+                
+                const dollarWord = dollars === 1 ? 'dollar' : 'dollars';
+                const centWord = cents === 1 ? 'centavo' : 'centavos';
+                const dollarWordSpanish = dollars === 1 ? 'dólar' : 'dólares';
+                
+                const english = cents === 0 ?
+                    `${numberToWords(dollars)} ${dollarWord}` :
+                    `${numberToWords(dollars)} ${dollarWord} and ${numberToWords(cents)} cents`;
+                
+                const spanish = cents === 0 ?
+                    `${numberToSpanish(dollars)} ${dollarWordSpanish}` :
+                    `${numberToSpanish(dollars)} ${dollarWordSpanish} y ${numberToSpanish(cents)} ${centWord}`;
+                
+                return {
+                    display: `$${dollars}.${cents.toString().padStart(2, '0')}`,
+                    english: english,
+                    spanish: spanish
+                };
+            }
+            
+            // Generate random addresses (matching format: "1225 Parker Ave." → "twelve twenty-five Parker Avenue")
+            function generateRandomAddress(seed) {
+                const streetNum = 1000 + Math.floor(seededRandom(seed) * 9000);
+                const streets = ['Parker', 'Lyon', 'Maple', 'Pine', 'Elm', 'Cedar', 'Oak', 'Birch', 'Walnut', 'Cherry'];
+                const types = ['Ave.', 'St.'];
+                const street = streets[Math.floor(seededRandom(seed + 1) * streets.length)];
+                const type = types[Math.floor(seededRandom(seed + 2) * types.length)];
+                
+                const first = Math.floor(streetNum / 100);
+                const second = streetNum % 100;
+                const numWords = `${numberToWords(first)} ${numberToWords(second)}`;
+                
+                return {
+                    display: `${streetNum} ${street} ${type}`,
+                    english: `${numWords} ${street} ${type === 'Ave.' ? 'Avenue' : 'Street'}`,
+                    spanish: `${numberToSpanish(streetNum)} ${type === 'Ave.' ? 'Avenida' : 'Calle'} ${street}`
+                };
+            }
+            
+            // Generate random phone numbers (matching format: "510-234-1234")
+            function generateRandomPhone(seed) {
+                const areaCodes = ['510', '415'];
+                const areaCode = areaCodes[Math.floor(seededRandom(seed) * areaCodes.length)];
+                const middle = Math.floor(seededRandom(seed + 1) * 900) + 100;
+                const last = Math.floor(seededRandom(seed + 2) * 9000) + 1000;
+                
+                const middleDigits = middle.toString().split('').map(d => numberToWords(parseInt(d))).join(' ');
+                const lastDigits = last.toString().split('').map(d => numberToWords(parseInt(d))).join(' ');
+                
+                const areaSpoken = areaCode === '510' ?
+                    `five one zero, ${middleDigits}, ${lastDigits}. Or, five one oh, ${middleDigits}, ${lastDigits}` :
+                    `four one five, ${middleDigits}, ${lastDigits}`;
+                
+                const areaSpanish = areaCode === '510' ? 'cinco uno cero' : 'cuatro uno cinco';
+                
+                return {
+                    display: `${areaCode}-${middle}-${last}`,
+                    english: areaSpoken,
+                    spanish: `${areaSpanish}, ${middleDigits}, ${lastDigits}`
+                };
+            }
+            
+            // Generate random ages (matching format: "25 years old" → "twenty-five years old")
+            function generateRandomAge(seed) {
+                const age = Math.floor(seededRandom(seed) * 90) + 5;
+                return {
+                    display: `${age} years old`,
+                    english: `${numberToWords(age)} years old`,
+                    spanish: `${numberToSpanish(age)} años`
+                };
+            }
+            
+            // Generate random weights (matching format: "25 lbs" → "twenty-five pounds")
+            function generateRandomWeight(seed) {
+                const weight = Math.floor(seededRandom(seed) * 200) + 5;
+                return {
+                    display: `${weight} lbs`,
+                    english: `${numberToWords(weight)} pounds`,
+                    spanish: `${numberToSpanish(weight)} libras`
+                };
+            }
+            
+            // Generate random heights (matching format: "5'6\"" → "five feet six inches")
+            function generateRandomHeight(seed) {
+                const feet = Math.floor(seededRandom(seed) * 4) + 3;
+                const inches = Math.floor(seededRandom(seed + 1) * 12);
+                
+                const inchWord = inches === 1 ? 'inch' : 'inches';
+                const inchWordSpanish = inches === 1 ? 'pulgada' : 'pulgadas';
+                
+                return {
+                    display: `${feet}'${inches}"`,
+                    english: inches === 0 ? `${numberToWords(feet)} feet` : `${numberToWords(feet)} feet ${numberToWords(inches)} ${inchWord}`,
+                    spanish: `${numberToSpanish(feet)} pies ${numberToSpanish(inches)} ${inchWordSpanish}`
+                };
+            }
+            
+            // Generate random work pay (matching format: "$21/hr" → "twenty-one dollars per hour")
+            function generateRandomWorkPay(seed) {
+                const isHourly = seededRandom(seed) > 0.5;
+                if (isHourly) {
+                    const rate = 15 + Math.floor(seededRandom(seed + 1) * 50);
+                    return {
+                        display: `$${rate}/hr`,
+                        english: `${numberToWords(rate)} dollars per hour`,
+                        spanish: `${numberToSpanish(rate)} dólares por hora`
+                    };
+                } else {
+                    const rate = 500 + Math.floor(seededRandom(seed + 1) * 1600);
+                    return {
+                        display: `$${rate}/wk`,
+                        english: `${numberToWords(rate)} dollars per week`,
+                        spanish: `${numberToSpanish(rate)} dólares por semana`
+                    };
+                }
+            }
+            
+            // Generate random ID (matching format with letters and numbers)
+            function generateRandomID(seed) {
+                const types = ['SSN', 'DL', 'PP'];
+                const type = types[Math.floor(seededRandom(seed) * types.length)];
+                
+                // Helper to shuffle digits
+                function shuffleDigits(num) {
+                    const digits = num.toString().split('');
+                    for (let i = digits.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [digits[i], digits[j]] = [digits[j], digits[i]];
+                    }
+                    return digits.join('');
+                }
+                
+                if (type === 'SSN') {
+                    // Generate random 3-digit, 2-digit, and 4-digit parts
+                    let part1 = shuffleDigits(Math.floor(seededRandom(seed + 1) * 900) + 100);
+                    let part2 = shuffleDigits(Math.floor(seededRandom(seed + 2) * 90) + 10);
+                    let part3 = shuffleDigits(Math.floor(seededRandom(seed + 3) * 9000) + 1000);
+                    
+                    const p1Digits = part1.split('').map(d => numberToWords(parseInt(d))).join(' ');
+                    const p2Digits = part2.split('').map(d => numberToWords(parseInt(d))).join(' ');
+                    const p3Digits = part3.split('').map(d => numberToWords(parseInt(d))).join(' ');
+                    
+                    const p1Spanish = part1.split('').map(d => numberToSpanish(parseInt(d))).join(' ');
+                    const p2Spanish = part2.split('').map(d => numberToSpanish(parseInt(d))).join(' ');
+                    const p3Spanish = part3.split('').map(d => numberToSpanish(parseInt(d))).join(' ');
+                    
+                    return {
+                        display: `SSN: ${part1}-${part2}-${part3}`,
+                        english: `SSN: ${p1Digits}, ${p2Digits}, ${p3Digits}`,
+                        spanish: `SSN: ${p1Spanish}, ${p2Spanish}, ${p3Spanish}`
+                    };
+                } else if (type === 'DL') {
+                    // Driver's License: only D, M, C, A, B
+                    const dlLetters = ['D', 'M', 'C', 'A', 'B'];
+                    const letter = dlLetters[Math.floor(seededRandom(seed + 1) * dlLetters.length)];
+                    const num = shuffleDigits(Math.floor(seededRandom(seed + 2) * 9000000) + 1000000);
+                    const numDigits = num.split('').map(d => numberToWords(parseInt(d))).join(' ');
+                    const numSpanish = num.split('').map(d => numberToSpanish(parseInt(d))).join(' ');
+                    
+                    return {
+                        display: `DL: ${letter}${num}`,
+                        english: `driver's license: ${letter} ${numDigits}`,
+                        spanish: `licencia de conducir: ${letter} ${numSpanish}`
+                    };
+                } else {
+                    // Passport: more varied letter combinations
+                    const ppLetters = ['K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W', 'X', 'F', 'H', 'J'];
+                    const letter1 = ppLetters[Math.floor(seededRandom(seed + 1) * ppLetters.length)];
+                    const letter2 = ppLetters[Math.floor(seededRandom(seed + 2) * ppLetters.length)];
+                    const num = shuffleDigits(Math.floor(seededRandom(seed + 3) * 9000000) + 1000000);
+                    const numDigits = num.split('').map(d => numberToWords(parseInt(d))).join(' ');
+                    const numSpanish = num.split('').map(d => numberToSpanish(parseInt(d))).join(' ');
+                    
+                    return {
+                        display: `PP: ${letter1}${letter2}${num}`,
+                        english: `passport: ${letter1} ${letter2} ${numDigits}`,
+                        spanish: `pasaporte: ${letter1} ${letter2} ${numSpanish}`
+                    };
+                }
+            }
+            
+            // Generate 20 random examples
+            const dailyPractice = [];
+            let seedCounter = dayOfYear;
+            
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomDate(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomTime(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomTemp(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomPrice(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomAddress(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomPhone(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomWorkPay(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomID(seedCounter++));
+            for (let i = 0; i < 2; i++) dailyPractice.push(generateRandomAge(seedCounter++));
+            for (let i = 0; i < 1; i++) dailyPractice.push(generateRandomWeight(seedCounter++));
+            for (let i = 0; i < 1; i++) dailyPractice.push(generateRandomHeight(seedCounter++));
+            
+            // Shuffle the array
+            for (let i = dailyPractice.length - 1; i > 0; i--) {
+                const j = Math.floor(seededRandom(dayOfYear + i + 1000) * (i + 1));
+                [dailyPractice[i], dailyPractice[j]] = [dailyPractice[j], dailyPractice[i]];
+            }
+            
+            // Populate practice grid with microphone buttons
+            const grid = document.getElementById('practiceGrid');
+            grid.innerHTML = '';
+            
+            dailyPractice.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'number-item';
+                const itemId = 'practice-' + index;
+                
+                div.innerHTML = `
+                    <div class="number-display" style="align-items: center; display: flex; gap: 10px;">
+                        <button class="speaker-btn" onclick="speak('${item.english.replace(/'/g, "\\'")}', 'practiceGrid')" title="Listen to example">🔊</button>
+                        <span style="flex-grow: 1; text-align: center;">${item.display}</span>
+                        <button class="speaker-btn" onclick="startRecording('${item.english.replace(/'/g, "\\'")}', '${itemId}')" title="Record your voice" style="background: #ef4444;">🎤</button>
+                    </div>
+                    <div id="feedback-${itemId}" style="font-size: 1.5rem; font-weight: bold; text-align: center; min-height: 30px; margin-top: 5px;"></div>
                 `;
-                card.onclick = () => speak(letter.name, true);
-                grid.appendChild(card);
+                grid.appendChild(div);
             });
         }
         
-        // Populate vowel grids
-        function populateVowels(data, gridId) {
-            const grid = document.getElementById(gridId);
-            data.forEach(vowel => {
-                const card = document.createElement('div');
-                card.className = 'vowel-card';
-                
-                const wordsHTML = vowel.words.map(w => `
-                    <div class="word-item">
-                        <span onclick="speak('${w.word}')">${w.word}</span>
-                        <span class="word-emoji" onclick="speak('${w.word}')">${w.emoji}</span>
-                    </div>
-                `).join('');
-                
-                card.innerHTML = `
-                    <div class="vowel-letter">${vowel.letter}</div>
-                    <div class="vowel-sound">${vowel.sound}</div>
-                    <div class="example-words">
-                        ${wordsHTML}
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
+        generateDailyPractice();
         
+        // My Information functions
+        // Reset all My Information fields
+        function resetMyInfo() {
+            document.getElementById('lastName').value = '';
+            document.getElementById('firstName').value = '';
+            document.getElementById('birthdate').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('city').value = '';
+            document.getElementById('state').value = '';
+            document.getElementById('zipcode').value = '';
+            document.getElementById('telephone').value = '';
+            document.getElementById('email').value = '';
+        }
+
         // Tab switching
         function showTab(tabName) {
             // Hide all tabs
@@ -870,15 +1360,328 @@
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
         }
+
+        // Text-to-speech
+        function speak(text, gridId = '') {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                
+                const voices = window.speechSynthesis.getVoices();
+                
+                // Define voice settings based on tab
+                let selectedVoice = null;
+                let rate = 0.8;
+                let pitch = 1.0;
+                
+                if (gridId === 'datesGrid' || gridId === 'timeGrid' || gridId === 'pricesGrid') {
+                    // Female voice, slightly higher pitch for dates, time, money
+                    selectedVoice = voices.find(voice => 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('Samantha') || 
+                        voice.name.includes('Victoria') ||
+                        voice.name.includes('Google US English') ||
+                        voice.name.includes('Microsoft Zira')
+                    );
+                    pitch = 1.1;
+                    rate = 0.8;
+                } else if (gridId === 'temperatureGrid') {
+                    // Female voice, slower and calm for temperature
+                    selectedVoice = voices.find(voice => 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('Samantha') ||
+                        voice.name.includes('Google US English') ||
+                        voice.name.includes('Microsoft Zira')
+                    );
+                    pitch = 1.0;
+                    rate = 0.7;
+                } else if (gridId === 'addressesGrid' || gridId === 'phoneGrid') {
+                    // Male voice, clear and formal for addresses and phone numbers
+                    selectedVoice = voices.find(voice => 
+                        voice.name.includes('Male') ||
+                        voice.name.includes('David') ||
+                        voice.name.includes('Daniel') ||
+                        voice.name.includes('Google UK English Male') ||
+                        voice.name.includes('Microsoft Mark')
+                    );
+                    pitch = 1.0;
+                    rate = 0.75;
+                } else if (gridId === 'ageGrid' || gridId === 'weightGrid' || gridId === 'heightGrid') {
+                    // Female voice, friendly and warm for age, weight, height
+                    selectedVoice = voices.find(voice => 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('Samantha') ||
+                        voice.name.includes('Karen') ||
+                        voice.name.includes('Google US English') ||
+                        voice.name.includes('Microsoft Zira')
+                    );
+                    pitch = 1.05;
+                    rate = 0.8;
+                } else {
+                    // Default female voice for numbers, ordinals, practice
+                    selectedVoice = voices.find(voice => 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('Samantha') || 
+                        voice.name.includes('Victoria') ||
+                        voice.name.includes('Google US English') ||
+                        voice.name.includes('Microsoft Zira')
+                    );
+                    rate = 0.8;
+                }
+                
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
+                utterance.rate = rate;
+                utterance.pitch = pitch;
+                
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+        
+        // Speech recognition for practice
+        function startRecording(correctAnswer, itemId) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!SpeechRecognition) {
+                alert('Speech recognition is not supported in your browser. Please use Chrome, Edge, or Safari.');
+                return;
+            }
+            
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+            
+            // Show listening indicator
+            const feedbackEl = document.getElementById('feedback-' + itemId);
+            feedbackEl.innerHTML = '🎤 Listening...';
+            feedbackEl.style.color = '#3b82f6';
+            feedbackEl.style.fontSize = '1rem';
+            
+            recognition.start();
+            
+            recognition.onresult = (event) => {
+                const spokenText = event.results[0][0].transcript;
+                
+                // Show what was said (no grading)
+                feedbackEl.innerHTML = `<span style="font-size: 0.9rem; color: #667eea; font-style: italic;">You said: "${spokenText}"</span>`;
+            };
+            
+            recognition.onerror = (event) => {
+                feedbackEl.innerHTML = '<span style="font-size: 0.85rem; color: #ef4444;">Could not hear you. Try again!</span>';
+            };
+            
+            recognition.onend = () => {
+                // Recognition ended
+            };
+        }
+        
+        // Calculate similarity between two strings
+        function calculateSimilarity(s1, s2) {
+            const longer = s1.length > s2.length ? s1 : s2;
+            const shorter = s1.length > s2.length ? s2 : s1;
+            
+            if (longer.length === 0) return 1.0;
+            
+            const editDistance = getEditDistance(longer, shorter);
+            return (longer.length - editDistance) / longer.length;
+        }
+        
+        // Levenshtein distance for fuzzy matching
+        function getEditDistance(s1, s2) {
+            s1 = s1.toLowerCase();
+            s2 = s2.toLowerCase();
+            
+            const costs = [];
+            for (let i = 0; i <= s1.length; i++) {
+                let lastValue = i;
+                for (let j = 0; j <= s2.length; j++) {
+                    if (i === 0) {
+                        costs[j] = j;
+                    } else if (j > 0) {
+                        let newValue = costs[j - 1];
+                        if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
+                            newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+                        }
+                        costs[j - 1] = lastValue;
+                        lastValue = newValue;
+                    }
+                }
+                if (i > 0) costs[s2.length] = lastValue;
+            }
+            return costs[s2.length];
+        }
+
+        // Load voices when available
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                // Voices are now loaded
+            };
+        }
+        
+        // Generate numbers 1-100 table
+        function generateNumbersTable() {
+            const table = document.getElementById('numbersTable');
+            table.className = 'numbers-table';
+            
+            for (let i = 1; i <= 100; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'number-cell';
+                cell.textContent = i;
+                cell.onclick = () => speakNumber(i);
+                table.appendChild(cell);
+            }
+        }
+        
+        // Convert number to words and speak it
+        function speakNumber(num) {
+            const numberWord = numberToWords(num);
+            speak(numberWord);
+        }
+        
+        // Convert number to English words
+        function numberToWords(num) {
+            const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+            const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            
+            if (num < 10) {
+                return ones[num];
+            } else if (num < 20) {
+                return teens[num - 10];
+            } else if (num < 100) {
+                const ten = Math.floor(num / 10);
+                const one = num % 10;
+                return tens[ten] + (one ? ' ' + ones[one] : '');
+            } else if (num === 100) {
+                return 'one hundred';
+            }
+            return num.toString();
+        }
+        
+        // Play numbers 1 to 100 consecutively
+        let isCounting = false;
+        
+        function playNumbers1to100() {
+            if (isCounting) return; // Prevent multiple clicks
+            
+            isCounting = true;
+            const numbers = [];
+            
+            // Generate number words
+            const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+            const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            
+            for (let i = 1; i <= 100; i++) {
+                if (i < 10) {
+                    numbers.push(ones[i]);
+                } else if (i < 20) {
+                    numbers.push(teens[i - 10]);
+                } else if (i < 100) {
+                    const ten = Math.floor(i / 10);
+                    const one = i % 10;
+                    numbers.push(tens[ten] + (one ? ' ' + ones[one] : ''));
+                } else {
+                    numbers.push('one hundred');
+                }
+            }
+            
+            // Speak each number with a pause
+            let currentNum = 0;
+            
+            function speakNext() {
+                if (currentNum < numbers.length) {
+                    const utterance = new SpeechSynthesisUtterance(numbers[currentNum]);
+                    utterance.lang = 'en-US';
+                    utterance.rate = 1.0;
+                    
+                    const voices = window.speechSynthesis.getVoices();
+                    const femaleVoice = voices.find(voice => 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('Samantha') || 
+                        voice.name.includes('Victoria') ||
+                        voice.name.includes('Google US English') ||
+                        voice.name.includes('Microsoft Zira')
+                    );
+                    
+                    if (femaleVoice) {
+                        utterance.voice = femaleVoice;
+                    }
+                    
+                    utterance.onend = () => {
+                        currentNum++;
+                        setTimeout(speakNext, 500); // 500ms pause between numbers
+                    };
+                    
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    isCounting = false;
+                }
+            }
+            
+            speakNext();
+        }
         
         // Initialize
-        populateAlphabet();
-        populateVowels(shortVowels, 'shortVowelsGrid');
-        populateVowels(longVowels, 'longVowelsGrid');
-        populateVowels(shortConsonants, 'shortConsonantsGrid');
-        populateVowels(longConsonants, 'longConsonantsGrid');
-        populateVowels(blends, 'blendsGrid');
-        populateVowels(specialSounds, 'specialSoundsGrid');
+        generateNumbersTable();
+        generateOrdinalsTable();
+        
+        // Generate ordinal numbers 1-100 table
+        function generateOrdinalsTable() {
+            const table = document.getElementById('ordinalsTable');
+            table.className = 'numbers-table';
+            
+            for (let i = 1; i <= 100; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'number-cell';
+                cell.textContent = getOrdinalSuffix(i);
+                cell.onclick = () => speakOrdinal(i);
+                table.appendChild(cell);
+            }
+        }
+        
+        // Get ordinal suffix (1st, 2nd, 3rd, etc.)
+        function getOrdinalSuffix(num) {
+            const j = num % 10;
+            const k = num % 100;
+            if (j === 1 && k !== 11) return num + "st";
+            if (j === 2 && k !== 12) return num + "nd";
+            if (j === 3 && k !== 13) return num + "rd";
+            return num + "th";
+        }
+        
+        // Convert number to ordinal words and speak it
+        function speakOrdinal(num) {
+            const ordinalWord = numberToOrdinalWords(num);
+            speak(ordinalWord);
+        }
+        
+        // Convert number to ordinal English words
+        function numberToOrdinalWords(num) {
+            const ones = ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth'];
+            const teens = ['tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth'];
+            const tens = ['', '', 'twentieth', 'thirtieth', 'fortieth', 'fiftieth', 'sixtieth', 'seventieth', 'eightieth', 'ninetieth'];
+            const tensBase = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            
+            if (num < 10) {
+                return ones[num];
+            } else if (num < 20) {
+                return teens[num - 10];
+            } else if (num < 100) {
+                const ten = Math.floor(num / 10);
+                const one = num % 10;
+                if (one === 0) {
+                    return tens[ten];
+                } else {
+                    return tensBase[ten] + ' ' + ones[one];
+                }
+            } else if (num === 100) {
+                return 'one hundredth';
+            }
+            return num.toString();
+        }
     </script>
 </body>
 </html>
